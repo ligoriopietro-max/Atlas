@@ -3,21 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlas</title>
+
+    <title>Atlas — Orientamento per le famiglie</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #1f2937;
+            background: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 24px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            background: #f5f7fa;
+        }
+
+        .hero-content {
+            max-width: 760px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.05;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span {
+            display: block;
+        }
+
+        .hero p {
+            font-size: 21px;
+            max-width: 650px;
+            margin-bottom: 36px;
+            color: #4b5563;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 16px 28px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            opacity: 0.88;
+        }
+
+        .section {
+            padding: 80px 8%;
+        }
+
+        .section-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .section-intro {
+            font-size: 19px;
+            color: #6b7280;
+            margin-bottom: 45px;
+            max-width: 700px;
+        }
+
+        .problems {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .problem {
+            padding: 28px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .problem h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .problem p {
+            color: #6b7280;
+        }
+
+        .atlas-section {
+            background: #f5f7fa;
+            text-align: center;
+        }
+
+        .atlas-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 20px;
+            color: #4b5563;
+        }
+
+        footer {
+            padding: 30px 8%;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 7%;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section {
+                padding: 60px 7%;
+            }
+
+            .section h2 {
+                font-size: 30px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Atlas</h1>
+    <header>
+        <div class="logo">ATLAS</div>
+    </header>
 
-    <h2>Non sai da dove cominciare? Partiamo da qui.</h2>
+    <main>
 
-    <p>
-        Atlas vuole aiutare le famiglie a orientarsi
-        nel mondo delle neurodivergenze.
-    </p>
+        <section class="hero">
+            <div class="hero-content">
 
-    <button>Inizia il tuo percorso</button>
+                <h1>
+                    Non sai da dove cominciare?
+                    <span>Ti aiutiamo noi.</span>
+                </h1>
+
+                <p>
+                    Atlas nasce per aiutare le famiglie a orientarsi
+                    nel mondo delle neurodivergenze, capire quali possibilità
+                    hanno e trovare il percorso più adatto alla propria situazione.
+                </p>
+
+                <a href="#orientamento" class="button">
+                    Inizia il tuo percorso
+                </a>
+
+            </div>
+        </section>
+
+
+        <section class="section">
+            <div class="section-content">
+
+                <h2>
+                    Quando hai bisogno di aiuto,
+                    da dove cominci?
+                </h2>
+
+                <p class="section-intro">
+                    Le informazioni esistono. I professionisti esistono.
+                    I servizi esistono. Il problema è spesso capire
+                    come collegare tutto questo alla propria situazione.
+                </p>
+
+                <div class="problems">
+
+                    <div class="problem">
+                        <h3>Non sai a chi rivolgerti</h3>
+                        <p>
+                            Hai bisogno di capire quale potrebbe essere
+                            il primo passo.
+                        </p>
+                    </div>
+
+                    <div class="problem">
+                        <h3>Trovi troppe informazioni</h3>
+                        <p>
+                            Cerchi risposte ovunque, ma non sai quali
+                            siano realmente utili per te.
+                        </p>
+                    </div>
+
+                    <div class="problem">
+                        <h3>Devi coordinare tutto</h3>
+                        <p>
+                            Scuola, terapie, professionisti, appuntamenti,
+                            documenti e servizi possono diventare difficili
+                            da gestire.
+                        </p>
+                    </div>
+
+                    <div class="problem">
+                        <h3>Scopri le opportunità troppo tardi</h3>
+                        <p>
+                            Servizi comunali, agevolazioni e risorse
+                            territoriali non sono sempre facili da conoscere.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="section atlas-section" id="orientamento">
+
+            <div class="section-content">
+
+                <h2>Atlas parte dalla tua famiglia.</h2>
+
+                <p>
+                    Raccontaci brevemente la tua situazione.
+                    Ti aiuteremo a capire da dove partire
+                    e quali risorse possono essere utili.
+                </p>
+
+                <a href="#" class="button">
+                    Inizia il tuo percorso
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 Atlas — Progetto in sviluppo
+    </footer>
 
 </body>
 </html>
