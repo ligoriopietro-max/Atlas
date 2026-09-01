@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas — Il tuo percorso</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            padding: 45px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 45px;
+        }
+
+        .progress {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 35px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            background: white;
+            text-align: left;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">ATLAS</div>
+
+        <div class="progress">
+            Domanda 2 di 7
+        </div>
+
+        <h1>
+            Qual è la situazione che descrive meglio il momento che state vivendo?
+        </h1>
+
+        <p class="intro">
+            Scegli la risposta che senti più vicina alla vostra situazione.
+            Le informazioni serviranno ad Atlas per capire meglio
+            come orientarvi.
+        </p>
+
+        <div class="options">
+
+            <button class="option">
+                Abbiamo bisogno di capire quali professionisti consultare
+            </button>
+
+            <button class="option">
+                Abbiamo bisogno di trovare servizi o strutture nella nostra zona
+            </button>
+
+            <button class="option">
+                Abbiamo difficoltà a gestire terapie, scuola e appuntamenti
+            </button>
+
+            <button class="option">
+                Abbiamo soprattutto bisogno di informazioni e orientamento
+            </button>
+
+        </div>
+
+        <div class="footer">
+            Non esiste una risposta giusta o sbagliata.
+        </div>
+
+    </main>
+
+</body>
+</html>
