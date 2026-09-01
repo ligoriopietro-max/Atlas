@@ -56,6 +56,7 @@
             font-size: 18px;
             color: #6b7280;
             margin-bottom: 35px;
+            line-height: 1.5;
         }
 
         .options {
@@ -110,41 +111,156 @@
             Domanda 2 di 7
         </div>
 
-        <h1>
-            Qual è la situazione che descrive meglio il momento che state vivendo?
-        </h1>
+        <h1 id="titolo"></h1>
 
-        <p class="intro">
-            Scegli la risposta che senti più vicina alla vostra situazione.
-            Le informazioni serviranno ad Atlas per capire meglio
-            come orientarvi.
-        </p>
+        <p class="intro" id="intro"></p>
 
-        <div class="options">
-
-            <button class="option">
-                Abbiamo bisogno di capire quali professionisti consultare
-            </button>
-
-            <button class="option">
-                Abbiamo bisogno di trovare servizi o strutture nella nostra zona
-            </button>
-
-            <button class="option">
-                Abbiamo difficoltà a gestire terapie, scuola e appuntamenti
-            </button>
-
-            <button class="option">
-                Abbiamo soprattutto bisogno di informazioni e orientamento
-            </button>
-
-        </div>
+        <div class="options" id="opzioni"></div>
 
         <div class="footer">
             Non esiste una risposta giusta o sbagliata.
         </div>
 
     </main>
+
+    <script>
+
+        // Recupera la risposta data alla Domanda 1
+        const parametri = new URLSearchParams(window.location.search);
+        const fase = parametri.get("risposta");
+
+        const titolo = document.getElementById("titolo");
+        const intro = document.getElementById("intro");
+        const opzioni = document.getElementById("opzioni");
+
+        let domanda = "";
+        let risposte = [];
+
+        // DUBBI INIZIALI
+        if (fase === "dubbi") {
+
+            domanda = "Cosa vi preoccupa maggiormente in questo momento?";
+
+            risposte = [
+                "Ci preoccupa lo sviluppo o il comportamento di nostro figlio",
+                "Non sappiamo a chi rivolgerci per capire meglio la situazione",
+                "Abbiamo bisogno di informazioni semplici e affidabili",
+                "Non sappiamo quale sia il prossimo passo da fare",
+                "Abbiamo già iniziato a cercare aiuto, ma siamo ancora disorientati",
+                "Altro"
+            ];
+
+        // DIAGNOSI IN CORSO
+        } else if (fase === "diagnosi") {
+
+            domanda = "Di cosa avete più bisogno mentre affrontate questo percorso?";
+
+            risposte = [
+                "Trovare un professionista o una struttura",
+                "Capire come funziona il percorso di valutazione",
+                "Capire quali sono i tempi e le possibilità disponibili",
+                "Trovare informazioni affidabili",
+                "Capire cosa possiamo fare nel frattempo",
+                "Non sappiamo quale sia il prossimo passo",
+                "Altro"
+            ];
+
+        // POST DIAGNOSI
+        } else if (fase === "post_diagnosi") {
+
+            domanda = "Cosa vi serve maggiormente per capire come procedere dopo la diagnosi?";
+
+            risposte = [
+                "Capire da dove iniziare",
+                "Trovare professionisti o terapie",
+                "Conoscere i servizi disponibili nella nostra zona",
+                "Capire quali sostegni e agevolazioni possiamo avere",
+                "Capire come muoverci con la scuola",
+                "Trovare informazioni semplici e affidabili",
+                "Non sappiamo quale sia il prossimo passo",
+                "Altro"
+            ];
+
+        // PERCORSO GIÀ AVVIATO
+        } else if (fase === "percorso_avviato") {
+
+            domanda = "Cosa vi manca maggiormente nel percorso che avete già iniziato?";
+
+            risposte = [
+                "Trovare o cambiare professionisti o servizi",
+                "Organizzare meglio terapie e appuntamenti",
+                "Gestire meglio il rapporto con la scuola",
+                "Trovare informazioni che ancora ci mancano",
+                "Capire quali sostegni o agevolazioni possiamo ottenere",
+                "Coordinare meglio le diverse persone che seguono nostro figlio",
+                "Il percorso non sta funzionando come speravamo",
+                "Altro"
+            ];
+
+        // NUOVE DIFFICOLTÀ
+        } else if (fase === "nuove_difficolta") {
+
+            domanda = "Qual è la principale difficoltà che state incontrando adesso?";
+
+            risposte = [
+                "Terapie e organizzazione familiare",
+                "Scuola",
+                "Professionisti o servizi",
+                "Costi",
+                "Tempi di attesa",
+                "Burocrazia, diritti o agevolazioni",
+                "Comunicazione e coordinamento tra famiglia e professionisti",
+                "È comparsa una nuova difficoltà nel comportamento o nello sviluppo",
+                "Altro"
+            ];
+
+        } else {
+
+            // Caso di sicurezza se qualcuno apre direttamente domanda2.html
+            domanda = "Di cosa avete più bisogno in questo momento?";
+
+            risposte = [
+                "Capire da dove iniziare",
+                "Trovare professionisti o servizi",
+                "Conoscere le risorse disponibili nella nostra zona",
+                "Trovare informazioni semplici e affidabili",
+                "Capire quali sostegni possiamo avere",
+                "Altro"
+            ];
+        }
+
+        // Inserisce il contenuto nella pagina
+        titolo.textContent = domanda;
+
+        intro.textContent =
+            "Scegli la risposta che descrive meglio ciò di cui avete bisogno in questo momento. " +
+            "La vostra risposta aiuterà Atlas a capire come orientarvi.";
+
+        // Crea i pulsanti
+        risposte.forEach(function(risposta) {
+
+            const bottone = document.createElement("button");
+
+            bottone.className = "option";
+            bottone.textContent = risposta;
+
+            bottone.addEventListener("click", function() {
+
+                // Per ora registriamo la risposta e passiamo alla Domanda 3
+                const valore = encodeURIComponent(risposta);
+
+                window.location.href =
+                    "domanda3.html?fase=" +
+                    encodeURIComponent(fase) +
+                    "&bisogno=" +
+                    valore;
+
+            });
+
+            opzioni.appendChild(bottone);
+        });
+
+    </script>
 
 </body>
 </html>
