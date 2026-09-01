@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas — Il tuo percorso</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            padding: 45px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 45px;
+        }
+
+        .progress {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            background: white;
+            text-align: left;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .option.selected {
+            background: #f3f4f6;
+            border-color: #6b7280;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            accent-color: #374151;
+        }
+
+        .other-input {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .other-input.visible {
+            display: block;
+        }
+
+        .continue {
+            width: 100%;
+            margin-top: 25px;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #1f2937;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .continue:hover {
+            background: #111827;
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">ATLAS</div>
+
+        <div class="progress">
+            Domanda 3 di 7
+        </div>
+
+        <h1>
+            Quali persone, servizi o strutture vi stanno già aiutando?
+        </h1>
+
+        <p class="intro">
+            Selezionate tutte quelle che fanno già parte del vostro percorso.
+        </p>
+
+        <div class="options">
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="pediatra">
+                Pediatra o medico di riferimento
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="specialista">
+                Specialista o professionista
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="centro">
+                Centro o struttura
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="terapie">
+                Terapie già avviate
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="scuola">
+                Scuola / insegnante di sostegno
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="asl">
+                ASL o servizi sanitari territoriali
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="comune">
+                Comune / servizi sociali
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="associazione">
+                Associazione o gruppo di supporto
+            </label>
+
+            <label class="option" id="nessunaOption">
+                <input type="checkbox" class="checkbox" value="nessuna">
+                Nessuna di queste
+            </label>
+
+            <label class="option" id="altroOption">
+                <input type="checkbox" class="checkbox" value="altro">
+                Altro
+            </label>
+
+        </div>
+
+        <input
+            type="text"
+            id="altroInput"
+            class="other-input"
+            placeholder="Scrivete qui..."
+        >
+
+        <button class="continue" onclick="continua()">
+            Continua
+        </button>
+
+        <div class="footer">
+            Potete selezionare più risposte.
+        </div>
+
+    </main>
+
+    <script>
+
+        const parametri = new URLSearchParams(window.location.search);
+
+        const fase = parametri.get("fase") || "";
+        const bisogno = parametri.get("bisogno") || "";
+
+        const checkbox = document.querySelectorAll(".checkbox");
+        const nessuna = document.querySelector('input[value="nessuna"]');
+        const altro = document.querySelector('input[value="altro"]');
+        const altroInput = document.getElementById("altroInput");
+
+        // Gestione selezione delle risposte
+        checkbox.forEach(function(box) {
+
+            box.addEventListener("change", function() {
+
+                // "Nessuna di queste" è incompatibile
+                // con tutte le altre risposte
+                if (this.value === "nessuna" && this.checked) {
+
+                    checkbox.forEach(function(other) {
+                        if (other.value !== "nessuna") {
+                            other.checked = false;
+                            other.parentElement.classList.remove("selected");
+                        }
+                    });
+
+                }
+
+                // Se viene selezionata una risposta diversa,
+                // "Nessuna di queste" viene deselezionata
+                if (this.value !== "nessuna" && this.checked) {
+                    nessuna.checked = false;
+                    nessuna.parentElement.classList.remove("selected");
+                }
+
+                // Mostra il campo "Altro"
+                if (this.value === "altro") {
+                    if (this.checked) {
+                        altroInput.classList.add("visible");
+                        altroInput.focus();
+                    } else {
+                        altroInput.classList.remove("visible");
+                        altroInput.value = "";
+                    }
+                }
+
+                // Evidenzia le opzioni selezionate
+                if (this.checked) {
+                    this.parentElement.classList.add("selected");
+                } else {
+                    this.parentElement.classList.remove("selected");
+                }
+
+            });
+
+        });
+
+        function continua() {
+
+            const selezionate = [];
+
+            checkbox.forEach(function(box) {
+
+                if (box.checked) {
+                    selezionate.push(box.value);
+                }
+
+            });
+
+            // Impedisce di continuare senza una risposta
+            if (selezionate.length === 0) {
+                alert("Selezionate almeno una risposta per continuare.");
+                return;
+            }
+
+            // Recupera il testo inserito in "Altro"
+            let altroTesto = "";
+
+            if (altro.checked) {
+                altroTesto = altroInput.value.trim();
+            }
+
+            // Trasforma le risposte in una stringa
+            const risorse = encodeURIComponent(selezionate.join(","));
+
+            const altroParametro = encodeURIComponent(altroTesto);
+
+            // Passa tutte le informazioni alla Domanda 4
+            window.location.href =
+                "domanda4.html?fase=" +
+                encodeURIComponent(fase) +
+                "&bisogno=" +
+                bisogno +
+                "&risorse=" +
+                risorse +
+                "&altro=" +
+                altroParametro;
+        }
+
+    </script>
+
+</body>
+</html>
