@@ -122,23 +122,23 @@
 
         <div class="options">
 
-            <button class="option">
-                Abbiamo appena ricevuto una diagnosi
-            </button>
+    <button class="option" onclick="vaiAllaDomanda2('diagnosi')">
+        Abbiamo appena ricevuto una diagnosi
+    </button>
 
-            <button class="option">
-                Siamo ancora alla ricerca di una diagnosi
-            </button>
+    <button class="option" onclick="vaiAllaDomanda2('ricerca')">
+        Siamo ancora alla ricerca di una diagnosi
+    </button>
 
-            <button class="option">
-                Abbiamo già iniziato un percorso
-            </button>
+    <button class="option" onclick="vaiAllaDomanda2('percorso')">
+        Abbiamo già iniziato un percorso
+    </button>
 
-            <button class="option">
-                Non sappiamo ancora da dove partire
-            </button>
+    <button class="option" onclick="vaiAllaDomanda2('orientamento')">
+        Non sappiamo ancora da dove partire
+    </button>
 
-        </div>
+</div>
 
         <div class="footer">
             Atlas utilizza le tue risposte per aiutarti a individuare
@@ -146,6 +146,10 @@
         </div>
 
     </main>
-
+<script>
+    function vaiAllaDomanda2(risposta) {
+        window.location.href = "domanda2.html?risposta=" + risposta;
+    }
+</script>
 </body>
 </html>
