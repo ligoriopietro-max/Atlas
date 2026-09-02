@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas – Domanda 6</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+
+        .progress {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: #4b5563;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .field input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background-color: #f9fafb;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background-color: #eff6ff;
+        }
+
+        .option input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-top: 15px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="logo">ATLAS</div>
+
+        <div class="progress">
+            Domanda 6 di 7
+        </div>
+
+        <h1>Dove vi trovate e quanto siete disposti a spostarvi?</h1>
+
+        <div class="intro">
+            Queste informazioni ci aiutano a individuare soluzioni realmente raggiungibili.
+        </div>
+
+        <div class="field">
+            <label for="comune">Comune</label>
+            <input
+                type="text"
+                id="comune"
+                placeholder="Es. Milano"
+            >
+        </div>
+
+        <div class="field">
+            <label for="provincia">Provincia</label>
+            <input
+                type="text"
+                id="provincia"
+                placeholder="Es. Milano"
+            >
+        </div>
+
+        <div class="field">
+            <label>Quanto siete disposti a spostarvi?</label>
+
+            <label class="option">
+                <input type="radio" name="distanza" value="comune">
+                Preferibilmente nel mio comune
+            </label>
+
+            <label class="option">
+                <input type="radio" name="distanza" value="30_minuti">
+                Fino a circa 30 minuti
+            </label>
+
+            <label class="option">
+                <input type="radio" name="distanza" value="60_minuti">
+                Fino a circa 60 minuti
+            </label>
+
+            <label class="option">
+                <input type="radio" name="distanza" value="oltre_60">
+                Anche oltre 60 minuti, se necessario
+            </label>
+        </div>
+
+        <div class="field">
+
+            <label>
+                Valutereste anche un servizio a distanza?
+            </label>
+
+            <label class="option">
+                <input type="radio" name="online" value="si">
+                Sì
+            </label>
+
+            <label class="option">
+                <input type="radio" name="online" value="no">
+                No
+            </label>
+
+            <label class="option">
+                <input type="radio" name="online" value="dipende">
+                Dipende dal tipo di servizio
+            </label>
+
+        </div>
+
+        <div id="error" class="error">
+            Inserite comune, provincia e selezionate le vostre preferenze.
+        </div>
+
+        <button onclick="continua()">
+            Continua
+        </button>
+
+    </div>
+</div>
+
+<script>
+
+    // Recupera tutti i dati precedenti
+    const params = new URLSearchParams(window.location.search);
+
+    const fase = params.get("fase") || "";
+    const bisogno = params.get("bisogno") || "";
+    const risorse = params.get("risorse") || "";
+    const altroRisorsa = params.get("altroRisorsa") || "";
+    const mancanze = params.get("mancanze") || "";
+    const altroMancanza = params.get("altroMancanza") || "";
+    const ostacoli = params.get("ostacoli") || "";
+    const altroOstacolo = params.get("altroOstacolo") || "";
+
+    const distanzaOptions = document.querySelectorAll(
+        'input[name="distanza"]'
+    );
+
+    const onlineOptions = document.querySelectorAll(
+        'input[name="online"]'
+    );
+
+    const error = document.getElementById("error");
+
+    // Gestione evidenziazione delle opzioni
+    function aggiornaSelezione(nome) {
+
+        const options = document.querySelectorAll(
+            'input[name="' + nome + '"]'
+        );
+
+        options.forEach(function(input) {
+
+            const option = input.closest(".option");
+
+            if (input.checked) {
+                option.classList.add("selected");
+            } else {
+                option.classList.remove("selected");
+            }
+
+        });
+    }
+
+    distanzaOptions.forEach(function(input) {
+        input.addEventListener("change", function() {
+            aggiornaSelezione("distanza");
+            error.style.display = "none";
+        });
+    });
+
+    onlineOptions.forEach(function(input) {
+        input.addEventListener("change", function() {
+            aggiornaSelezione("online");
+            error.style.display = "none";
+        });
+    });
+
+    function continua() {
+
+        const comune = document.getElementById("comune").value.trim();
+        const provincia = document.getElementById("provincia").value.trim();
+
+        const distanzaInput = document.querySelector(
+            'input[name="distanza"]:checked'
+        );
+
+        const onlineInput = document.querySelector(
+            'input[name="online"]:checked'
+        );
+
+        if (
+            comune === "" ||
+            provincia === "" ||
+            !distanzaInput ||
+            !onlineInput
+        ) {
+            error.style.display = "block";
+            return;
+        }
+
+        const distanza = distanzaInput.value;
+        const online = onlineInput.value;
+
+        const url =
+            "domanda7.html" +
+            "?fase=" + encodeURIComponent(fase) +
+            "&bisogno=" + encodeURIComponent(bisogno) +
+            "&risorse=" + encodeURIComponent(risorse) +
+            "&altroRisorsa=" + encodeURIComponent(altroRisorsa) +
+            "&mancanze=" + encodeURIComponent(mancanze) +
+            "&altroMancanza=" + encodeURIComponent(altroMancanza) +
+            "&ostacoli=" + encodeURIComponent(ostacoli) +
+            "&altroOstacolo=" + encodeURIComponent(altroOstacolo) +
+            "&comune=" + encodeURIComponent(comune) +
+            "&provincia=" + encodeURIComponent(provincia) +
+            "&distanza=" + encodeURIComponent(distanza) +
+            "&online=" + encodeURIComponent(online);
+
+        window.location.href = url;
+    }
+
+</script>
+
+</body>
+</html>
