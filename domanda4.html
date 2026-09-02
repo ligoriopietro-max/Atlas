@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas — Il tuo percorso</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #1f2937;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background: white;
+            padding: 45px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 45px;
+        }
+
+        .progress {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .limit {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 25px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            background: white;
+            text-align: left;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .option.selected {
+            background: #f3f4f6;
+            border-color: #6b7280;
+        }
+
+        .option.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            accent-color: #374151;
+        }
+
+        .other-input {
+            display: none;
+            width: 100%;
+            margin-top: 10px;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .other-input.visible {
+            display: block;
+        }
+
+        .continue {
+            width: 100%;
+            margin-top: 25px;
+            padding: 18px;
+            border: none;
+            border-radius: 10px;
+            background: #1f2937;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .continue:hover {
+            background: #111827;
+        }
+
+        .footer {
+            margin-top: 35px;
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">ATLAS</div>
+
+        <div class="progress">
+            Domanda 4 di 7
+        </div>
+
+        <h1>
+            Dove sentite che manca ancora qualcosa?
+        </h1>
+
+        <p class="intro">
+            Pensando a quello che state vivendo e a ciò che avete già a disposizione,
+            in quale area sentite di avere ancora bisogno di supporto?
+        </p>
+
+        <div class="limit">
+            Potete selezionare fino a 3 aree.
+        </div>
+
+        <div class="options">
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="informazioni">
+                Informazioni e orientamento
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="professionisti">
+                Professionisti o strutture
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="terapie">
+                Terapie e interventi
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="territorio">
+                Servizi del territorio
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="scuola">
+                Scuola
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="diritti">
+                Diritti, agevolazioni e burocrazia
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="organizzazione">
+                Organizzazione della vita quotidiana
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="coordinamento">
+                Coordinamento tra le persone coinvolte
+            </label>
+
+            <label class="option">
+                <input type="checkbox" class="checkbox" value="famiglia">
+                Supporto alla famiglia
+            </label>
+
+            <label class="option" id="altroOption">
+                <input type="checkbox" class="checkbox" value="altro">
+                Altro
+            </label>
+
+        </div>
+
+        <input
+            type="text"
+            id="altroInput"
+            class="other-input"
+            placeholder="Scrivete qui..."
+        >
+
+        <button class="continue" onclick="continua()">
+            Continua
+        </button>
+
+        <div class="footer">
+            Potete selezionare più risposte.
+        </div>
+
+    </main>
+
+    <script>
+
+        // Recupera tutti i dati precedenti
+        const parametri = new URLSearchParams(window.location.search);
+
+        const fase = parametri.get("fase") || "";
+        const bisogno = parametri.get("bisogno") || "";
+        const risorse = parametri.get("risorse") || "";
+        const altroRisorsa = parametri.get("altro") || "";
+
+        const checkbox = document.querySelectorAll(".checkbox");
+        const altro = document.querySelector('input[value="altro"]');
+        const altroInput = document.getElementById("altroInput");
+
+        // Gestione selezione
+        checkbox.forEach(function(box) {
+
+            box.addEventListener("change", function() {
+
+                const selezionate = Array.from(checkbox)
+                    .filter(function(item) {
+                        return item.checked;
+                    });
+
+                // Massimo 3 risposte
+                if (selezionate.length > 3) {
+                    this.checked = false;
+                    alert("Potete selezionare al massimo 3 aree.");
+                    return;
+                }
+
+                // Mostra / nasconde Altro
+                if (this.value === "altro") {
+
+                    if (this.checked) {
+                        altroInput.classList.add("visible");
+                        altroInput.focus();
+                    } else {
+                        altroInput.classList.remove("visible");
+                        altroInput.value = "";
+                    }
+                }
+
+                // Evidenzia selezione
+                if (this.checked) {
+                    this.parentElement.classList.add("selected");
+                } else {
+                    this.parentElement.classList.remove("selected");
+                }
+
+                aggiornaOpzioni();
+            });
+
+        });
+
+        function aggiornaOpzioni() {
+
+            const numeroSelezionate = Array.from(checkbox)
+                .filter(function(box) {
+                    return box.checked;
+                }).length;
+
+            checkbox.forEach(function(box) {
+
+                if (
+                    numeroSelezionate >= 3 &&
+                    !box.checked
+                ) {
+                    box.parentElement.classList.add("disabled");
+                } else {
+                    box.parentElement.classList.remove("disabled");
+                }
+
+            });
+        }
+
+        function continua() {
+
+            const mancanze = [];
+
+            checkbox.forEach(function(box) {
+
+                if (box.checked) {
+                    mancanze.push(box.value);
+                }
+
+            });
+
+            if (mancanze.length === 0) {
+                alert("Selezionate almeno un'area per continuare.");
+                return;
+            }
+
+            let altroMancanza = "";
+
+            if (altro.checked) {
+                altroMancanza = altroInput.value.trim();
+            }
+
+            // Costruisce i parametri per D5
+            const prossimiParametri = new URLSearchParams();
+
+            prossimiParametri.set("fase", fase);
+            prossimiParametri.set("bisogno", bisogno);
+            prossimiParametri.set("risorse", risorse);
+            prossimiParametri.set("altroRisorsa", altroRisorsa);
+            prossimiParametri.set("mancanze", mancanze.join(","));
+
+            if (altroMancanza) {
+                prossimiParametri.set(
+                    "altroMancanza",
+                    altroMancanza
+                );
+            }
+
+            window.location.href =
+                "domanda5.html?" +
+                prossimiParametri.toString();
+        }
+
+    </script>
+
+</body>
+</html>
