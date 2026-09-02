@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas – Domanda 7</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+
+        .progress {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: #4b5563;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background-color: #f9fafb;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background-color: #eff6ff;
+        }
+
+        .option input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        #altroBox {
+            display: none;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        #altroTesto {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-top: 15px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="logo">ATLAS</div>
+
+        <div class="progress">
+            Domanda 7 di 7
+        </div>
+
+        <h1>Qual è la prima cosa che vorreste riuscire a ottenere?</h1>
+
+        <div class="intro">
+            Scegliete una sola risposta: quella che per voi sarebbe più importante riuscire a ottenere per prima.
+        </div>
+
+        <div id="options">
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="capire_da_dove_iniziare">
+                Capire da dove iniziare
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="trovare_professionista_servizio">
+                Trovare il professionista o il servizio più adatto
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="confrontare_possibilita">
+                Confrontare le possibilità che abbiamo
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="servizi_zona">
+                Capire quali servizi sono disponibili nella nostra zona
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="ridurre_attese">
+                Ridurre i tempi di attesa
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="soluzione_costi">
+                Trovare una soluzione compatibile con i nostri costi
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="organizzare_percorso">
+                Organizzare meglio il percorso che abbiamo già iniziato
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="supporto_famiglia">
+                Trovare supporto per la nostra famiglia
+            </label>
+
+            <label class="option">
+                <input type="radio" name="obiettivo" value="scuola_servizi_istituzioni">
+                Capire come muoverci con scuola, servizi o istituzioni
+            </label>
+
+            <label class="option" id="altroOption">
+                <input type="radio" name="obiettivo" value="altro">
+                Altro
+            </label>
+
+        </div>
+
+        <div id="altroBox">
+            <textarea
+                id="altroTesto"
+                placeholder="Se volete, specificate cosa vorreste riuscire a ottenere..."
+            ></textarea>
+        </div>
+
+        <div id="error" class="error">
+            Selezionate una risposta.
+        </div>
+
+        <button onclick="continua()">
+            Continua
+        </button>
+
+    </div>
+</div>
+
+<script>
+
+    // Recupera tutti i dati precedenti
+    const params = new URLSearchParams(window.location.search);
+
+    const fase = params.get("fase") || "";
+    const bisogno = params.get("bisogno") || "";
+    const risorse = params.get("risorse") || "";
+    const altroRisorsa = params.get("altroRisorsa") || "";
+    const mancanze = params.get("mancanze") || "";
+    const altroMancanza = params.get("altroMancanza") || "";
+    const ostacoli = params.get("ostacoli") || "";
+    const altroOstacolo = params.get("altroOstacolo") || "";
+
+    const checkboxes = document.querySelectorAll(
+        'input[name="obiettivo"]'
+    );
+
+    const altroCheckbox = document.querySelector(
+        'input[value="altro"]'
+    );
+
+    const altroBox = document.getElementById("altroBox");
+    const altroTesto = document.getElementById("altroTesto");
+    const error = document.getElementById("error");
+
+    // Gestione selezione visiva
+    checkboxes.forEach(function(input) {
+
+        input.addEventListener("change", function() {
+
+            checkboxes.forEach(function(otherInput) {
+
+                const option = otherInput.closest(".option");
+
+                if (otherInput.checked) {
+                    option.classList.add("selected");
+                } else {
+                    option.classList.remove("selected");
+                }
+
+            });
+
+            // Mostra/nasconde il campo Altro
+            if (altroCheckbox.checked) {
+                altroBox.style.display = "block";
+            } else {
+                altroBox.style.display = "none";
+                altroTesto.value = "";
+            }
+
+            error.style.display = "none";
+        });
+
+    });
+
+    function continua() {
+
+        const selezionato = document.querySelector(
+            'input[name="obiettivo"]:checked'
+        );
+
+        if (!selezionato) {
+            error.textContent = "Selezionate una risposta.";
+            error.style.display = "block";
+            return;
+        }
+
+        // Se Altro è selezionato, richiede il testo
+        if (
+            selezionato.value === "altro" &&
+            altroTesto.value.trim() === ""
+        ) {
+            error.textContent =
+                'Avete selezionato "Altro": specificate brevemente cosa vorreste ottenere.';
+
+            error.style.display = "block";
+            return;
+        }
+
+        const obiettivo = selezionato.value;
+        const altroObiettivo = altroTesto.value.trim();
+
+        /*
+         * Per ora non andiamo ancora al vero motore Atlas.
+         * Passiamo tutti i dati a risultato.html.
+         */
+
+        const url =
+            "risultato.html" +
+            "?fase=" + encodeURIComponent(fase) +
+            "&bisogno=" + encodeURIComponent(bisogno) +
+            "&risorse=" + encodeURIComponent(risorse) +
+            "&altroRisorsa=" + encodeURIComponent(altroRisorsa) +
+            "&mancanze=" + encodeURIComponent(mancanze) +
+            "&altroMancanza=" + encodeURIComponent(altroMancanza) +
+            "&ostacoli=" + encodeURIComponent(ostacoli) +
+            "&altroOstacolo=" + encodeURIComponent(altroOstacolo) +
+            "&obiettivo=" + encodeURIComponent(obiettivo) +
+            "&altroObiettivo=" + encodeURIComponent(altroObiettivo);
+
+        window.location.href = url;
+    }
+
+</script>
+
+</body>
+</html>
