@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Atlas – Domanda 5</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #1f2937;
+        }
+
+        .progress {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .intro {
+            color: #4b5563;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            background-color: #f9fafb;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background-color: #eff6ff;
+        }
+
+        .option input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        #altroBox {
+            display: none;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        #altroTesto {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1d4ed8;
+        }
+
+        .error {
+            color: #dc2626;
+            margin-top: 15px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <div class="logo">ATLAS</div>
+
+        <div class="progress">
+            Domanda 5 di 7
+        </div>
+
+        <h1>Cosa vi sta impedendo di risolvere queste difficoltà?</h1>
+
+        <div class="intro">
+            Potete selezionare più risposte.
+        </div>
+
+        <div id="options">
+
+            <label class="option">
+                <input type="checkbox" value="non_sappiamo_a_chi_rivolgerci">
+                Non sappiamo a chi rivolgerci
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="non_troviamo_disponibilita">
+                Non troviamo professionisti o strutture disponibili
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="attese">
+                I tempi di attesa sono troppo lunghi
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="costi">
+                I costi sono troppo alti
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="scelta">
+                Non sappiamo come scegliere tra le possibilità che abbiamo
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="informazioni_confuse">
+                Le informazioni che troviamo sono troppe, confuse o poco affidabili
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="distanza">
+                I servizi sono troppo lontani o difficili da raggiungere
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="coordinamento">
+                È difficile coordinare scuola, terapie, servizi e famiglia
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="organizzazione">
+                Gli orari e gli impegni non sono compatibili con la nostra vita familiare
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="burocrazia">
+                Ci sono difficoltà burocratiche o istituzionali
+            </label>
+
+            <label class="option">
+                <input type="checkbox" value="energie">
+                Non abbiamo abbastanza energie o supporto per gestire tutto
+            </label>
+
+            <label class="option" id="altroOption">
+                <input type="checkbox" value="altro">
+                Altro
+            </label>
+
+        </div>
+
+        <div id="altroBox">
+            <textarea
+                id="altroTesto"
+                placeholder="Se volete, specificate quale difficoltà..."
+            ></textarea>
+        </div>
+
+        <div id="error" class="error">
+            Selezionate almeno una risposta e al massimo tre.
+        </div>
+
+        <button onclick="continua()">
+            Continua
+        </button>
+
+    </div>
+</div>
+
+<script>
+
+    // Recupera tutti i dati precedenti
+    const params = new URLSearchParams(window.location.search);
+
+    const fase = params.get("fase") || "";
+    const bisogno = params.get("bisogno") || "";
+    const risorse = params.get("risorse") || "";
+    const altroRisorsa = params.get("altroRisorsa") || "";
+    const mancanze = params.get("mancanze") || "";
+    const altroMancanza = params.get("altroMancanza") || "";
+
+    const checkboxes = document.querySelectorAll(
+        '#options input[type="checkbox"]'
+    );
+
+    const altroCheckbox = document.querySelector(
+        '#options input[value="altro"]'
+    );
+
+    const altroBox = document.getElementById("altroBox");
+    const altroTesto = document.getElementById("altroTesto");
+    const error = document.getElementById("error");
+
+    // Gestione selezione visiva
+    checkboxes.forEach(function(checkbox) {
+
+        checkbox.addEventListener("change", function() {
+
+            const option = checkbox.closest(".option");
+
+            if (checkbox.checked) {
+                option.classList.add("selected");
+            } else {
+                option.classList.remove("selected");
+            }
+
+            // Mostra/nasconde campo Altro
+            if (checkbox === altroCheckbox) {
+
+                if (checkbox.checked) {
+                    altroBox.style.display = "block";
+                } else {
+                    altroBox.style.display = "none";
+                    altroTesto.value = "";
+                }
+            }
+
+            // Aggiorna eventuale errore
+            error.style.display = "none";
+        });
+
+    });
+
+    function continua() {
+
+        const selezionati = Array.from(checkboxes)
+            .filter(function(checkbox) {
+                return checkbox.checked;
+            })
+            .map(function(checkbox) {
+                return checkbox.value;
+            });
+
+        // Validazione: almeno 1, massimo 3
+        if (selezionati.length < 1 || selezionati.length > 3) {
+            error.style.display = "block";
+            return;
+        }
+
+        // Se Altro è selezionato, richiede il testo
+        if (
+            altroCheckbox.checked &&
+            altroTesto.value.trim() === ""
+        ) {
+            error.textContent = "Avete selezionato \"Altro\": specificate brevemente quale difficoltà.";
+            error.style.display = "block";
+            return;
+        }
+
+        const altroOstacolo = altroTesto.value.trim();
+
+        // Costruzione URL per D6
+        const url =
+            "domanda6.html" +
+            "?fase=" + encodeURIComponent(fase) +
+            "&bisogno=" + encodeURIComponent(bisogno) +
+            "&risorse=" + encodeURIComponent(risorse) +
+            "&altroRisorsa=" + encodeURIComponent(altroRisorsa) +
+            "&mancanze=" + encodeURIComponent(mancanze) +
+            "&altroMancanza=" + encodeURIComponent(altroMancanza) +
+            "&ostacoli=" + encodeURIComponent(selezionati.join(",")) +
+            "&altroOstacolo=" + encodeURIComponent(altroOstacolo);
+
+        window.location.href = url;
+    }
+
+</script>
+
+</body>
+</html>
