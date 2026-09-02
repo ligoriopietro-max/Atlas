@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Atlas – Il vostro prossimo passo</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f5f7fa;
+        color: #222;
+    }
+
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 30px 20px 50px;
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .logo img {
+        max-width: 150px;
+        height: auto;
+    }
+
+    .progress {
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 25px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 28px;
+        line-height: 1.25;
+        margin-top: 0;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 12px;
+    }
+
+    .intro {
+        font-size: 17px;
+        line-height: 1.6;
+        color: #555;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .analysis {
+        font-size: 16px;
+        line-height: 1.65;
+        color: #333;
+    }
+
+    .next-step {
+        background: #f0f6ff;
+        border-left: 5px solid #2f6fed;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 15px;
+    }
+
+    .next-step strong {
+        display: block;
+        font-size: 19px;
+        margin-bottom: 8px;
+    }
+
+    .constraint {
+        background: #fafafa;
+        border: 1px solid #e2e5e9;
+        border-radius: 8px;
+        padding: 14px 16px;
+        margin-top: 10px;
+        line-height: 1.5;
+    }
+
+    .tag {
+        display: inline-block;
+        background: #eef1f5;
+        border-radius: 20px;
+        padding: 7px 12px;
+        margin: 4px 4px 4px 0;
+        font-size: 13px;
+        color: #444;
+    }
+
+    .small {
+        font-size: 13px;
+        color: #777;
+        line-height: 1.5;
+    }
+
+    .restart {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background: #222;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-top: 25px;
+    }
+
+    .restart:hover {
+        background: #111;
+    }
+
+    @media (max-width: 600px) {
+
+        .container {
+            padding: 20px 15px 40px;
+        }
+
+        .card {
+            padding: 22px 18px;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .intro {
+            font-size: 16px;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+        <img src="logo.png" alt="Atlas">
+    </div>
+
+    <div class="progress">
+        Il vostro percorso Atlas
+    </div>
+
+    <div class="card">
+
+        <h1>Abbiamo individuato da dove partire</h1>
+
+        <p class="intro">
+            Le vostre risposte ci aiutano a distinguere ciò che avete già
+            da ciò che manca ancora e a individuare il prossimo passo più utile.
+        </p>
+
+        <div class="analysis">
+            <h2>Quello che emerge</h2>
+
+            <p id="interpretazione"></p>
+        </div>
+
+        <div class="next-step">
+
+            <strong>Il vostro prossimo passo</strong>
+
+            <span id="prossimoPasso"></span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Cosa Atlas dovrebbe considerare</h2>
+
+        <div id="vincoli"></div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Quello che avete già</h2>
+
+        <div id="risorse"></div>
+
+        <p class="small" id="notaRisorse"></p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Il vostro obiettivo</h2>
+
+        <p id="obiettivo" class="analysis"></p>
+    </div>
+
+
+    <a href="index.html" class="restart">
+        Ricomincia il percorso
+    </a>
+
+</div>
+
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+
+/* =========================
+   LETTURA DATI
+========================= */
+
+const fase = params.get("fase") || "";
+const bisogno = params.get("bisogno") || "";
+const risorse = params.get("risorse") || "";
+const altroRisorsa = params.get("altroRisorsa") || "";
+
+const mancanze = params.get("mancanze") || "";
+const altroMancanza = params.get("altroMancanza") || "";
+
+const ostacoli = params.get("ostacoli") || "";
+const altroOstacolo = params.get("altroOstacolo") || "";
+
+const comune = params.get("comune") || "";
+const provincia = params.get("provincia") || "";
+const distanza = params.get("distanza") || "";
+const online = params.get("online") || "";
+
+const obiettivo = params.get("obiettivo") || "";
+const altroObiettivo = params.get("altroObiettivo") || "";
+
+
+/* =========================
+   UTILITY
+========================= */
+
+function hasValue(text, value) {
+    return text.split(",").includes(value);
+}
+
+function hasAny(text, values) {
+    return values.some(value => hasValue(text, value));
+}
+
+function escapeHtml(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================
+   RISORSE GIÀ PRESENTI
+========================= */
+
+let risorseLista = [];
+
+if (risorse) {
+
+    risorse.split(",").forEach(r => {
+
+        const mappa = {
+            pediatra: "Pediatra o medico di riferimento",
+            specialista: "Specialista o professionista",
+            centro: "Centro o struttura",
+            terapie: "Terapie già avviate",
+            scuola: "Scuola / insegnante di sostegno",
+            asl: "ASL o servizi sanitari territoriali",
+            comune: "Comune / servizi sociali",
+            associazione: "Associazione o gruppo di supporto",
+            nessuna: "Nessuna risorsa già presente"
+        };
+
+        if (mappa[r]) {
+            risorseLista.push(mappa[r]);
+        }
+    });
+}
+
+if (altroRisorsa) {
+    risorseLista.push("Altra risorsa: " + altroRisorsa);
+}
+
+
+/* =========================
+   ANALISI PRINCIPALE
+========================= */
+
+let interpretazione = "";
+let prossimoPasso = "";
+
+let priorita = "orientamento";
+
+
+/*
+   REGOLA 1
+   Mancanza di orientamento
+*/
+
+if (
+    hasAny(mancanze, ["informazioni"]) ||
+    hasAny(ostacoli, [
+        "non_sappiamo_a_chi_rivolgerci",
+        "scelta",
+        "informazioni_confuse"
+    ]) ||
+    obiettivo === "capire_da_dove_iniziare"
+) {
+
+    priorita = "orientamento";
+
+    interpretazione =
+        "Dalle vostre risposte emerge soprattutto una difficoltà di orientamento: " +
+        "non sembra mancare soltanto una risorsa, ma la capacità di capire " +
+        "quale sia il passo successivo più adatto alla vostra situazione.";
+
+    prossimoPasso =
+        "Capire quale tipo di servizio o professionista è più pertinente " +
+        "alla vostra situazione prima di iniziare una nuova ricerca.";
+}
+
+
+/*
+   REGOLA 2
+   Professionisti / strutture
+*/
+
+else if (
+    hasAny(mancanze, ["professionisti"]) ||
+    hasAny(ostacoli, ["non_troviamo_disponibilita"]) ||
+    obiettivo === "trovare_professionista_servizio"
+) {
+
+    priorita = "professionisti";
+
+    interpretazione =
+        "La difficoltà principale sembra essere l'accesso a un professionista " +
+        "o a una struttura adatta. Il problema non è quindi soltanto sapere " +
+        "che cosa cercare, ma trovare una possibilità realmente utilizzabile.";
+
+    prossimoPasso =
+        "Individuare i professionisti o i servizi pertinenti alla vostra situazione " +
+        "e confrontarli in base a competenza, disponibilità e raggiungibilità.";
+}
+
+
+/*
+   REGOLA 3
+   Territorio
+*/
+
+else if (
+    hasAny(mancanze, ["territorio"]) ||
+    obiettivo === "servizi_zona"
+) {
+
+    priorita = "territorio";
+
+    interpretazione =
+        "Il bisogno principale riguarda il territorio: avete bisogno di capire " +
+        "quali possibilità esistono concretamente nella vostra zona e quali " +
+        "sono realisticamente raggiungibili.";
+
+    prossimoPasso =
+        "Mappare i servizi e i professionisti pertinenti nel vostro territorio, " +
+        "tenendo conto della distanza che siete disposti a percorrere.";
+}
+
+
+/*
+   REGOLA 4
+   Attese
+*/
+
+else if (
+    hasValue(ostacoli, "attese") ||
+    obiettivo === "ridurre_attese"
+) {
+
+    priorita = "attese";
+
+    interpretazione =
+        "Il principale ostacolo individuato è rappresentato dai tempi di attesa. " +
+        "La priorità non è quindi semplicemente trovare un servizio, ma capire " +
+        "quali alternative realistiche permettano di ridurre il tempo necessario.";
+
+    prossimoPasso =
+        "Confrontare le possibilità disponibili valutando tempi di accesso, " +
+        "modalità del servizio e alternative territoriali.";
+}
+
+
+/*
+   REGOLA 5
+   Costi
+*/
+
+else if (
+    hasValue(ostacoli, "costi") ||
+    obiettivo === "soluzione_costi"
+) {
+
+    priorita = "costi";
+
+    interpretazione =
+        "Il costo rappresenta una barriera concreta per il percorso. " +
+        "La soluzione dovrà quindi essere cercata non soltanto sulla base " +
+        "dell'offerta disponibile, ma anche della sostenibilità economica.";
+
+    prossimoPasso =
+        "Individuare possibilità compatibili con il vostro budget e verificare " +
+        "eventuali alternative territoriali o forme di sostegno disponibili.";
+}
+
+
+/*
+   REGOLA 6
+   Organizzazione familiare
+*/
+
+else if (
+    hasAny(mancanze, ["organizzazione"]) ||
+    hasValue(ostacoli, "organizzazione") ||
+    obiettivo === "organizzare_percorso"
+) {
+
+    priorita = "organizzazione";
+
+    interpretazione =
+        "Dalle vostre risposte emerge che il problema non riguarda soltanto " +
+        "quali servizi utilizzare, ma la possibilità di inserirli concretamente " +
+        "nella vita quotidiana della famiglia.";
+
+    prossimoPasso =
+        "Cercare una soluzione compatibile con gli orari, gli spostamenti " +
+        "e gli impegni familiari già presenti.";
+}
+
+
+/*
+   REGOLA 7
+   Famiglia / sovraccarico
+*/
+
+else if (
+    hasAny(mancanze, ["famiglia"]) ||
+    hasValue(ostacoli, "energie") ||
+    obiettivo === "supporto_famiglia"
+) {
+
+    priorita = "famiglia";
+
+    interpretazione =
+        "Le vostre risposte mostrano che una parte importante della difficoltà " +
+        "riguarda anche la sostenibilità del percorso per la famiglia. " +
+        "Per questo il prossimo passo non dovrebbe concentrarsi esclusivamente " +
+        "sui bisogni del bambino.";
+
+    prossimoPasso =
+        "Individuare un supporto concreto che possa alleggerire il carico " +
+        "familiare e rendere più sostenibile il percorso.";
+}
+
+
+/*
+   REGOLA 8
+   Scuola / istituzioni
+*/
+
+else if (
+    hasAny(mancanze, ["scuola"]) ||
+    hasValue(ostacoli, "burocrazia") ||
+    obiettivo === "scuola_servizi_istituzioni"
+) {
+
+    priorita = "scuola";
+
+    interpretazione =
+        "La difficoltà principale riguarda il rapporto con scuola, servizi " +
+        "o istituzioni e la necessità di capire come coordinare meglio " +
+        "le diverse parti del percorso.";
+
+    prossimoPasso =
+        "Chiarire quale interlocutore coinvolgere per primo e quali informazioni " +
+        "o documenti servono per affrontare il problema.";
+}
+
+
+/*
+   REGOLA 9
+   Coordinamento
+*/
+
+else if (
+    hasAny(mancanze, ["coordinamento"]) ||
+    hasValue(ostacoli, "coordinamento")
+) {
+
+    priorita = "coordinamento";
+
+    interpretazione =
+        "Il problema principale sembra essere la frammentazione del percorso: " +
+        "le diverse persone o strutture coinvolte non risultano facilmente " +
+        "coordinabili tra loro.";
+
+    prossimoPasso =
+        "Ricostruire chi è già coinvolto nel percorso e individuare " +
+        "il collegamento mancante tra le diverse figure.";
+}
+
+
+/*
+   REGOLA 10
+   Terapie
+*/
+
+else if (
+    hasAny(mancanze, ["terapie"])
+) {
+
+    priorita = "terapie";
+
+    interpretazione =
+        "Il bisogno riguarda le terapie, ma la scelta non dovrebbe essere fatta " +
+        "soltanto sulla base della disponibilità di un servizio. È necessario " +
+        "considerare anche appropriatezza, accessibilità e compatibilità familiare.";
+
+    prossimoPasso =
+        "Individuare le possibilità terapeutiche pertinenti e confrontarle " +
+        "tenendo conto di disponibilità, distanza, costi e organizzazione familiare.";
+}
+
+
+/* =========================
+   CASO GENERICO
+========================= */
+
+if (!interpretazione) {
+
+    interpretazione =
+        "Le vostre risposte mostrano che avete già individuato alcuni elementi " +
+        "del percorso, ma resta da chiarire quale sia la priorità da affrontare per prima.";
+
+    prossimoPasso =
+        "Mettere in ordine le esigenze emerse e individuare il primo passo concreto.";
+}
+
+
+/* =========================
+   VINCOLI
+========================= */
+
+let vincoli = [];
+
+
+if (comune) {
+    vincoli.push(
+        "Territorio di riferimento: <strong>" +
+        escapeHtml(comune) +
+        (provincia ? " (" + escapeHtml(provincia) + ")" : "") +
+        "</strong>."
+    );
+}
+
+if (distanza === "comune") {
+    vincoli.push(
+        "Preferenza per soluzioni raggiungibili nel vostro comune."
+    );
+}
+
+if (distanza === "30_minuti") {
+    vincoli.push(
+        "Disponibilità a spostarsi fino a circa 30 minuti."
+    );
+}
+
+if (distanza === "60_minuti") {
+    vincoli.push(
+        "Disponibilità a spostarsi fino a circa 60 minuti."
+    );
+}
+
+if (distanza === "oltre_60") {
+    vincoli.push(
+        "Siete disposti a spostarvi anche oltre 60 minuti se necessario."
+    );
+}
+
+if (online === "si") {
+    vincoli.push(
+        "I servizi online sono accettabili."
+    );
+}
+
+if (online === "no") {
+    vincoli.push(
+        "Preferite servizi in presenza."
+    );
+}
+
+if (online === "dipende") {
+    vincoli.push(
+        "La possibilità di utilizzare servizi online dipende dal tipo di intervento."
+    );
+}
+
+if (hasValue(ostacoli, "costi")) {
+    vincoli.push(
+        "Il costo rappresenta un vincolo da considerare nella ricerca."
+    );
+}
+
+if (hasValue(ostacoli, "attese")) {
+    vincoli.push(
+        "I tempi di attesa rappresentano un vincolo importante."
+    );
+}
+
+if (hasValue(ostacoli, "organizzazione")) {
+    vincoli.push(
+        "Gli orari devono essere compatibili con la vita familiare."
+    );
+}
+
+if (hasValue(ostacoli, "energie")) {
+    vincoli.push(
+        "Il carico familiare deve essere considerato nella scelta della soluzione."
+    );
+}
+
+if (vincoli.length === 0) {
+    vincoli.push(
+        "Non sono stati individuati vincoli specifici nella fase iniziale."
+    );
+}
+
+
+/* =========================
+   OUTPUT RISORSE
+========================= */
+
+const risorseBox = document.getElementById("risorse");
+const notaRisorse = document.getElementById("notaRisorse");
+
+if (risorseLista.length > 0 && !risorseLista.includes("Nessuna risorsa già presente")) {
+
+    risorseBox.innerHTML = risorseLista
+        .map(r => `<span class="tag">${escapeHtml(r)}</span>`)
+        .join("");
+
+    notaRisorse.textContent =
+        "Atlas dovrebbe considerare queste risorse già presenti " +
+        "e non proporle nuovamente come primo passo.";
+
+} else {
+
+    risorseBox.innerHTML =
+        '<span class="tag">Nessuna risorsa indicata</span>';
+
+    notaRisorse.textContent =
+        "Il percorso parte quindi dalla ricerca delle prime risorse utili.";
+}
+
+
+/* =========================
+   OUTPUT
+========================= */
+
+document.getElementById("interpretazione").innerHTML =
+    escapeHtml(interpretazione);
+
+document.getElementById("prossimoPasso").innerHTML =
+    escapeHtml(prossimoPasso);
+
+document.getElementById("vincoli").innerHTML =
+    vincoli
+        .map(v => `<div class="constraint">${v}</div>`)
+        .join("");
+
+
+/* =========================
+   OBIETTIVO
+========================= */
+
+const obiettiviMappa = {
+
+    capire_da_dove_iniziare:
+        "Capire da dove iniziare",
+
+    trovare_professionista_servizio:
+        "Trovare il professionista o il servizio più adatto",
+
+    confrontare_possibilita:
+        "Confrontare le possibilità che abbiamo",
+
+    servizi_zona:
+        "Capire quali servizi sono disponibili nella nostra zona",
+
+    ridurre_attese:
+        "Ridurre i tempi di attesa",
+
+    soluzione_costi:
+        "Trovare una soluzione compatibile con i nostri costi",
+
+    organizzare_percorso:
+        "Organizzare meglio il percorso che abbiamo già iniziato",
+
+    supporto_famiglia:
+        "Trovare supporto per la nostra famiglia",
+
+    scuola_servizi_istituzioni:
+        "Capire come muoverci con scuola, servizi o istituzioni"
+};
+
+let testoObiettivo = obiettiviMappa[obiettivo] || "";
+
+if (obiettivo === "altro" && altroObiettivo) {
+    testoObiettivo = altroObiettivo;
+}
+
+if (!testoObiettivo) {
+    testoObiettivo =
+        "Non è stato indicato un obiettivo specifico.";
+}
+
+document.getElementById("obiettivo").textContent = testoObiettivo;
+
+</script>
+
+</body>
+</html>
