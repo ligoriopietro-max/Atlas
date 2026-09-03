@@ -3,22 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas — Interpretation Engine</title>
+  <title>Atlas — Engine Test</title>
 </head>
 
 <body>
   <h1>Atlas — Interpretation Engine v0.2.1</h1>
 
-  <p>Test environment.</p>
+  <h2>Test input</h2>
 
-  <pre id="output">Caricamento...</pre>
+  <pre id="output">Elaborazione...</pre>
 
   <script src="atlas-data.js"></script>
   <script src="atlas-engine.js"></script>
 
   <script>
+    const testInput = {
+      phase: "post_diagnosi",
+      need: "non so da dove iniziare",
+      resources: [],
+      gaps: ["informazione/orientamento"],
+      barriers: ["non so chi contattare"],
+      intent: "iniziare",
+      comune: "",
+      provincia: "",
+      distance: "",
+      online: ""
+    };
+
+    const result = window.AtlasEngine.buildProfile(testInput);
+
     document.getElementById("output").textContent =
-      "Atlas Engine caricato correttamente.";
+      JSON.stringify(result, null, 2);
   </script>
 </body>
 </html>
