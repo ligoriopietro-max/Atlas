@@ -3,16 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas — F4 Test</title>
+  <title>Atlas — F5 Test</title>
 </head>
 <body>
-
   <h1>Atlas — Interpretation Engine v0.2.1</h1>
-
-  <h2>Test 5 — F4</h2>
-
+  <h2>Test 6 — F5</h2>
   <p>
-    Ricostruzione minimale basata esclusivamente sugli elementi F4
+    Ricostruzione minimale basata esclusivamente sugli elementi F5
     conservati nel progetto Atlas.
   </p>
 
@@ -23,17 +20,29 @@
 
   <script>
     const testInput = {
-      phase: "post_diagnosi",
+      phase: "percorso_avviato",
 
-      need: "gestire le difficoltà del bambino nel percorso di sviluppo",
+      need: "capire meglio la diagnosi e trovare professionisti affidabili",
 
-      resources: [],
+      resources: [
+        "logopedista",
+        "neuropsicomotricista",
+        "centro già conosciuto",
+        "social media",
+        "altri genitori"
+      ],
 
-      gaps: [],
+      gaps: [
+        "informazioni affidabili",
+        "certezza sulla scelta dei professionisti"
+      ],
 
-      barriers: [],
+      barriers: [
+        "pochi segnali tipici riconosciuti",
+        "incertezza"
+      ],
 
-      intent: "gestire",
+      intent: "capire",
 
       comune: "",
       provincia: "",
@@ -46,6 +55,5 @@
     document.getElementById("output").textContent =
       JSON.stringify(result, null, 2);
   </script>
-
 </body>
 </html>
