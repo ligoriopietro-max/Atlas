@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas — Engine Test</title>
+  <title>Atlas — F1 Test</title>
 </head>
 
 <body>
   <h1>Atlas — Interpretation Engine v0.2.1</h1>
 
-  <h2>Test input</h2>
+  <h2>Test 2 — F1</h2>
+
+  <p>
+    Ricostruzione minimale basata esclusivamente sugli elementi F1
+    conservati nel progetto Atlas.
+  </p>
 
   <pre id="output">Elaborazione...</pre>
 
@@ -19,11 +24,22 @@
   <script>
     const testInput = {
       phase: "post_diagnosi",
+
+      // F1: difficoltà nel capire come procedere dopo la diagnosi.
       need: "non so da dove iniziare",
+
+      // Non assumiamo risorse non documentate.
       resources: [],
+
+      // Problema centrale ricostruito da F1.
       gaps: ["informazione/orientamento"],
-      barriers: ["non so chi contattare"],
-      intent: "iniziare",
+
+      // Il reperimento del primo centro ha richiesto più di un anno.
+      barriers: ["attesa troppo lunga"],
+
+      // Intento Atlas coerente con il caso.
+      intent: "orientarsi",
+
       comune: "",
       provincia: "",
       distance: "",
