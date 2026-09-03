@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas — F1 Test</title>
+  <title>Atlas — F2 Test</title>
 </head>
 
 <body>
   <h1>Atlas — Interpretation Engine v0.2.1</h1>
 
-  <h2>Test 2 — F1</h2>
+  <h2>Test 3 — F2</h2>
 
   <p>
-    Ricostruzione minimale basata esclusivamente sugli elementi F1
+    Ricostruzione minimale basata esclusivamente sugli elementi F2
     conservati nel progetto Atlas.
   </p>
 
@@ -23,22 +23,24 @@
 
   <script>
     const testInput = {
-      phase: "post_diagnosi",
+      phase: "percorso_avviato",
 
-      // F1: difficoltà nel capire come procedere dopo la diagnosi.
-      need: "non so da dove iniziare",
+      // F2: bambino con autismo non verbale e ritardo dello sviluppo.
+      need: "cercare professionisti e servizi",
 
-      // Non assumiamo risorse non documentate.
-      resources: [],
+      // Risorse effettivamente ricordate dal percorso F2.
+      resources: [
+        "specialist",
+        "center"
+      ],
 
-      // Problema centrale ricostruito da F1.
-      gaps: ["informazione/orientamento"],
+      // Il caso documenta una rete di professionisti/strutture.
+      gaps: [],
 
-      // Il reperimento del primo centro ha richiesto più di un anno.
-      barriers: ["attesa troppo lunga"],
+      barriers: [],
 
-      // Intento Atlas coerente con il caso.
-      intent: "orientarsi",
+      // Intento principale ricostruito: ricerca di professionisti/servizi.
+      intent: "cercare",
 
       comune: "",
       provincia: "",
