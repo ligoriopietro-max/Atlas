@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atlas — F2 Test</title>
+  <title>Atlas — F3 Test</title>
 </head>
-
 <body>
+
   <h1>Atlas — Interpretation Engine v0.2.1</h1>
 
-  <h2>Test 3 — F2</h2>
+  <h2>Test 4 — F3</h2>
 
   <p>
-    Ricostruzione minimale basata esclusivamente sugli elementi F2
+    Ricostruzione minimale basata esclusivamente sugli elementi F3
     conservati nel progetto Atlas.
   </p>
 
@@ -25,22 +25,31 @@
     const testInput = {
       phase: "percorso_avviato",
 
-      // F2: bambino con autismo non verbale e ritardo dello sviluppo.
-      need: "cercare professionisti e servizi",
+      need: "gestire un percorso frammentato di professionisti e servizi",
 
-      // Risorse effettivamente ricordate dal percorso F2.
       resources: [
-        "specialist",
-        "center"
+        "pediatra",
+        "ospedale",
+        "neuropsichiatria",
+        "logopedia",
+        "psicomotricità",
+        "ABA",
+        "psicologi",
+        "centri privati",
+        "ASL"
       ],
 
-      // Il caso documenta una rete di professionisti/strutture.
-      gaps: [],
+      gaps: [
+        "coordinamento della rete",
+        "supporto psicologico"
+      ],
 
-      barriers: [],
+      barriers: [
+        "attesa troppo lunga",
+        "costi delle terapie"
+      ],
 
-      // Intento principale ricostruito: ricerca di professionisti/servizi.
-      intent: "cercare",
+      intent: "organizzare",
 
       comune: "",
       provincia: "",
@@ -53,5 +62,6 @@
     document.getElementById("output").textContent =
       JSON.stringify(result, null, 2);
   </script>
+
 </body>
 </html>
