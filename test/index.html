@@ -45,16 +45,17 @@ hr{border:0;border-top:1px solid var(--border);margin:26px 0}
 <hr>
 <p class="note"><strong>Nota:</strong> Atlas sta sperimentando una prima indicazione sull'orientamento. Non è una diagnosi, non sostituisce un professionista e non costituisce un consiglio medico.</p>
 <p class="note">Questo test non invia i testi o i feedback a un server. Il feedback resta nel browser finché non viene cancellato.</p>
-<script src="data.js"></script><script src="engine.js"></script><script src="v027.js"></script><script src="adapter.js"></script><script src="reconciler.js"></script><script src="atlas-safety-gate-v0.1.js"></script><script src="atlas-free-text-public-v0.1.js"></script><script src="atlas-feedback-v0.1.js"></script>
+<script src="data.js"></script><script src="engine.js"></script><script src="v018.js"></script><script src="v019.js"></script><script src="v027.js"></script><script src="adapter.js"></script><script src="reconciler.js"></script><script src="atlas-safety-gate-v0.1.js"></script><script src="atlas-free-text-public-v0.1.js"></script><script src="atlas-feedback-v0.1.js"></script>
 <script>
 (function(){
  const $=id=>document.getElementById(id), out=$('out'), fb=$('feedback');
+ const showError=(e)=>{out.hidden=false;fb.classList.add('hidden');out.innerHTML='<strong>Si è verificato un errore tecnico nel test.</strong><br><span class="note">'+String(e&&e.message||e).replace(/[<>]/g,'')+'</span>';};
  $('go').onclick=function(){
-   const r=AtlasFreeTextPublicV01.run($('need').value); out.hidden=false; fb.classList.add('hidden');
+   try { const r=AtlasFreeTextPublicV01.run($('need').value); out.hidden=false; fb.classList.add('hidden');
    if(r.status==='INPUT_REQUIRED'){out.innerHTML='<strong>Ci serve un po’ più di contesto.</strong><br>'+r.message;return;}
    if(r.status==='BLOCKED'){out.innerHTML='<strong>Prima la sicurezza.</strong><br>'+r.safety.reason;return;}
    out.innerHTML='<strong>Atlas individua come bisogno principale:</strong><br>'+r.public.label+'<br><span class="note">È una prima indicazione sperimentale, non una diagnosi né un consiglio medico.</span>';
-   fb.classList.remove('hidden'); $('fbStatus').textContent='';
+   fb.classList.remove('hidden'); $('fbStatus').textContent=''; } catch(e) { showError(e); }
  };
  $('sendFeedback').onclick=function(){
    const helpful=document.querySelector('input[name="helpful"]:checked');
