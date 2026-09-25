@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas — Test orientamento testo libero</title>
+<style>
+:root{--blue:#125b96;--blue2:#124f8a;--gold:#8a6812;--border:#d8e2eb;--soft:#f2f7fb;--text:#18324a;--muted:#526675}
+body{font-family:Arial,sans-serif;max-width:760px;margin:0 auto;padding:28px 18px;color:var(--text);background:#fff;line-height:1.5}
+h1{color:var(--blue2);margin-bottom:8px}.box{border:1px solid var(--border);border-radius:14px;padding:20px;margin-top:20px}
+textarea{width:100%;min-height:180px;box-sizing:border-box;padding:14px;border:1px solid #b9c8d5;border-radius:10px;font:inherit;resize:vertical}
+button{margin-top:12px;padding:12px 20px;border:0;border-radius:9px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer}
+button.secondary{background:#fff;color:var(--blue);border:1px solid var(--blue)}button:focus,textarea:focus,input:focus,select:focus{outline:3px solid #b9d8ef;outline-offset:2px}
+.note{font-size:.92rem;color:var(--muted)}.result{margin-top:18px;padding:16px;border-radius:10px;background:var(--soft)}
+.feedback{margin-top:18px;padding-top:18px;border-top:1px solid var(--border)}fieldset{border:0;padding:0;margin:12px 0}legend{font-weight:700;margin-bottom:8px}.choices{display:flex;flex-wrap:wrap;gap:8px}.choice{margin:0}.choice input{position:absolute;opacity:0}.choice label{display:inline-block;padding:9px 12px;border:1px solid #b9c8d5;border-radius:9px;cursor:pointer;background:#fff}.choice input:checked+label{background:#e7f2fa;border-color:var(--blue);font-weight:700}
+select{width:100%;padding:11px;border:1px solid #b9c8d5;border-radius:9px;font:inherit;background:#fff}#comment{width:100%;min-height:90px;box-sizing:border-box;padding:11px;border:1px solid #b9c8d5;border-radius:9px;font:inherit}.hidden{display:none}.ok{color:#215d38;font-weight:700}.warn{color:#7a4b00;font-weight:700}
+hr{border:0;border-top:1px solid var(--border);margin:26px 0}
+</style>
+</head>
+<body>
+<h1>Atlas — prova il testo libero</h1>
+<p>Raccontaci cosa sta succedendo e di cosa avete bisogno. Non servono parole tecniche.</p>
+<div class="box">
+<label for="need"><strong>La vostra situazione</strong></label>
+<textarea id="need" placeholder="Es.: Stiamo cercando un professionista nella nostra zona e non sappiamo da dove cominciare."></textarea>
+<p class="note">Non inserire nomi, indirizzi, numeri di telefono o altre informazioni che identificano te o tuo figlio.</p>
+<button id="go">Prova Atlas</button>
+<div id="out" class="result" hidden aria-live="polite"></div>
+<div id="feedback" class="feedback hidden">
+<strong>Com'è andata?</strong>
+<p class="note">Il tuo feedback serve a migliorare il test. Non raccogliamo nomi, email o altri dati personali.</p>
+<fieldset><legend>La risposta ti è stata utile?</legend><div class="choices">
+<span class="choice"><input id="h1" type="radio" name="helpful" value="si"><label for="h1">Sì</label></span>
+<span class="choice"><input id="h2" type="radio" name="helpful" value="in_parte"><label for="h2">In parte</label></span>
+<span class="choice"><input id="h3" type="radio" name="helpful" value="no"><label for="h3">No</label></span>
+</div></fieldset>
+<fieldset><label for="expected"><strong>Cosa cercavi principalmente?</strong></label>
+<select id="expected"><option value="altro">Seleziona un'opzione</option><option value="professionista">Trovare un professionista o servizio</option><option value="scegliere">Scegliere o confrontare tra opzioni</option><option value="informazioni">Trovare informazioni affidabili</option><option value="accesso">Capire accesso, tempi o disponibilità</option><option value="supporto_famiglia">Trovare supporto per la famiglia</option><option value="quotidianita">Gestire una difficoltà quotidiana</option><option value="scuola">Affrontare scuola o transizione</option><option value="diritti">Capire diritti, pratiche o servizi pubblici</option><option value="costi">Affrontare costi o sostenibilità economica</option><option value="altro">Altro</option></select></fieldset>
+<label for="comment"><strong>Cosa avresti voluto ottenere?</strong> <span class="note">(facoltativo)</span></label>
+<textarea id="comment" maxlength="1000" placeholder="Scrivilo con parole tue. Non inserire dati personali."></textarea>
+<br><button id="sendFeedback">Salva feedback anonimo</button>
+<button id="export" class="secondary">Esporta feedback anonimo</button>
+<p id="fbStatus" class="note" aria-live="polite"></p>
+</div>
+</div>
+<hr>
+<p class="note"><strong>Nota:</strong> Atlas sta sperimentando una prima indicazione sull'orientamento. Non è una diagnosi, non sostituisce un professionista e non costituisce un consiglio medico.</p>
+<p class="note">Questo test non invia i testi o i feedback a un server. Il feedback resta nel browser finché non viene cancellato.</p>
+<script src="data.js"></script><script src="engine.js"></script><script src="v027.js"></script><script src="adapter.js"></script><script src="reconciler.js"></script><script src="atlas-safety-gate-v0.1.js"></script><script src="atlas-free-text-public-v0.1.js"></script><script src="atlas-feedback-v0.1.js"></script>
+<script>
+(function(){
+ const $=id=>document.getElementById(id), out=$('out'), fb=$('feedback');
+ $('go').onclick=function(){
+   const r=AtlasFreeTextPublicV01.run($('need').value); out.hidden=false; fb.classList.add('hidden');
+   if(r.status==='INPUT_REQUIRED'){out.innerHTML='<strong>Ci serve un po’ più di contesto.</strong><br>'+r.message;return;}
+   if(r.status==='BLOCKED'){out.innerHTML='<strong>Prima la sicurezza.</strong><br>'+r.safety.reason;return;}
+   out.innerHTML='<strong>Atlas individua come bisogno principale:</strong><br>'+r.public.label+'<br><span class="note">È una prima indicazione sperimentale, non una diagnosi né un consiglio medico.</span>';
+   fb.classList.remove('hidden'); $('fbStatus').textContent='';
+ };
+ $('sendFeedback').onclick=function(){
+   const helpful=document.querySelector('input[name="helpful"]:checked');
+   if(!helpful){$('fbStatus').innerHTML='<span class="warn">Seleziona prima se la risposta ti è stata utile.</span>';return;}
+   const item=AtlasFeedbackV01.make({helpful:helpful.value,expected_goal:$('expected').value,comment:$('comment').value});
+   AtlasFeedbackV01.save(item); $('fbStatus').innerHTML='<span class="ok">Feedback salvato solo in questo browser. Grazie.</span>';
+ };
+ $('export').onclick=function(){AtlasFeedbackV01.exportJson();$('fbStatus').textContent='Esportazione locale del feedback avviata.';};
+})();
+</script>
+</body></html>
