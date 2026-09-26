@@ -8,7 +8,7 @@
   if(!clean) return {status:'INPUT_REQUIRED',message:'Scrivi qualche riga sulla situazione che state vivendo.'};
   const gate=window.AtlasSafetyGateV01.check(clean);
   if(gate.status!=='PASS') return {status:'BLOCKED',safety:gate};
-  const interpreted=window.AtlasInputInterpreterV027Candidate.interpret(clean);
+  const interpreted=window.AtlasInputInterpreterV028Candidate.interpret(clean);
   const adapted=window.AtlasInputContractAdapterV04.adapt(interpreted);
   const engine=window.AtlasEngine.buildProfile(adapted);
   const final=window.AtlasFreeTextReconcilerV02.reconcile(interpreted,engine);
