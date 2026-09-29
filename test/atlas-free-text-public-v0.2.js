@@ -10,8 +10,10 @@
   const engine=window.AtlasEngine.buildProfile(adapted);
   const final=window.AtlasFreeTextReconcilerV02.reconcile(interpreted,engine);
   const d=final.primary_domain||'D01';
-  const flow=window.AtlasOrientationFlowV03.get(d);
-  return {status:'OK',domain:d,label:window.AtlasOrientationFlowV03.labels[d]||flow.title,result:final,flow};
+  const baseFlow=window.AtlasOrientationFlowV03.get(d);
+  const profile=window.AtlasFreeTextProfileV01.extract(clean,d);
+  const flow=window.AtlasFreeTextProfileV01.filterFlow(baseFlow,profile);
+  return {status:'OK',domain:d,profile,label:window.AtlasOrientationFlowV03.labels[d]||flow.title,result:final,flow};
  }
  window.AtlasFreeTextPublicV02={run};
 })();
