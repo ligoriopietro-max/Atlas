@@ -1,4 +1,4 @@
-/* Atlas Free Text Public Flow v0.2 — v0.3 UI backend */
+/* Atlas Free Text Public Flow v0.3.2 — progressive profile backend */
 (function(){'use strict';
  function run(text){
   const clean=String(text||'').trim();
