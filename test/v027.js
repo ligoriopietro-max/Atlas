@@ -32,7 +32,7 @@ function resolve(text){
  // R1 Provider target beats access/waiting when the text is actually asking for a provider.
  // Elliptical Italian noun requests are accepted only with a provider noun + quality/location
  // or recommendation/search framing, avoiding incidental provider mentions.
- const negatedProvider=/(?:non|nn)\s+(?:cerco|cerchiamo|cercherei)\b/i.test(t);
+ const negatedProvider=/(?:non|nn)\s+(?:(?:mi\s+)?serve|servirebbe|voglio|vorrei|cerco|cerchiamo|cercherei)\b[^.?!]{0,35}\b(?:neuropsichiatra|npi|logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|centro|struttura)\b/i.test(t);
  const providerRequest=/(?:un bravo|una brava|un buon|una buona)\s+(?:neuropsichiatra|npi|logopedista|terapista|professionista|specialista|centro|struttura)/i.test(t)
    ||/(?:cerco|cercavo|cercando|conoscete|indicatemi|consigliatemi|trovare|nomi di)\b(?!\s+di\s+(?:capire|sapere|comprendere))[^.?!]{0,90}(?:neuropsichiatra|npi|logopedista|terapista|professionista|specialista|centro|struttura)/i.test(t);
  const explicitAccessProblem=/(?:non riesco|non riusciamo|non possiamo|non posso)\s+(?:ad )?accedere|non abbiamo accesso|non c['’]?e posto/i.test(t);

@@ -6,7 +6,7 @@
 (function(){'use strict';
  if(!window.AtlasInputInterpreterV027Candidate) throw new Error('v0.2.7 candidate required');
  const base=window.AtlasInputInterpreterV027Candidate.interpret;
- const n=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
+ const n=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").replace(/\s+/g,' ').trim();
  function resolve(text){
    const out=base(text), t=n(text), m=out._meta||{};
    let d=m.topDomain||m.primaryDomain||'D01';
@@ -15,13 +15,22 @@
    const providerSearch=(m.conflictResolution&&m.conflictResolution.reasons||[]).some(x=>/provider search/i.test(x));
    const providerContext=/(?:dottore|medico|neuropsichiatra|npi|logopedista|terapista|professionista|specialista|psicologo|neuropsicologo|pedagogista|educatore|centro|struttura)/i.test(t);
    const explicitUnderstanding=/(?:devo|dobbiamo|vorrei|vorremmo|voglio|vogliamo)\s+(?:capire|sapere|comprendere)\b/i.test(t);
-   const negatedProvider=/(?:non|nn)\s+(?:mi\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo)\b/i.test(t);
+   const negatedProvider=/(?:non|nn)\s+(?:(?:mi\s+)?serve|servirebbe|voglio|vorrei|cerco|cerchiamo)\b[^.?!]{0,35}\b(?:dottore|medico|neuropsichiatra|npi|logopedista|terapista|professionista|specialista|psicologo|neuropsicologo|pedagogista|educatore|centro|struttura)\b/i.test(t);
    if(providerNeed && providerContext && !explicitUnderstanding && !negatedProvider && d!=='D09'){
      d='D02';
      reasons.push('explicit need for a named professional/provider is the requested next action');
      m.topDomain=d; m.primaryDomain=d;
      m.conflictResolution={...(m.conflictResolution||{}),candidate:d,action:'override',strength:'HIGH',reasons};
      if(m.semanticEvidence) { m.semanticEvidence.primary_domain=d; m.semanticEvidence.requested_action='find'; m.semanticEvidence.functional_goal='find'; m.semanticEvidence.confidence='HIGH'; }
+   }
+   // Preserve a narrow, already-evidenced access decision from the semantic layer.
+   // Waiting/access language is primary only when the text actually describes access as the problem.
+   if(m.semanticDecision && m.semanticDecision.domain==='D05' && m.semanticEvidence && m.semanticEvidence.functional_goal==='access' && d==='D01'){
+     d='D05';
+     reasons.push('explicit access problem is the requested function');
+     m.topDomain=d; m.primaryDomain=d;
+     m.conflictResolution={...(m.conflictResolution||{}),candidate:d,action:'override',strength:'HIGH',reasons};
+     m.semanticEvidence.primary_domain=d;
    }
    m.interpreter='v0.2.8-candidate';
    return out;
