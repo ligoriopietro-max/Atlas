@@ -50,6 +50,16 @@ function extract(text,domain){
  const uncertain=(slot,val,why)=>p.uncertain.push({slot,value:val,evidence:why});
  const context=(slot,val,why)=>p.context.push({slot,value:val,evidence:why});
  const prov=provider(t); if(prov)set('tipo',prov,'tipo di professionista/servizio richiesto esplicitamente');
+ // Preserve explicit professional qualifiers instead of collapsing them into a generic role.
+ const qualifiers=[
+   ['comportamentale',/\bterapist[ao]?\s+comportamentale\b/i],
+   ['occupazionale',/\bterapist[ao]?\s+occupazionale\b/i],
+   ['della riabilitazione',/\bterapist[ao]?\s+della\s+riabilitazione\b/i],
+   ['dell\'eta evolutiva',/\b(?:psicolog[oa]|terapist[ao])\s+dell['’]et[aà]\s+evolutiva\b/i],
+   ['CAA',/\b(?:logopedista|terapist[ao])\s+(?:con\s+)?CAA\b/i],
+   ['infantile',/\b(?:neuropsichiatra|psicolog[oa]|terapist[ao])\s+infantile\b/i]
+ ];
+ for(const q of qualifiers){if(q[1].test(t)){set('qualificatore',q[0],'qualificatore professionale esplicitamente indicato');break;}}
  const loc=location(t); if(loc)set('zona',loc,'località esplicitamente indicata');
  if(has(RX.online,t))set('online','Sì','modalità online esplicitamente indicata');
  if(has(RX.wait,t)||has(RX.rapid,t))set('priorita','Disponibilità/tempi','attesa o rapidità esplicitamente citata');
@@ -84,6 +94,7 @@ if(has(RX.choose,t)){ if(has(RX.cost,t))set('criterio','Costi','costo indicato c
  // Explicitly mentioned existing resources are context, not requested slots.
  if(/\b(?:abbiamo già|ci segue|siamo seguit|frequentiamo|abbiamo una|abbiamo un)\b/i.test(t)&&prov)context('risorsa_esistente',prov,'professionista/servizio già presente nel contesto');
  if(/\b(?:non so se|forse|chiss[aà]|devo capire se|potrebbe servire)\b/i.test(t)&&/(?:logoped|npi|psicolog|terapist|medico|professionist|centro)/i.test(t))uncertain('tipo','professionista non ancora scelto','linguaggio di incertezza');
+ if(p.filled.tipo && p.filled.qualificatore){set('tipo_richiesto',p.values.tipo+' '+p.values.qualificatore,'tipo professionale completo con qualificatore');}
  return p;
 }
 function filterFlow(flow,p){return Object.assign({},flow,{qs:flow.qs.filter(q=>!p.filled[q[0]])});}

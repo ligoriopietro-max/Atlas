@@ -6,6 +6,7 @@ function profileToFlat(p){
   var f=p&&p.filled||{}, v=p&&p.values||{};
   return {
     provider_type:f.tipo?v.tipo:null,
+    provider_qualifier:f.qualificatore?v.qualificatore:null,
     service_type:null,
     object:f.oggetto?v.oggetto:null,
     location:f.zona?v.zona:null,
@@ -24,10 +25,10 @@ function normalizeRequest(p,domain){
 }
 function run(text,opts){
   opts=opts||{};
-  assertApi('AtlasInputInterpreterV029Candidate',root.AtlasInputInterpreterV029Candidate);
+  assertApi('AtlasInputInterpreterV031Candidate',root.AtlasInputInterpreterV031Candidate);
   assertApi('AtlasFreeTextProfileV01',root.AtlasFreeTextProfileV01);
   assertApi('AtlasNextStepEngineV02',root.AtlasNextStepEngineV02);
-  var interpreted=root.AtlasInputInterpreterV029Candidate.interpret(text);
+  var interpreted=root.AtlasInputInterpreterV031Candidate.interpret(text);
   var meta=interpreted._meta||{};
   var domain=meta.primaryDomain||meta.topDomain||'D01';
   var profile=root.AtlasFreeTextProfileV01.extract(text,domain);
@@ -42,7 +43,7 @@ function run(text,opts){
       matching=root.AtlasMatchingEngine.rank(matching_request,opts.records);
     }
   }
-  return {version:'0.2.1',input:text,domain:domain,interpreter:{confidence:meta.confidence||null},profile:profile,next_step:action,matching_request:matching_request,matching:matching};
+  return {version:'0.3.0',input:text,domain:domain,interpreter:{confidence:meta.confidence||null},profile:profile,next_step:action,matching_request:matching_request,matching:matching};
 }
 function audit(records){
   if(!root.AtlasMatchingDataModel) throw new Error('AtlasMatchingDataModel missing');

@@ -11,7 +11,14 @@ function match(req, record){
  if(req.target&&(req.target.provider_type||req.target.service_type||req.target.object)){
    total+=40; var target=req.target.provider_type||req.target.service_type||req.target.object;
    var serviceFit=textIncludes(record.services,target)||same(record.professional_role,target)||textIncludes(record.specializations,target);
-   if(serviceFit){score+=40;reasons.push('servizio/profilo compatibile con la richiesta');} else {hard.push('servizio/profilo non compatibile con la richiesta');}
+   var qualifier=req.target.provider_qualifier;
+   var qualifierFit=true;
+   if(qualifier){
+     qualifierFit=textIncludes(record.specializations,qualifier)||textIncludes(record.services,qualifier)||same(record.professional_role,target+' '+qualifier);
+   }
+   if(serviceFit && qualifierFit){score+=40;reasons.push(qualifier?'servizio/profilo e specializzazione compatibili con la richiesta':'servizio/profilo compatibile con la richiesta');}
+   else if(!serviceFit){hard.push('servizio/profilo non compatibile con la richiesta');}
+   else {hard.push('specializzazione richiesta non compatibile con la scheda');}
  }
  // Geography / online.
  if(req.geography&&(req.geography.location||req.geography.province)||req.access&&req.access.online!==undefined){

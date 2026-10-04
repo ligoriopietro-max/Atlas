@@ -5,7 +5,7 @@
 (function(){'use strict';
  const RULES=[
   {id:'S01',level:'EMERGENCY',rx:/\b(112|118)\b|pronto soccorso|ambulanza|non respira|difficolta a respirare|sta soffocando|soffocamento|perdita di coscienza|incosciente|convulsione(?!\s+di\s+.*passato)/i},
-  {id:'S02',level:'URGENT',rx:/\b(mi voglio suicid|voglio morire|suicid|farla finita|farmi del male|farsi del male|uccidermi|uccidersi)\b/i},
+  {id:'S02',level:'URGENT',rx:/\b(mi voglio suicid\w*|voglio morire|suicid\w*|farla finita|farmi del male|farsi del male|uccidermi|uccidersi)\b/i},
   {id:'S03',level:'URGENT',rx:/\b(mi sta picchiando|ci sta picchiando|picchia mio figlio|violenza domestica|violenza sessuale|abuso sessuale|abusa di mio figlio|maltrattamento)\b/i},
   {id:'S04',level:'URGENT',rx:/\b(ha ingerito|ha bevuto|ha preso per errore|overdose|intossicazione|avvelenamento)\b/i},
   {id:'S05',level:'MEDICAL',rx:/\b(dose|dosaggio|quanti mg|quante gocce|posso dare|devo dare)\b.*\b(farmaco|medicina|medicinale|mg|gocce|sciroppo)\b|\b(farmaco|medicina|medicinale)\b.*\b(dose|dosaggio|quanti mg|quante gocce)\b/i}
