@@ -1,4 +1,4 @@
-/* Atlas Input Interpreter v0.3.2 — functional-goal refinement candidate.
+/* Atlas Input Interpreter v0.3.3 — family-assistance service extension.
  * Extends v0.2.9 with general functional-goal rules for therapy choice, coordination friction and school transitions.
  * No keyword-only override: each rule requires a functional framing and object/problem evidence.
  * Frozen engine remains untouched.
@@ -40,7 +40,10 @@
 
    // v0.3.0 functional-goal refinement. These rules operate on the requested function, not topic words alone.
    // Local guards for the refinement rules: explicit provider search and diagnostic conflict must win.
+   const negatedProviderSearch=/(?:non|nn)\s+(?:(?:mi|ci)\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo|trovo|trovare)\b[^.!?]{0,70}\b(?:babysitter|baby\s*sitter|assistente familiare|assistenza domiciliare|supporto domiciliare)\b/i.test(t);
    const providerSearchIntent=/(?:cerco|cerchiamo|cercavo|sto cercando|conoscete|indicatemi|consigliatemi|trovare|mi serve|ci serve|abbiamo bisogno di)\b[^.!?]{0,90}\b(?:neuropsichiatra|npi|logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|centro|struttura|babysitter|baby sitter|assistente familiare|assistenza domiciliare|supporto domiciliare)\b/i.test(t) || /(?:dove)\s+(?:posso|puo|può|possiamo|potrei|potremmo)\s+(?:portare|trovare|cercare)\b[^.!?]{0,80}\b(?:terapia|terapie|intervento|interventi|centro|servizio|professionista|specialista)\b/i.test(t);
+   const providerSearchEffective=providerSearchIntent && !negatedProviderSearch;
+   if(negatedProviderSearch && !diagnosticConflict && d!=='D09'){ d='D06'; reasons.push('the family explicitly negates the provider search; information is the requested function'); m.topDomain=d; m.primaryDomain=d; }
    const diagnosticConflictGuard=diagnosticConflict;
    const therapyDecision=/(?:\bquale|\bquali|\bche tipo di)\b[^.!?]{0,55}\b(?:intervento|interventi|terapia|terapie|trattamento|percorso terapeutico)\b[^.!?]{0,55}\b(?:adatt[oa]|indicat[oa]|appropriat[oa]|serve|servirebbe|potrebbe|consigliat[oa])\b/i.test(t)
      ||/(?:\b(?:intervento|interventi|terapia|terapie|trattamento)\b)[^.!?]{0,55}\b(?:adatt[oa]|indicat[oa]|appropriat[oa]|serve|servirebbe|potrebbe|consigliat[oa])\b/i.test(t);
@@ -51,11 +54,11 @@
      ||/(?:supporto|sostegno|aiuto)\b[^.!?]{0,45}\b(?:per me|per noi|alla famiglia|ai genitori|a noi)\b/i.test(t);
    const choiceWithSecondV2=/(?:meglio|scegliere|quale|tra|oppure|o )[^.!?]{0,80}\b(?:second[ao] parere|second[ao] opinione|altro parere)\b/i.test(t)
      ||/\b(?:second[ao] parere|second[ao] opinione|altro parere)\b[^.!?]{0,80}\b(?:oppure|o |meglio|scegliere|tra)\b/i.test(t);
-   if(therapyChoice && !providerSearchIntent && !diagnosticConflictGuard && d!=='D09'){
+   if(therapyChoice && !providerSearchEffective && !diagnosticConflictGuard && d!=='D09'){
      d='D07'; reasons.push('the requested function is choosing/understanding an intervention, not finding a provider');
    }
    if(directFamilySupport && d!=='D09'){ d='D15'; reasons.push('support is explicitly requested for the caregiver/family itself'); }
-   if(explicitInfoRequest && !providerSearchIntent && !directFamilySupport && d!=='D09'){ d='D06'; reasons.push('information is the explicitly requested function'); }
+   if(explicitInfoRequest && !providerSearchEffective && !directFamilySupport && d!=='D09'){ d='D06'; reasons.push('information is the explicitly requested function'); }
    if(negatedProviderInfo && !directFamilySupport && d!=='D09'){ d='D06'; reasons.push('the provider is explicitly negated; information is the requested function'); }
    if(choiceWithSecondV2 && !diagnosticConflictGuard && d!=='D09'){ d='D03'; reasons.push('second opinion is presented as one option within a choice decision'); }
 
@@ -68,7 +71,7 @@
      ||/(?:faccio|facciamo)\s+da\s+centralino\b/i.test(t)
      ||/(?:piu|più)\s+(?:terapist|professionist|specialist)\w*[^.!?]{0,100}\b(?:comunicazione|coordinamento|collaborazione)\b[^.!?]{0,80}\b(?:difficile|problema|manc|non)\w*\b/i.test(t)
   );
-  if(coordinationFrictionV2 && !providerSearchIntent && d!=='D09'){
+  if(coordinationFrictionV2 && !providerSearchEffective && d!=='D09'){
      d='D09'; reasons.push('multi-actor coordination friction is the primary problem');
    }
 
@@ -78,7 +81,7 @@
      d='D11'; reasons.push('school transition is the primary functional object, even when the family asks where to start');
    }
    // If the family explicitly asks to find a provider, that requested action beats a contextual coordination problem.
-   if(providerSearchIntent && d==='D09'){
+   if(providerSearchEffective && d==='D09'){
      d='D02'; reasons.push('provider search is the requested outcome; coordination difficulty is contextual');
    }
 
@@ -92,7 +95,7 @@
    // v0.3.1 — paraphrase hardening.
    const shortPrompt=t.split(/\s+/).filter(Boolean).length<=45;// These are functional patterns, not topic-only overrides.
    const providerSearch=/\b(?:cerco|cerchiamo|sto cercando|conoscete|trovare|mi serve|ci serve|abbiamo bisogno di)\b[^.!?]{0,90}\b(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|babysitter|baby sitter|assistente familiare|assistenza domiciliare|supporto domiciliare|centro|struttura)\b/i.test(t) || /\b(?:un|una|il|la)\s+(?:bravo|brava|buon|buona)\s+(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|babysitter|baby sitter|assistente familiare)\b/i.test(t);
-   const providerNegated=/(?:non|nn)\s+(?:(?:mi|ci)\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo)\b[^.!?]{0,70}\b(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|centro|struttura)\b/i.test(t);
+   const providerNegated=/(?:non|nn)\s+(?:(?:mi|ci)\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo)\b[^.!?]{0,70}\b(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|centro|struttura|babysitter|baby\s*sitter|assistente familiare|assistenza domiciliare|supporto domiciliare)\b/i.test(t);
    const compare=/\b(?:due|entrambi|alternative|opzioni)\b[^.!?]{0,100}\b(?:confront|scegl|valut|meglio|decid)\w*/i.test(t)
      ||/\b(?:meglio|confrontare|confronto|pro e contro|scegliere|decidere|valutare)\b[^.!?]{0,80}\b(?:centro|centri|terapist|professionist|terapie|trattamenti|percorsi|opzioni|alternative)\b/i.test(t)
      ||/\b(?:centro|centri|terapist|professionist|terapie|trattamenti)\b[^.!?]{0,80}\b(?:a o b|b o a|due|alternativ|opzion)\b/i.test(t)
@@ -121,7 +124,7 @@
 
    // Explicit action has precedence over contextual information.
    if(shortPrompt && providerNegated && infoRequest){ d='D06'; reasons.push('provider explicitly rejected in favor of information'); }
-   else if(shortPrompt && providerSearch){ d='D02'; reasons.push('explicit provider search'); }
+   else if(shortPrompt && providerSearch && !negatedProviderSearch){ d='D02'; reasons.push('explicit provider search'); }
    else if(shortPrompt && choiceSecond){ d='D03'; reasons.push('second opinion presented as one choice among alternatives'); }
    else if(shortPrompt && diagnosticLoose){ d='D04'; reasons.push('diagnostic reassessment/second opinion'); }
    else if(shortPrompt && (compare || bareCompareV3) && !diagnosticConflict){ d='D03'; reasons.push('explicit comparison/choice among alternatives'); }

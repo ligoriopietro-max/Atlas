@@ -1,4 +1,4 @@
-/* Atlas Free-Text Profile v0.3 — semantic slot filling layer.
+/* Atlas Free-Text Profile v0.4 — semantic slot filling layer with family-assistance support.
  * Reads the whole free-text input and marks only explicitly supported slots.
  * It does not classify or modify the Atlas engine.
  */
@@ -50,6 +50,7 @@ function extract(text,domain){
  const uncertain=(slot,val,why)=>p.uncertain.push({slot,value:val,evidence:why});
  const context=(slot,val,why)=>p.context.push({slot,value:val,evidence:why});
  const prov=provider(t); if(prov)set('tipo',prov,'tipo di professionista/servizio richiesto esplicitamente');
+ if(prov==='babysitter'||prov==='assistente familiare'){set('servizio','assistenza familiare','servizio di assistenza familiare esplicitato');}
  // Preserve explicit professional qualifiers instead of collapsing them into a generic role.
  const qualifiers=[
    ['con esperienza nella neurodivergenza',/\b(?:babysitter|baby\s*sitter|assistente familiare|assistenza domiciliare)\b[^.!?]{0,80}\b(?:autist\w*|neurodivergen\w*|spettro autistico)\w*\b/i],

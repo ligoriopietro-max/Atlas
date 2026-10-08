@@ -1,4 +1,4 @@
-# Atlas — Test pubblico v0.8.2
+# Atlas — Test pubblico v0.8.4 — Assistenza familiare
 
 Build candidata al primo test umano controllato.
 
@@ -10,9 +10,9 @@ Le schede mostrate non rappresentano professionisti reali, non sono prenotabili 
 
 ## Build
 
-**Public build:** 0.8.2
+**Public build:** 0.8.4
 
-**Interpreter:** 0.3.2
+**Interpreter:** 0.3.3
 
 **Safety Gate:** 0.2
 
@@ -22,15 +22,15 @@ Il motore Atlas v0.2.6 resta congelato.
 
 ## Verifiche interne prima della pubblicazione
 
-- Stress funzionale nuovo: **56/56** sui casi aggiunti in questa iterazione
-- Human Test Pack: **15/15** classificazioni + safety gate verificato separatamente
-- Safety: self-harm / suicidality: **BLOCK**
-- Matching terapista comportamentale + Lecce: **1 risultato compatibile, 100%**
-- Accesso/lista d'attesa: **D05**
-- Coordinamento: **D09** anche nelle formulazioni colloquiali come “facciamo fatica a coordinarli”
-- Scuola/transizione: **D11**
+- Nuove casistiche assistenza familiare: **4/4** riconosciute come D02; le richieste incomplete restano in `needs_input` finché manca la località o la modalità online.
+- Negazione della ricerca di una babysitter/assistente con richiesta informativa: **2/2** riconosciute come D06.
+- Regressione sui casi già coperti: **3/3** (terapista comportamentale + Lecce → D02; coordinamento → D09; scuola/transizione → D11).
+- Safety gate: self-harm / suicidality **BLOCK**; richiesta ordinaria di babysitter **PASS**.
+- Script referenziati da `index.html`: **24/24 presenti**.
+- Sintassi JS dei tre file modificati: **OK**.
+- Integrità ZIP: **OK**.
 
-Le suite storiche del progetto rimangono riferimento di regressione; questa build non modifica il motore congelato.
+Il motore Atlas v0.2.6 resta congelato. Questa build estende il livello di interpretazione/profilazione e non modifica il motore di classificazione congelato.
 
 ## Pubblicazione GitHub Pages
 

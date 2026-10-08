@@ -7,7 +7,7 @@ function profileToFlat(p){
   return {
     provider_type:f.tipo?v.tipo:null,
     provider_qualifier:f.qualificatore?v.qualificatore:null,
-    service_type:null,
+    service_type:f.servizio?v.servizio:null,
     object:f.oggetto?v.oggetto:null,
     location:f.zona?v.zona:null,
     online:f.online?true:null,
