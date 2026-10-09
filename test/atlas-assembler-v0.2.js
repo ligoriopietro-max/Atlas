@@ -50,4 +50,29 @@ function audit(records){
   return (records||[]).map(function(r){return {id:r.id,validation:root.AtlasMatchingDataModel.validate(r)};});
 }
 root.AtlasAssemblerV01={run:run,audit:audit,profileToFlat:profileToFlat};
+
+/* v0.8.4.2 hotfix: ask for a concrete city/province directly when D02 has no location.
+   This replaces the vague location-mode question, which could leave families without a usable locality. */
+var nextStep=root.AtlasNextStepEngineV02;
+if(nextStep && typeof nextStep.actionCard==='function' && !nextStep.__atlasLocationFollowupFix){
+  var originalActionCard=nextStep.actionCard;
+  nextStep.actionCard=function(domain,profile){
+    var card=originalActionCard(domain,profile);
+    if(domain==='D02'){
+      var f=(profile&&profile.filled)||{};
+      var v=(profile&&profile.values)||{};
+      var loc=String(v.zona||'').trim();
+      var hasConcreteLocation=!!f.zona && !!loc && loc.toLowerCase()!=='nella nostra zona' && loc.toLowerCase()!=='nessuna preferenza';
+      if(!hasConcreteLocation){
+        card.ready=false;
+        card.primary_action=null;
+        card.next_question={slot:'localita',label:'In quale città o provincia vi serve il servizio?',placeholder:'Es. Lecce, provincia di Bari',input:true};
+        card.missing=Array.from(new Set([...(card.missing||[]),'localita']));
+        card.reason='Per cercare un servizio serve una città o provincia, salvo che la famiglia scelga esplicitamente una ricerca solo online.';
+      }
+    }
+    return card;
+  };
+  nextStep.__atlasLocationFollowupFix=true;
+}
 })(typeof window!=='undefined'?window:globalThis);
