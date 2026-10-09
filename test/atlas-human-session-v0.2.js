@@ -18,7 +18,14 @@ function applyAnswer(profile, answer){
     else if(value==='Possiamo usare anche l’online'){p.filled.zona=true;p.values.zona='Nella nostra zona';p.filled.online=true;p.values.online='Sì';}
     else if(value==='Solo online'){p.filled.online=true;p.values.online='Sì';}
     else {p.filled.zona=true;p.values.zona='Nessuna preferenza';p.filled.online=true;p.values.online='Sì';}
-  } else { p.filled[slot]=true; p.values[slot]=value; }
+  } else {
+    if(slot==='tipo'){
+      var normalized=String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,' ').trim();
+      if(/\b(?:assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/.test(normalized)){p.filled.tipo=true;p.values.tipo='assistente familiare';p.filled.servizio=true;p.values.servizio='assistenza familiare';return p;}
+      if(/\b(?:babysitter|baby sitter)\b/.test(normalized)){p.filled.tipo=true;p.values.tipo='babysitter';p.filled.servizio=true;p.values.servizio='assistenza familiare';return p;}
+    }
+    p.filled[slot]=true; p.values[slot]=value;
+  }
   return p;
 }
 function start(state,input){

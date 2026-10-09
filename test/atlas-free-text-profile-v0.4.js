@@ -7,7 +7,7 @@ const RX={
  logopedista:/\blogoped(?:ista|ia|ico|ica)\b/i,npi:/\b(?:npi|neuropsichiatra(?: infantile)?|neuropsichiatria infantile)\b/i,
  psicologo:/\bpsicolog\w*\b/i,educatore:/\beducator\w*\b/i,neuropsicomotricista:/\bneuropsicomotric\w*\b/i,
  terapista:/\bterapist\w*\b/i,medico:/\b(?:medico|dottore|specialista)\b/i,centro:/\b(?:centro|struttura|clinica)\b/i,
- professionista:/\bprofessionist\w*\b/i, babysitter:/\b(?:babysitter|baby\s*sitter)\b/i, familyAssistant:/\b(?:assistente familiare|assistenza domiciliare|supporto domiciliare)\b/i, online:/\b(?:online|a distanza|da remoto|teleconsulto)\b/i,
+ professionista:/\bprofessionist\w*\b/i, babysitter:/\b(?:babysitter|baby\s*sitter)\b/i, familyAssistant:/\b(?:assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/i, online:/\b(?:online|a distanza|da remoto|teleconsulto)\b/i,
  wait:/\b(?:lista d['’]?attesa|mesi? di attesa|settimane? di attesa|aspettare|attendere|tempi lunghi|non voglio aspettare|non posso aspettare|disponibil\w*)\b/i,
  rapid:/\b(?:presto|urgente|in tempi brevi|subito|rapidamente|prima possibile|il prima possibile|quanto prima)\b/i,
  public:/\b(?:pubblico|pubblica|asl|ssn|servizio pubblico)\b/i, private:/\b(?:privato|privata|a pagamento)\b/i,
@@ -49,12 +49,12 @@ function extract(text,domain){
  const set=(slot,val,why)=>{if(val!==null&&val!==undefined&&val!==''){p.filled[slot]=true;p.values[slot]=val;p.evidence.push({slot,value:val,evidence:why})}};
  const uncertain=(slot,val,why)=>p.uncertain.push({slot,value:val,evidence:why});
  const context=(slot,val,why)=>p.context.push({slot,value:val,evidence:why});
- const prov=provider(t); if(prov)set('tipo',prov,'tipo di professionista/servizio richiesto esplicitamente');
+ const prov=provider(t); if(prov && prov!=='professionista')set('tipo',prov,'tipo di professionista/servizio richiesto esplicitamente'); else if(prov==='professionista')uncertain('tipo','tipo di professionista da specificare','richiesta generica senza specializzazione');
  if(prov==='babysitter'||prov==='assistente familiare'){set('servizio','assistenza familiare','servizio di assistenza familiare esplicitato');}
  // Preserve explicit professional qualifiers instead of collapsing them into a generic role.
  const qualifiers=[
-   ['con esperienza nella neurodivergenza',/\b(?:babysitter|baby\s*sitter|assistente familiare|assistenza domiciliare)\b[^.!?]{0,80}\b(?:autist\w*|neurodivergen\w*|spettro autistico)\w*\b/i],
-   ['con esperienza con bambini autistici',/\b(?:babysitter|baby\s*sitter|assistente familiare|assistenza domiciliare)\b[^.!?]{0,80}\bbambin[io]\s+(?:autistic|neurodivergen)\w*\b/i],
+   ['con esperienza nella neurodivergenza',/\b(?:babysitter|baby\s*sitter|assistente familiare|assistente famigliare|assistenza domiciliare)\b[^.!?]{0,80}\b(?:autist\w*|neurodivergen\w*|spettro autistico)\w*\b/i],
+   ['con esperienza con bambini autistici',/\b(?:babysitter|baby\s*sitter|assistente familiare|assistente famigliare|assistenza domiciliare)\b[^.!?]{0,80}\bbambin[io]\s+(?:autistic|neurodivergen)\w*\b/i],
    ['comportamentale',/\bterapist[ao]?\s+comportamentale\b/i],
    ['occupazionale',/\bterapist[ao]?\s+occupazionale\b/i],
    ['della riabilitazione',/\bterapist[ao]?\s+della\s+riabilitazione\b/i],
