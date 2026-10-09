@@ -7,6 +7,7 @@ function applyAnswer(profile, answer){
   p.filled=p.filled||{}; p.values=p.values||{};
   if(!answer || !answer.slot) return p;
   var slot=answer.slot, value=answer.value;
+  if(slot==='localita'){p.filled.localita=true;p.filled.zona=true;p.values.zona=String(value||'').trim();return p;}
   if(slot==='zona_or_online'){
     if(value==='Solo online'){p.filled.online=true;p.values.online='Sì';}
     else if(value==='Nella nostra zona'){p.filled.zona=true;p.values.zona='Nella nostra zona';}

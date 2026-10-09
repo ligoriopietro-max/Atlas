@@ -1,4 +1,4 @@
-# Atlas — Test pubblico v0.8.4 — Assistenza familiare
+# Atlas — Test pubblico v0.8.4.1 — Assistenza familiare
 
 Build candidata al primo test umano controllato.
 
@@ -10,7 +10,7 @@ Le schede mostrate non rappresentano professionisti reali, non sono prenotabili 
 
 ## Build
 
-**Public build:** 0.8.4
+**Public build:** 0.8.4.1
 
 **Interpreter:** 0.3.3
 
