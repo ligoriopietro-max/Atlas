@@ -1,4 +1,4 @@
-/* Atlas Input Interpreter v0.3.3 — family-assistance service extension.
+/* Atlas Input Interpreter v0.3.4 — explicit “ho bisogno di” intent fix and family-assistance service extension.
  * Extends v0.2.9 with general functional-goal rules for therapy choice, coordination friction and school transitions.
  * No keyword-only override: each rule requires a functional framing and object/problem evidence.
  * Frozen engine remains untouched.
@@ -40,10 +40,11 @@
 
    // v0.3.0 functional-goal refinement. These rules operate on the requested function, not topic words alone.
    // Local guards for the refinement rules: explicit provider search and diagnostic conflict must win.
-   const negatedProviderSearch=/(?:non|nn)\s+(?:(?:mi|ci)\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo|trovo|trovare)\b[^.!?]{0,70}\b(?:babysitter|baby\s*sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/i.test(t);
-   const providerSearchIntent=/(?:cerco|cerchiamo|cercavo|sto cercando|conoscete|indicatemi|consigliatemi|trovare|mi serve|ci serve|abbiamo bisogno di)\b[^.!?]{0,90}\b(?:neuropsichiatra|npi|logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|centro|struttura|babysitter|baby sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/i.test(t) || /(?:dove)\s+(?:posso|puo|può|possiamo|potrei|potremmo)\s+(?:portare|trovare|cercare)\b[^.!?]{0,80}\b(?:terapia|terapie|intervento|interventi|centro|servizio|professionista|specialista)\b/i.test(t);
+   const negatedProviderSearch=/(?:non|nn)\s+(?:(?:mi|ci)\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo|trovo|trovare|ho bisogno di)\b[^.!?]{0,70}\b(?:babysitter|baby\s*sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/i.test(t);
+   const providerSearchIntent=/(?:cerco|cerchiamo|cercavo|sto cercando|conoscete|indicatemi|consigliatemi|trovare|mi serve|ci serve|ho bisogno di|abbiamo bisogno di)\b[^.!?]{0,90}\b(?:neuropsichiatra|npi|logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|centro|struttura|babysitter|baby sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/i.test(t) || /(?:dove)\s+(?:posso|puo|può|possiamo|potrei|potremmo)\s+(?:portare|trovare|cercare)\b[^.!?]{0,80}\b(?:terapia|terapie|intervento|interventi|centro|servizio|professionista|specialista)\b/i.test(t);
    const providerSearchEffective=providerSearchIntent && !negatedProviderSearch;
-   if(negatedProviderSearch && !diagnosticConflict && d!=='D09'){ d='D06'; reasons.push('the family explicitly negates the provider search; information is the requested function'); m.topDomain=d; m.primaryDomain=d; }
+   // A negated provider request is not automatically an information request.
+   // Explicit information requests are handled by the dedicated rules below.
    const diagnosticConflictGuard=diagnosticConflict;
    const therapyDecision=/(?:\bquale|\bquali|\bche tipo di)\b[^.!?]{0,55}\b(?:intervento|interventi|terapia|terapie|trattamento|percorso terapeutico)\b[^.!?]{0,55}\b(?:adatt[oa]|indicat[oa]|appropriat[oa]|serve|servirebbe|potrebbe|consigliat[oa])\b/i.test(t)
      ||/(?:\b(?:intervento|interventi|terapia|terapie|trattamento)\b)[^.!?]{0,55}\b(?:adatt[oa]|indicat[oa]|appropriat[oa]|serve|servirebbe|potrebbe|consigliat[oa])\b/i.test(t);
@@ -94,7 +95,7 @@
    }
    // v0.3.1 — paraphrase hardening.
    const shortPrompt=t.split(/\s+/).filter(Boolean).length<=45;// These are functional patterns, not topic-only overrides.
-   const providerSearch=/\b(?:cerco|cerchiamo|sto cercando|conoscete|trovare|mi serve|ci serve|abbiamo bisogno di)\b[^.!?]{0,90}\b(?:logopedista|terapista|professionista|professionisti|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|babysitter|baby sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare|centro|struttura)\b/i.test(t) || /\b(?:un|una|il|la)\s+(?:bravo|brava|buon|buona)\s+(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|babysitter|baby sitter|assistente familiare)\b/i.test(t);
+   const providerSearch=/\b(?:cerco|cerchiamo|sto cercando|conoscete|trovare|mi serve|ci serve|ho bisogno di|abbiamo bisogno di)\b[^.!?]{0,90}\b(?:logopedista|terapista|professionista|professionisti|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|babysitter|baby sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare|centro|struttura)\b/i.test(t) || /\b(?:un|una|il|la)\s+(?:bravo|brava|buon|buona)\s+(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|babysitter|baby sitter|assistente familiare)\b/i.test(t);
    const providerNegated=/(?:non|nn)\s+(?:(?:mi|ci)\s+)?(?:serve|servirebbe|voglio|vorrei|cerco|cerchiamo)\b[^.!?]{0,70}\b(?:logopedista|terapista|professionista|specialista|psicologo|educatore|medico|dottore|neuropsichiatra|npi|centro|struttura|babysitter|baby\s*sitter|assistente familiare|assistente famigliare|assistenza domiciliare|supporto domiciliare)\b/i.test(t);
    const compare=/\b(?:due|entrambi|alternative|opzioni)\b[^.!?]{0,100}\b(?:confront|scegl|valut|meglio|decid)\w*/i.test(t)
      ||/\b(?:meglio|confrontare|confronto|pro e contro|scegliere|decidere|valutare)\b[^.!?]{0,80}\b(?:centro|centri|terapist|professionist|terapie|trattamenti|percorsi|opzioni|alternative)\b/i.test(t)
@@ -139,7 +140,7 @@
    else if(shortPrompt && familyLoose3){ d='D15'; reasons.push('caregiver/family support'); }
    else if(shortPrompt && dailyLoose2){ d='D08'; reasons.push('daily-life/autonomy difficulty'); }
    else if(shortPrompt && newDifficulty && !dailyLoose2){ d='D14'; reasons.push('new/recent difficulty'); }
-   m.topDomain=d; m.primaryDomain=d; if(m.semanticEvidence)m.semanticEvidence.primary_domain=d; m.interpreter='v0.3.1-candidate';
+   m.topDomain=d; m.primaryDomain=d; if(m.semanticEvidence)m.semanticEvidence.primary_domain=d; m.interpreter='v0.3.4-candidate';
    return out;
  }
  window.AtlasInputInterpreterV032Candidate={interpret:resolve};
