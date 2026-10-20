@@ -1,40 +1,38 @@
-# Atlas — sito pubblico v0.1 (struttura senza motore)
+# Atlas — sito pubblico v1.0 (motore escluso)
 
-## Scopo
-Questa è una prima struttura multipagina del sito Atlas, separata dal test sperimentale del motore. Include homepage, area famiglie, marketplace/categorie, area professionisti, Fondo Atlas, anteprima area famiglia, **diario condiviso dimostrativo interattivo**, risorse, missione, contatti e trasparenza.
+## Obiettivo
+Pacchetto coordinato del sito pubblico Atlas. Mantiene le pagine esistenti, integra la guida interattiva **Il prossimo passo**, uniforma la navigazione e rende più facile raggiungere la guida da Home, Famiglie e Risorse. Il motore di orientamento non è incluso né modificato.
 
-## Caricamento su GitHub
-1. Apri il repository `ligoriopietro-max/Atlas`.
-2. Entra nella **cartella principale** del repository, non in `test/`.
-3. Usa **Add file → Upload files**.
-4. Carica tutti i file e le cartelle contenuti in questa cartella: i file HTML nella root e la cartella `assets/`.
-5. Se GitHub segnala che `index.html` esiste già, conferma la sostituzione solo se vuoi che la homepage del sito diventi questa nuova homepage. Non cancellare né sostituire nulla dentro `test/`.
-6. Completa il commit. Il sito principale dovrebbe essere pubblicato all’indirizzo GitHub Pages già configurato (`/Atlas/`), se la pubblicazione è attiva.
+## Contenuto
+- `index.html` — homepage e accessi principali
+- `primo-passo.html` — guida interattiva per individuare un punto di partenza
+- `famiglie.html` — proposta per le famiglie
+- `marketplace.html` — categorie di servizi e professionisti
+- `professionisti.html` — proposta per professionisti e centri
+- `fondo-atlas.html` — progetto Fondo Atlas
+- `area-famiglia.html` — anteprima area famiglia
+- `diario-condiviso.html` — demo interattiva del diario
+- `risorse.html` — aree della futura biblioteca e accesso alla guida
+- `chi-siamo.html`, `contatti.html`, `privacy.html` — missione, contatti e trasparenza
+- `assets/site.css`, `assets/site.js`, `assets/diary-demo.js` — stile e interazioni dimostrative
+- `robots.txt`, `sitemap.xml`, `404.html` — supporto di base per pubblicazione statica
 
-## Cosa è operativo e cosa no
-- Le pagine e i collegamenti tra pagine sono statici e navigabili.
-- Il pulsante del test rimanda alla cartella separata `./test/`; il motore non è incluso in questo pacchetto e non è stato modificato.
-- I moduli sono dimostrativi: non inviano e non salvano dati.
-- L’area famiglia è un mockup, senza login, archivio o dati reali.
-- `diario-condiviso.html` è una simulazione interattiva con esempi inventati, filtri, aggiunta temporanea di voci e messaggi e anteprima dei permessi. Le modifiche restano solo in memoria nella pagina corrente e non vengono inviate o salvate online.
-- Il marketplace contiene categorie progettuali, non schede di professionisti reali.
-- Il Fondo Atlas è descritto come iniziativa in progettazione; non sono richieste né raccolte donazioni.
-- La pagina privacy è provvisoria e non è un’informativa legale definitiva.
+## Pubblicazione su GitHub Pages
+1. Apri il repository `ligoriopietro-max/Atlas` e vai nella root.
+2. Seleziona **Add file → Upload files**.
+3. Estrai questo archivio e carica i file e la cartella `assets/` contenuti nella cartella `atlas-site-v1/`.
+4. Conferma la sostituzione dei file omonimi nella root. **Non cancellare né sovrascrivere la cartella `test/`**: il motore/test resta separato e i pulsanti `./test/` continuano a puntare lì.
+5. Esegui il commit e controlla la homepage e la guida pubblicata.
 
-## Struttura
-- `index.html` — homepage
-- `famiglie.html` — area famiglie
-- `marketplace.html` — categorie di professionisti e servizi, inclusa assistenza familiare separata dalla terapia
-- `professionisti.html` — proposta di valore e modulo dimostrativo
-- `fondo-atlas.html` — visione del Fondo Atlas
-- `area-famiglia.html` — mockup dell’area personale
-- `diario-condiviso.html` — diario condiviso dimostrativo per famiglia e professionisti
-- `assets/diary-demo.js` — interazioni temporanee del prototipo del diario
-- `risorse.html` — biblioteca progettuale
-- `chi-siamo.html` — missione e principi
-- `contatti.html` — modulo dimostrativo
-- `privacy.html` — trasparenza sul prototipo
-- `assets/site.css`, `assets/site.js` — stile e comportamento del menu/moduli
+## Cosa funziona e cosa resta dimostrativo
+- Le pagine informative sono statiche e navigabili.
+- La guida `primo-passo.html` reagisce alle scelte nel browser; non salva le risposte e non formula diagnosi.
+- Il diario condiviso è una simulazione: le voci non sono persistenti e non vengono inviate.
+- Area famiglia, moduli e marketplace non hanno autenticazione, backend o dati reali; i moduli mostrano un messaggio dimostrativo e non inviano informazioni.
+- Le categorie del marketplace non sono annunci di operatori reali e non consentono prenotazioni.
+- Il Fondo Atlas è in progettazione: questo sito non raccoglie donazioni.
+- La pagina privacy è una descrizione provvisoria del prototipo, non un’informativa legale definitiva.
+- Il test sperimentale è separato in `test/` e non viene modificato da questo pacchetto.
 
-## Limiti intenzionali
-Nessun database, autenticazione, diario persistente, sistema di messaggistica reale, gestione reale dei permessi, sistema di prenotazione, pagamento, raccolta fondi o invio di moduli. Queste funzioni vanno progettate e implementate separatamente prima di essere presentate come attive.
+## Importante
+Non inserire dati personali, documenti, dati sanitari o informazioni identificative di minori nelle demo. Prima di attivare account, messaggistica, prenotazioni o archiviazione sarà necessario sviluppare e verificare le relative funzioni, la sicurezza e la documentazione privacy.
