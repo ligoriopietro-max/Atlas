@@ -1,38 +1,12 @@
-# Atlas — sito pubblico v1.0 (motore escluso)
+# Atlas — sito pubblico v1.1 (logo e installazione)
 
-## Obiettivo
-Pacchetto coordinato del sito pubblico Atlas. Mantiene le pagine esistenti, integra la guida interattiva **Il prossimo passo**, uniforma la navigazione e rende più facile raggiungere la guida da Home, Famiglie e Risorse. Il motore di orientamento non è incluso né modificato.
+Questa versione sostituisce la A provvisoria con il simbolo del logo Progetto Atlas in header e footer, aggiunge manifest e icone PWA e un pulsante in homepage per aggiungere Atlas alla schermata Home.
 
-## Contenuto
-- `index.html` — homepage e accessi principali
-- `primo-passo.html` — guida interattiva per individuare un punto di partenza
-- `famiglie.html` — proposta per le famiglie
-- `marketplace.html` — categorie di servizi e professionisti
-- `professionisti.html` — proposta per professionisti e centri
-- `fondo-atlas.html` — progetto Fondo Atlas
-- `area-famiglia.html` — anteprima area famiglia
-- `diario-condiviso.html` — demo interattiva del diario
-- `risorse.html` — aree della futura biblioteca e accesso alla guida
-- `chi-siamo.html`, `contatti.html`, `privacy.html` — missione, contatti e trasparenza
-- `assets/site.css`, `assets/site.js`, `assets/diary-demo.js` — stile e interazioni dimostrative
-- `robots.txt`, `sitemap.xml`, `404.html` — supporto di base per pubblicazione statica
+## Pubblicazione
+Caricare il contenuto della cartella `atlas-site-v1` nella root del repository GitHub Pages, sovrascrivendo i file omonimi. Non cancellare né sovrascrivere la cartella `test/` già presente nel repository.
 
-## Pubblicazione su GitHub Pages
-1. Apri il repository `ligoriopietro-max/Atlas` e vai nella root.
-2. Seleziona **Add file → Upload files**.
-3. Estrai questo archivio e carica i file e la cartella `assets/` contenuti nella cartella `atlas-site-v1/`.
-4. Conferma la sostituzione dei file omonimi nella root. **Non cancellare né sovrascrivere la cartella `test/`**: il motore/test resta separato e i pulsanti `./test/` continuano a puntare lì.
-5. Esegui il commit e controlla la homepage e la guida pubblicata.
+## Installazione su smartphone
+Il sito usa `manifest.webmanifest`, icone PNG e `sw.js`. Il pulsante in homepage invoca la finestra di installazione quando il browser la supporta; su iPhone/iPad mostra le istruzioni per Safari. La disponibilità effettiva dipende da browser, sistema operativo e condizioni PWA.
 
-## Cosa funziona e cosa resta dimostrativo
-- Le pagine informative sono statiche e navigabili.
-- La guida `primo-passo.html` reagisce alle scelte nel browser; non salva le risposte e non formula diagnosi.
-- Il diario condiviso è una simulazione: le voci non sono persistenti e non vengono inviate.
-- Area famiglia, moduli e marketplace non hanno autenticazione, backend o dati reali; i moduli mostrano un messaggio dimostrativo e non inviano informazioni.
-- Le categorie del marketplace non sono annunci di operatori reali e non consentono prenotazioni.
-- Il Fondo Atlas è in progettazione: questo sito non raccoglie donazioni.
-- La pagina privacy è una descrizione provvisoria del prototipo, non un’informativa legale definitiva.
-- Il test sperimentale è separato in `test/` e non viene modificato da questo pacchetto.
-
-## Importante
-Non inserire dati personali, documenti, dati sanitari o informazioni identificative di minori nelle demo. Prima di attivare account, messaggistica, prenotazioni o archiviazione sarà necessario sviluppare e verificare le relative funzioni, la sicurezza e la documentazione privacy.
+## Nota
+Il service worker offre una cache di base per la shell del sito; non trasforma i moduli dimostrativi in servizi funzionanti e non aggiunge backend, login o archivio editoriale. Il motore di orientamento non è incluso né modificato.
