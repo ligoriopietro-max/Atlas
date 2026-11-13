@@ -1,0 +1,16 @@
+ATLAS DEMO INTEGRATA v1.2
+
+Aprire index.html, poi Strumenti Atlas.
+Per GitHub Pages: caricare IL CONTENUTO della cartella Atlas_Integrato_Demo_v1.2 nella stessa cartella del sito corrente, conservando la struttura.
+Non cancellare il sito corrente prima di aver fatto una copia.
+
+Strumenti:
+- strumenti/caa/index.html
+- strumenti/agenda/index.html
+- strumenti/diario/index.html
+
+ATTENZIONE DATI: localStorage dipende da origine e percorso. Il passaggio da file locali a sito web NON garantisce la migrazione automatica. Prima esportare JSON da ciascun modulo, poi importarlo nella versione sul sito (dove previsto). La demo non offre autenticazione, protezione di dati sanitari o collaborazione reale. Usare dati inventati.
+
+La pagina diario-condiviso.html originale resta nel pacchetto come vecchia anteprima, ma il link principale punta al nuovo Diario 0.3.0.
+
+Verificare su PC e smartphone dopo pubblicazione. L'Engine non e' stato aggiunto in questa fase.

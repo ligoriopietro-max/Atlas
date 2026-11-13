@@ -1,0 +1,16 @@
+{
+  "id": "/Atlas/",
+  "name": "Progetto Atlas",
+  "short_name": "Atlas",
+  "description": "La rotta verso un’assistenza consapevole.",
+  "lang": "it-IT",
+  "start_url": "/Atlas/",
+  "scope": "/Atlas/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#125b96",
+  "icons": [
+    { "src": "/Atlas/assets/icons/atlas-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/Atlas/assets/icons/atlas-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

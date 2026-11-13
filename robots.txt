@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ligoriopietro-max.github.io/Atlas/sitemap.xml
