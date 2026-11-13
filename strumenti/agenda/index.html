@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1459a8"><title>Atlas — Agenda visiva</title><link rel="stylesheet" href="style.css">
+</head>
+<body><div style="background:#0d4778;color:#fff;padding:9px 16px;text-align:center;font:600 14px system-ui,sans-serif"><a href="../../strumenti.html" style="color:#fff;text-decoration:underline">← Torna agli strumenti Atlas</a> · Versione dimostrativa: usa solo dati fittizi</div>
+<header><div class="mark">A</div><div><strong>Atlas · Agenda visiva</strong><small>Prototipo 0.1.3 · uso locale</small></div><button id="printBtn" class="top-action">Stampa / PDF</button></header>
+<main>
+<section class="intro"><h1>La mia giornata</h1><p>Costruisci una sequenza visiva scegliendo le immagini dal catalogo. Ogni attività inserita deve avere un simbolo. Puoi riordinarle, aggiungere un orario e stampare l’agenda.</p><div class="notice">Prototipo dimostrativo: verifica insieme alla persona che immagini, parole e sequenza siano comprensibili e appropriate.</div></section>
+<section class="layout">
+<div class="panel editor"><h2>1. Scegli un'attività</h2>
+<label>Nome dell'attività<input id="customWord" placeholder="Es. vestirsi, merenda, terapia"></label>
+<label>Orario (facoltativo)<input id="activityTime" type="time" value="08:00"></label>
+<label>Cerca nel catalogo<input id="search" type="search" placeholder="Es. mangiare, casa, scuola"></label>
+<label>Categoria<select id="category"><option value="Tutte">Tutte le categorie</option></select></label>
+<p class="muted">Scegli un’immagine: toccandola aggiungi l’attività all’agenda. Puoi personalizzare la parola prima di selezionarla.</p><p id="catalogInfo" class="muted" aria-live="polite"></p><div id="catalog" class="catalog"></div>
+</div>
+<div class="panel planner"><div class="plan-head"><div><h2>2. Agenda</h2><p class="muted">Usa ↑ e ↓ per cambiare l'ordine.</p></div><label class="date-label">Data<input id="planDate" type="date"></label></div>
+<label>Nome agenda<input id="planName" maxlength="60" value="La mia giornata"></label>
+<div id="items" class="items"></div>
+<div class="actions"><button id="saveBtn">Salva sul dispositivo</button><button id="clearBtn" class="secondary">Svuota agenda</button></div>
+<div class="backup"><button id="exportBtn" class="secondary">Esporta backup</button><button id="importBtn" class="secondary">Importa backup</button><input id="backupFile" type="file" accept="application/json" hidden></div>
+<h3>Agende salvate</h3><div id="saved" class="saved"></div>
+</div>
+</section>
+<footer>Atlas · strumenti gratuiti per favorire comunicazione, orientamento e autonomia. Catalogo Mulberry Symbols: CC BY-SA 4.0; dettagli in LICENZA-PITTOGRAMMI.txt.</footer>
+</main>
+<script src="mulberry-catalog.js"></script><script src="app.js"></script>
+</body></html>

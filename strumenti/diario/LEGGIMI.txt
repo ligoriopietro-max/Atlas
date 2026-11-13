@@ -1,0 +1,5 @@
+DIARIO ATLAS 0.3.0 - DEMO OFFLINE
+Apri index.html nel browser. Usa esclusivamente dati inventati.
+Conserva un backup JSON della versione precedente prima di aggiornare.
+I dati vengono letti dalla stessa chiave locale della 0.1.0/0.2.0, se aperto nello stesso browser e origine. In caso contrario importa il backup.
+Inviti e permessi sono soltanto simulati, non costituiscono sicurezza né condivisione reale.

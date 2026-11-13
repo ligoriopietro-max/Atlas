@@ -1,0 +1,10 @@
+{
+  "name": "Atlas CAA — Prototipo",
+  "short_name": "Atlas CAA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1459a8",
+  "description": "Prototipo locale del generatore CAA Atlas.",
+  "icons": [{"src":"assets/atlas-caa-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

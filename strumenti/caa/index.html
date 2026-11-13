@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1459a8">
+<meta name="description" content="Prototipo locale Atlas CAA: crea e usa tabelle di comunicazione.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/atlas-caa-icon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="style.css">
+<title>Atlas CAA — Prototipo</title>
+</head>
+<body><div style="background:#0d4778;color:#fff;padding:9px 16px;text-align:center;font:600 14px system-ui,sans-serif"><a href="../../strumenti.html" style="color:#fff;text-decoration:underline">← Torna agli strumenti Atlas</a> · Versione dimostrativa: usa solo dati fittizi</div>
+<header class="topbar">
+  <div class="brand-mark" aria-hidden="true">A</div>
+  <div><strong>Atlas CAA</strong><small>Prototipo 0.1.8 · uso locale</small></div>
+  <button id="installBtn" class="quiet hidden" type="button">Installa</button>
+</header>
+
+<main>
+  <section class="notice">
+    <strong>Prototipo di prova</strong>
+    <p>Versione di prova del generatore. Il catalogo include simboli originali Atlas e simboli Mulberry. Le etichette contrassegnate [EN] sono ancora in inglese. Simboli, significati e leggibilità vanno verificati con la persona e con professionisti CAA. Non usarlo come unico mezzo di comunicazione in situazioni critiche.</p>
+  </section>
+
+  <nav class="tabs" aria-label="Sezioni">
+    <button class="tab active" data-view="use">Comunica</button>
+    <button class="tab" data-view="build">Crea tabella</button>
+    <button class="tab" data-view="saved">Salvate</button>
+  </nav>
+
+  <section id="view-use" class="view">
+    <div class="section-head">
+      <div><h1>Comunica subito</h1><p>Tocca una casella per visualizzare e, se disponibile, ascoltare la parola.</p></div>
+    </div>
+    <div id="activeBoardTitle" class="board-title">Tabella rapida</div>
+    <div id="liveGrid" class="symbol-grid live-grid"></div>
+    <div id="spokenOutput" class="spoken-output" aria-live="polite">Seleziona una casella</div>
+    <div class="actions">
+      <button id="speakAgain" type="button">🔊 Ripeti</button>
+      <button id="stopSpeech" class="secondary" type="button">■ Ferma voce</button>
+    </div>
+  </section>
+
+  <section id="view-build" class="view hidden">
+    <div class="section-head"><div><h1>Crea una tabella</h1><p>Scegli le caselle, modifica le parole e salva sul dispositivo.</p></div></div>
+    <label class="field">Nome tabella<input id="boardName" maxlength="60" value="La mia tabella"></label>
+    <label class="field">Cerca simboli o parole<input id="search" type="search" placeholder="Es. acqua, aiuto, pausa"></label>
+    <label class="field">Categoria<select id="category"></select></label>
+    <p id="catalogInfo" class="muted" aria-live="polite"></p>
+    <div id="catalogGrid" class="symbol-grid catalog-grid"></div>
+    <h2>Caselle della tabella <span id="selectedCount" class="count">0</span></h2>
+    <p class="muted">Tocca una casella qui sotto per rimuoverla. L'ordine è quello usato nella tabella.</p>
+    <div id="selectedGrid" class="symbol-grid selected-grid"></div>
+    <div class="actions">
+      <button id="saveBoard" type="button">Salva tabella</button>
+      <button id="clearSelected" class="secondary" type="button">Svuota</button>
+      <button id="printBoard" class="secondary" type="button">Stampa / PDF</button>
+    </div>
+    <div class="field inline-field"><label><input id="showLabels" type="checkbox" checked> Mostra le parole sotto i simboli</label></div>
+    <div class="field inline-field"><label><input id="voiceOn" type="checkbox" checked> Leggi la parola quando tocco una casella</label></div>
+  </section>
+
+  <section id="view-saved" class="view hidden">
+    <div class="section-head"><div><h1>Tabelle salvate</h1><p>Restano su questo dispositivo e in questo browser.</p></div></div>
+    <div class="actions backup-actions"><button id="exportBackup" type="button">Esporta backup</button><button id="importBackup" class="secondary" type="button">Importa backup</button><input id="backupFile" type="file" accept="application/json,.json" hidden></div>
+    <p class="muted">Il backup contiene le tabelle salvate, non le impostazioni del browser. Conserva il file in un luogo sicuro e importalo per ripristinare le tabelle su questo dispositivo.</p>
+    <div id="savedBoards" class="saved-list"></div>
+    <p class="muted">Nota: i dati locali possono andare persi se cancelli i dati del browser o cambi dispositivo. In questa versione non esiste ancora una sincronizzazione.</p>
+  </section>
+</main>
+
+<footer>
+  <p><strong>Atlas CAA · Prototipo 0.1.8</strong></p>
+  <p>Simboli demo Atlas e Mulberry Symbols 3.6.1. Mulberry Symbols © Steve Lee, 2018–2026, licenza CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/ .</p>
+  <p class="attribution">Le etichette [EN] non sono traduzioni italiane validate. Verificare sempre la comprensione con la persona e con professionisti CAA.</p>
+</footer>
+<script src="mulberry-catalog.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

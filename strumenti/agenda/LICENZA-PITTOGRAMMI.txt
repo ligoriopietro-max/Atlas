@@ -1,0 +1,12 @@
+ATLAS CAA — NOTE SUL CATALOGO
+
+I simboli demo originari di Atlas CAA sono inclusi come materiale illustrativo del prototipo.
+
+Mulberry Symbols 3.6.1
+Copyright 2018–2026 Steve Lee.
+Licenza Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).
+Testo licenza: https://creativecommons.org/licenses/by-sa/4.0/
+Fonte: https://mulberrysymbols.org/
+
+I file SVG Mulberry sono distribuiti nella cartella assets/mulberry. I nomi e i metadati originali in inglese sono usati per la ricerca. Le etichette non tradotte sono contrassegnate [EN]; le traduzioni introdotte nel prototipo sono ausili non ufficiali e devono essere verificate. In caso di ridistribuzione o modifica dei simboli, rispettare attribuzione e ShareAlike della CC BY-SA 4.0.
+
