@@ -46,7 +46,7 @@ const CATALOG_BASE = [
  {id:"ancora",word:"ancora",symbol:"ancora.webp",cat:"Richieste"},
  {id:"basta",word:"basta",symbol:"basta.webp",cat:"Richieste"},
  {id:"carta-igienica",word:"carta igienica",symbol:"carta-igienica.webp",cat:"Bisogni"},
- {id:"cerotto",word:"medicinale",symbol:"cerotto.webp",cat:"Salute"}
+ {id:"cerotto",word:"cerotto",symbol:"cerotto.webp",cat:"Salute"}
 ];
 // Catalogo integrato: simboli Atlas originali + Mulberry Symbols con attribuzione.
 const CATALOG = [...CATALOG_BASE, ...MULBERRY_CATALOG];
@@ -54,7 +54,7 @@ function symbolPath(item){const s=String(item?.symbol||"");const raw=s.startsWit
 const $ = id => document.getElementById(id);
 const KEY = "atlas-caa-prototype-v01";
 let selected = [];
-let currentBoard = {name:"Tabella rapida",items:["acqua","bagno","mangiare","bere","aiuto","pausa","si","no","basta","ancora","dolore","giocare"]};
+let currentBoard = {name:"Tabella rapida",items:["acqua","bagno","mangiare","bere","aiuto","mulberry-262","si","no","basta","ancora","malato","mulberry-3283"]};
 let saved = [];
 let lastSpoken = "";
 let deferredInstall = null;
@@ -62,7 +62,7 @@ let deferredInstall = null;
 function card(item, opts={}) {
   const b = document.createElement("button");
   b.type="button"; b.className="symbol-card";
-  b.innerHTML = `<span class="pic"><img alt="" loading="lazy" decoding="async"></span>${$("showLabels")?.checked === false && opts.live ? "" : `<span class="word"></span>`}`;
+  b.innerHTML = `<span class="pic"><img alt="" loading="lazy" decoding="async"></span>${currentBoard.showLabels === false && opts.live ? "" : `<span class="word"></span>`}`;
   b.querySelector("img").src=symbolPath(item);
   const w=b.querySelector(".word"); if(w) w.textContent=item.word;
   b.setAttribute("aria-label",item.word);
@@ -92,7 +92,7 @@ function renderSelected(){
   $("selectedGrid").replaceChildren(); $("selectedCount").textContent=selected.length;
   selected.forEach((it,index)=>{
     const b=card(it,{click:()=>{selected.splice(index,1);renderSelected()}});
-    b.title="Tocca per rimuovere";$("selectedGrid").append(b);
+    b.title="Tocca per rimuovere";const wrap=document.createElement('div');wrap.append(b);const controls=document.createElement('div');controls.style.cssText='display:flex;justify-content:center;gap:4px;margin-top:4px';for(const [delta,label] of [[-1,'Sposta prima'],[1,'Sposta dopo']]){const btn=document.createElement('button');btn.type='button';btn.textContent=delta<0?'←':'→';btn.setAttribute('aria-label',label+' '+it.word);btn.disabled=index+delta<0||index+delta>=selected.length;btn.onclick=()=>{[selected[index],selected[index+delta]]=[selected[index+delta],selected[index]];renderSelected()};controls.append(btn)}wrap.append(controls);$("selectedGrid").append(wrap);
   });
 }
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){alert("Non è stato possibile salvare in questo browser.")}}
@@ -132,7 +132,7 @@ function renderSaved(){
     const small=document.createElement("small");small.textContent=`${board.items.length} caselle`;
     meta.append(strong,small);
     const use=document.createElement("button");use.textContent="Apri";use.onclick=()=>{currentBoard=board;renderLive();showView("use")};
-    const edit=document.createElement("button");edit.textContent="Modifica";edit.onclick=()=>{selected=board.items.map(itemById).filter(Boolean).map(x=>({...x}));$("boardName").value=board.name;renderSelected();showView("build")};
+    const edit=document.createElement("button");edit.textContent="Modifica";edit.onclick=()=>{selected=board.items.map(itemById).filter(Boolean).map(x=>({...x}));$("boardName").value=board.name;$("showLabels").checked=board.showLabels!==false;renderSelected();showView("build")};
     const del=document.createElement("button");del.textContent="Elimina";del.className="secondary";del.onclick=()=>{if(confirm(`Eliminare "${board.name}"?`)){saved.splice(i,1);persist();renderSaved()}};
     row.append(meta,use,edit,del);$("savedBoards").append(row);
   });
@@ -143,10 +143,10 @@ function showView(name){
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===name));
   if(name==="saved")renderSaved();
 }
-function printCurrent(){
+async function printCurrent(){
   const name=$("boardName").value.trim()||"Tabella di comunicazione";
   const show=$("showLabels").checked;
-  const cols=window.innerWidth<600?3:4;
+  const cols=4;
   const printView=document.createElement("section");printView.id="print-only";
   const title=document.createElement("h1");title.textContent=name;
   const subtitle=document.createElement("p");subtitle.className="print-subtitle";subtitle.textContent="Atlas CAA · Tabella di comunicazione";
@@ -172,13 +172,14 @@ function printCurrent(){
       #print-only .print-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:4mm;align-items:stretch}
       #print-only .print-cell{border:1px solid #b8c9dc;border-radius:3mm;min-height:34mm;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2mm;padding:3mm;text-align:center;background:#fff!important;break-inside:avoid;overflow-wrap:anywhere;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
       #print-only .pic{font-family:"Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif;font-size:29pt;line-height:1.2}
-      #print-only .word{font-size:12pt;font-weight:700;color:#18324d!important}
+      #print-only .pic img{display:block;width:100%;height:27mm;object-fit:contain} #print-only .word{font-size:12pt;font-weight:700;color:#18324d!important}
     }
     @media screen{#print-only{display:none}}
   `;
   document.head.append(style);
   const cleanup=()=>{printView.remove();style.remove();window.removeEventListener("afterprint",cleanup)};
   window.addEventListener("afterprint",cleanup,{once:true});
+  await Promise.all([...printView.querySelectorAll("img")].map(img=>img.decode().catch(()=>{})));
   window.print();
   // La vista viene rimossa dopo afterprint; evitare timeout brevi che possono cancellarla durante dialoghi di stampa lenti.
 }
@@ -199,11 +200,11 @@ $("importBackup").onclick=()=>$("backupFile").click();
 $("backupFile").addEventListener("change",e=>{const file=e.target.files?.[0];if(file)importBackup(file);e.target.value=""});
 $("speakAgain").onclick=()=>{if(lastSpoken)say(lastSpoken)};
 $("stopSpeech").onclick=()=>{"speechSynthesis" in window&&speechSynthesis.cancel()};
-$("showLabels").onchange=()=>{renderCatalog();renderSelected();renderLive()};
+$("showLabels").onchange=()=>{renderCatalog();renderSelected()};
 $("voiceOn").onchange=()=>{};
 const categories=["Tutte",...new Set(CATALOG.map(x=>x.cat).sort((a,b)=>a.localeCompare(b,"it")))];
 categories.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;$("category").append(o)});
-try{saved=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){saved=[]}
+try{saved=JSON.parse(localStorage.getItem(KEY)||"[]");if(!Array.isArray(saved))saved=[]}catch(e){saved=[]}
 renderLive();renderCatalog();renderSelected();
 if("serviceWorker" in navigator && location.protocol.startsWith("http")) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstall=e;$("installBtn").classList.remove("hidden")});

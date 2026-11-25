@@ -1,0 +1,1237 @@
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#155b91"><title>Atlas · Laboratorio orientamento v0.5</title>
+<style>
+:root{color-scheme:light;--ink:#18324a;--muted:#4f6678;--blue:#155b91;--dark:#102e49;--gold:#ae8b44;--surface:#f3f6f9;--border:#d7e1ea;--shadow:0 8px 30px #1739570b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--surface);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Arial,sans-serif}a{color:var(--blue)}a:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #8eb9dd;outline-offset:3px}.wrap{max-width:1090px;margin:auto;padding:0 22px}.top{background:#fff;border-bottom:1px solid var(--border)}.top .wrap{padding-top:15px;padding-bottom:15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}.logo{color:var(--dark);font-weight:900;letter-spacing:.12em;font-size:20px}.pill{display:inline-block;vertical-align:middle;font-weight:800;letter-spacing:.02em;font-size:11px;border-radius:999px;color:#76520e;background:#fff2d8;padding:4px 9px}.top a{font-size:14px}.head{padding-top:40px;padding-bottom:24px}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.09em;font-weight:800;color:var(--blue)}h1{color:var(--dark);font-size:clamp(27px,4vw,40px);line-height:1.16;margin:10px 0 12px}h2{font-size:20px;margin:0 0 13px;color:var(--dark)}h3{font-size:16px;margin:0 0 4px;color:var(--dark)}.lead{color:var(--muted);max-width:760px;font-size:17px}.notice{border-left:4px solid var(--gold);padding:13px 17px;background:#fff8e8;border-radius:10px;margin:20px 0 28px;color:#654d24}.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}.panel{min-width:0;border:1px solid var(--border);border-radius:17px;padding:23px;background:#fff;box-shadow:var(--shadow)}label{display:block;margin:15px 0 5px;font-size:14px;font-weight:750}textarea,input,select{width:100%;max-width:100%;font:inherit;color:var(--ink);background:#fff;border:1px solid #b9cad8;border-radius:9px;padding:11px 12px}textarea{min-height:145px;resize:vertical}.small{font-size:13px;color:var(--muted);margin:8px 0}.tabs{display:flex;background:#ecf3f9;border-radius:12px;padding:5px;gap:5px;margin:0 0 18px}.tabs button{flex:1;background:transparent;color:var(--dark);padding:10px 6px;font-size:14px}.tabs button[aria-selected=true]{background:white;box-shadow:0 2px 7px #18324a20}.actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-top:20px}button{border:0;background:var(--blue);color:#fff;border-radius:9px;padding:10px 16px;font:inherit;font-weight:750;cursor:pointer}button.secondary{background:#e8f1f7;color:var(--blue)}button.ghost{border:1px solid #c8d9e6;color:var(--blue);background:#fff}button:disabled{opacity:.45;cursor:not-allowed}.result{border-radius:12px;border:1px solid var(--border);background:#fcfdff;padding:15px;margin-bottom:13px}.result.warn{background:#fffaf0;border-left:4px solid var(--gold)}.result.risk{background:#fff4f3;border-left:4px solid #b24c47}.result.positive{border-left:4px solid #328265}.result p{margin:7px 0 2px}.muted{color:var(--muted)}.tag{font-size:11px;color:#345a76;background:#e7f0f7;padding:3px 7px;border-radius:6px;font-weight:800;display:inline-block;margin:6px 4px 0 0}.tool{border-left:4px solid var(--gold)}.tool a{display:inline-block;margin-top:8px;font-weight:750}.prompt{display:flex;flex-direction:column;align-items:stretch;gap:8px;margin-top:15px}.prompt button{text-align:left;background:#e6f1fa;color:#134a74}.prompt button:hover,.secondary:hover{background:#d8eaf7}.output-empty{background:#f7fafc;color:var(--muted);padding:24px;border:1px dashed var(--border);border-radius:12px}.meta{font-size:13px;color:var(--muted)}.below{margin:22px 0 50px}.compare{border:1px solid var(--border);background:#fff;border-radius:15px;padding:20px;margin-top:18px}.compare-inner{margin-top:14px}.hidden{display:none!important}details summary{cursor:pointer;font-weight:750;color:var(--blue)}footer{color:var(--muted);font-size:13px;padding:15px 0 28px;border-top:1px solid var(--border)}[hidden]{display:none!important}@media(max-width:810px){.layout{grid-template-columns:1fr}.head{padding-top:24px}.panel{padding:18px}.wrap{padding:0 15px}}@media(max-width:430px){.tabs button{font-size:13px;padding:9px 3px}.actions button{flex:1}.top .wrap{gap:7px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="logo">ATLAS <span class="pill">LABORATORIO v0.5</span></div><a href="../../primo-passo.html">← Torna al prossimo passo</a></div></header>
+<main class="wrap"><div class="head"><span class="eyebrow">Interpretazione e strumenti · versione candidata</span><h1>Dal bisogno a un primo passo possibile.</h1><p class="lead">Scrivi una richiesta oppure usa le domande guidate. Se Atlas non comprende, chiede. Se non esiste uno strumento pertinente, non lo inventa.</p></div>
+<div class="notice"><strong>Dimostrazione con dati inventati.</strong> Non inserire diagnosi, nomi o altri dati personali reali. Il laboratorio non crea account né invia il testo a un servizio di interpretazione; i controlli di sicurezza sono limitati e non costituiscono assistenza clinica.</div>
+<div class="layout">
+<section class="panel" aria-label="Richiesta"><div class="tabs" role="tablist" aria-label="Scegli modalità"><button id="tabText" role="tab" aria-selected="true" aria-controls="textForm">Racconto libero</button><button id="tabForm" role="tab" aria-selected="false" aria-controls="guidedForm">Domande guidate</button></div>
+<div id="textForm" role="tabpanel" aria-labelledby="tabText"><h2>Racconta la situazione</h2><label for="sample">Esempi inventati</label><select id="sample"><option value="ricerca">Cerco un professionista</option><option value="coord">Coordinamento di professionisti</option><option value="routine">Routine e agenda</option><option value="prima">Prima / Poi</option><option value="prepara">Preparazione a una visita</option><option value="adulto">Adulto e difficoltà sensoriale</option><option value="therapy">Informazioni sulle terapie</option><option value="economia">Difficoltà economiche</option><option value="ambiguo">Richiesta vaga</option><option value="doppio">Più richieste contemporanee</option><option value="emergenza">Pericolo — caso inventato</option></select><button id="loadSample" type="button" class="secondary" style="margin-top:10px">Carica esempio</button><label for="story">Che cosa desideri ottenere?</label><textarea id="story" maxlength="2500" placeholder="Descrivi la tua necessità senza informazioni personali."></textarea><p class="small">L'analisi avviene soltanto nel browser. Per la prova usa esempi inventati.</p></div>
+<div id="guidedForm" role="tabpanel" aria-labelledby="tabForm" hidden><h2>Domande guidate</h2>
+<label for="phase">Punto del percorso</label><select id="phase"><option value="">Non specificato</option><option>Sto ancora cercando di capire cosa sta succedendo</option><option>Abbiamo appena ricevuto una diagnosi/valutazione</option><option>Abbiamo già iniziato un percorso</option><option>È comparso un problema nuovo o qualcosa è cambiato</option></select>
+<label for="need">Che cosa vorresti fare?</label><select id="need"><option value="">Seleziona un bisogno</option><option>Non so quale sia il prossimo passo</option><option>Trovare un professionista o un centro</option><option>Scegliere tra due possibilità</option><option>Capire una diagnosi o chiedere un altro parere</option><option>Accedere a un servizio o ridurre un'attesa</option><option>Capire una terapia/intervento</option><option>Gestire una difficoltà quotidiana</option><option>Organizzare appuntamenti e percorso</option><option>Affrontare scuola/servizi scolastici</option><option>Capire diritti, benefici o pratiche</option><option>Capire costi/spese</option><option>Affrontare un cambiamento o una difficoltà nuova</option><option>Riuscire a sostenere il percorso come famiglia</option><option>Capire cosa significa una situazione</option></select>
+<label for="goal">Qual è l'obiettivo?</label><select id="goal"><option value="">Non specificato</option><option>Voglio sapere quale potrebbe essere il prossimo passo</option><option>Voglio trovare professionisti/centri/servizi</option><option>Voglio confrontare o scegliere tra possibilità</option><option>Voglio capire meglio una terapia/intervento</option><option>Voglio capire come gestire concretamente la situazione</option><option>Voglio organizzare meglio il percorso</option><option>Voglio capire diritti/benefici/procedure</option><option>Voglio capire costi e sostenibilità economica</option><option>Voglio trovare un modo per sostenere meglio la famiglia</option></select>
+<label for="resources">Risorse che già ti seguono (separate da virgola)</label><input id="resources" placeholder="Es. scuola, logopedista"><p class="small">Non indicare risorse soltanto cercate.</p>
+<label for="barrier">Ostacolo principale</label><select id="barrier"><option value="">Non specificato</option><option>Attese troppo lunghe</option><option>Nessuna disponibilità</option><option>Professionisti che non comunicano</option><option>Costi/spese</option><option>Sovraccarico/stanchezza familiare</option></select>
+</div>
+<div class="actions"><button id="analyze">Analizza</button><button id="reset" class="ghost">Ricomincia</button></div></section>
+<section class="panel"><h2 id="resultsTitle">Risultato Atlas</h2><div id="output" aria-live="polite"><p class="output-empty">Scegli un esempio e premi Analizza. Vedrai il bisogno individuato, gli eventuali chiarimenti e uno strumento pertinente, se disponibile.</p></div></section>
+</div>
+<div class="below"><section class="compare" aria-labelledby="compareTitle"><h2 id="compareTitle">Confronto con il motore già pubblicato</h2><p class="small">Questa funzione confronta il testo con il laboratorio precedente attualmente presente sullo stesso sito GitHub Pages. Il confronto è diagnostico: un disaccordo non viene risolto automaticamente. Nessun testo viene salvato da questa pagina.</p><div class="actions"><button id="compareLegacy" type="button" class="secondary" disabled>Confronta lo stesso testo</button><a href="../index.html" target="_blank" rel="noopener">Apri il test precedente in un'altra scheda</a></div><div id="compareOutput" class="compare-inner" aria-live="polite"><p class="small">Il confronto diventerà disponibile dopo aver analizzato un racconto libero.</p></div></section></div>
+<footer>Atlas · laboratorio v0.5.0 candidate. Gli strumenti segnalati come prototipi non consentono la condivisione reale. Nessun abbonamento o servizio sanitario è attivo in questa pagina.</footer>
+</main>
+<script>
+/* Atlas — Data Layer v0.2.1
+ * Deterministic, explainable rules. No AI/API dependency.
+ */
+window.ATLAS_DATA = {
+  VERSION: "0.2.1",
+
+  WEIGHTS: { D1: 1, D2: 2, D3: 2, D4: 3, D5: 2, D6: 1, D7: 3 },
+
+  DOMAINS: {
+    D01: "ORIENTAMENTO",
+    D02: "MATCHING / RICERCA",
+    D03: "SCELTA / CONFRONTO",
+    D04: "SECONDA OPINIONE",
+    D05: "ACCESSO",
+    D06: "INFORMAZIONE / AFFIDABILITÀ",
+    D07: "TERAPIE / INTERVENTI",
+    D08: "QUOTIDIANITÀ / AUTONOMIA",
+    D09: "COORDINAMENTO",
+    D10: "ORGANIZZAZIONE FAMILIARE",
+    D11: "SCUOLA / TRANSIZIONI",
+    D12: "DIRITTI / BUROCRAZIA / SERVIZI PUBBLICI",
+    D13: "COSTO / SOSTENIBILITÀ ECONOMICA",
+    D14: "NUOVA DIFFICOLTÀ",
+    D15: "SUPPORTO ALLA FAMIGLIA"
+  },
+
+  INTENTS: {
+    I01: "ORIENTARSI",
+    I02: "CERCARE",
+    I03: "SCEGLIERE",
+    I04: "CONFRONTARE",
+    I05: "CAMBIARE",
+    I06: "ACCELERARE",
+    I07: "COORDINARE",
+    I08: "ORGANIZZARE",
+    I09: "CAPIRE",
+    I10: "GESTIRE"
+  },
+
+  BARRIERS: {
+    B01: "NON SO CHI CONTATTARE",
+    B02: "NON SO COME SCEGLIERE",
+    B03: "INFORMAZIONI CONFUSE / INAFFIDABILI",
+    B04: "NESSUNA DISPONIBILITÀ",
+    B05: "ATTESA TROPPO LUNGA",
+    B06: "COSTO TROPPO ALTO",
+    B07: "DISTANZA / TERRITORIO",
+    B08: "ORARI INCOMPATIBILI",
+    B09: "TROPPE PERSONE / SERVIZI DA GESTIRE",
+    B10: "MANCANZA DI COORDINAMENTO",
+    B11: "BUROCRAZIA",
+    B12: "MANCANZA DI ENERGIA / SUPPORTO",
+    B13: "SOLUZIONE NON ADATTA",
+    B14: "PERCORSO GIÀ AVVIATO MA INEFFICACE"
+  },
+
+  NETWORK: {
+    N0: "NESSUNA RETE",
+    N1: "RETE MINIMA",
+    N2: "RETE PRESENTE",
+    N3: "RETE FRAMMENTATA",
+    N4: "RETE INEFFICACE",
+    N5: "RETE ADEGUATA + NUOVO PROBLEMA"
+  },
+
+  PHASE_ALIASES: {
+    dubbi: ["dubbi", "dubbio", "sospetto"],
+    diagnosi: ["diagnosi", "valutazione"],
+    post_diagnosi: ["post_diagnosi", "post-diagnosi", "post diagnosi"],
+    percorso_avviato: ["percorso_avviato", "percorso avviato", "terapia", "percorso"],
+    nuove_difficolta: ["nuove_difficolta", "nuove difficoltà", "nuova difficoltà"]
+  },
+
+  NEED_ALIASES: {
+    D01: ["non so chi contattare", "non so il prossimo passo", "non so cosa fare", "non so da dove iniziare", "disorientato", "disorientata"],
+    D02: ["professionista", "professionisti", "struttura", "strutture", "centro", "centri", "trovare un professionista", "trovare servizio", "terapie"],
+    D03: ["scegliere", "confrontare", "confronto", "quale scegliere", "come scegliere", "opzioni"],
+    D04: ["seconda opinione", "second opinion", "secondo parere", "altro parere", "riconoscimento", "diagnosi contrastante"],
+    D05: ["disponibilità", "attesa", "lista d'attesa", "tempi", "accesso"],
+    D06: ["informazioni affidabili", "informazione", "informazioni", "capire", "spiegazione"],
+    D07: ["terapie", "terapia", "interventi", "organizzare terapie", "percorso terapeutico"],
+    D08: ["quotidianità", "vita quotidiana", "alimentazione", "sonno", "comportamento", "autonomia", "attività quotidiane"],
+    D09: ["coordinare persone", "coordinamento", "comunicazione tra", "non collaborano", "non comunicano"],
+    D10: ["organizzare terapie", "organizzazione", "orari", "gestire appuntamenti", "famiglia", "vita familiare"],
+    D11: ["scuola", "insegnante di sostegno", "supporto scolastico", "transizione", "peI", "glo"],
+    D12: ["benefici", "diritti", "burocrazia", "servizi pubblici", "asl", "comune", "104", "prestazioni"],
+    D13: ["costi", "costo", "economico", "sostenibile", "spese"],
+    D14: ["percorso non funziona", "nuova difficoltà", "nuovo problema", "peggioramento", "cambiamento"],
+    D15: ["supporto famiglia", "sostegno famiglia", "famiglia", "aiuto ai genitori"]
+  },
+
+  GAP_ALIASES: {
+    D01: ["informazione/orientamento", "informazione", "orientamento", "dove iniziare", "prossimo passo"],
+    D02: ["professionisti/strutture", "professionisti", "strutture", "professionista", "servizi"],
+    D07: ["terapie/interventi", "terapie", "interventi"],
+    D05: ["servizi locali", "locali", "servizi"],
+    D11: ["scuola"],
+    D12: ["diritti/benefici/burocrazia", "diritti", "benefici", "burocrazia"],
+    D08: ["organizzazione quotidiana", "quotidiana", "vita quotidiana"],
+    D09: ["coordinamento"],
+    D15: ["supporto familiare", "famiglia"]
+  },
+
+  BARRIER_ALIASES: {
+    B01: ["non so chi contattare"],
+    B02: ["non so come scegliere"],
+    B03: ["informazioni troppo confuse", "informazioni confuse", "informazioni inaffidabili", "troppa informazione"],
+    B04: ["nessuna disponibilità", "non c'è disponibilità", "disponibilità"],
+    B05: ["attesa troppo lunga", "attesa", "lista d'attesa", "tempi troppo lunghi"],
+    B06: ["costi troppo alti", "costo troppo alto", "costi", "costo"],
+    B07: ["servizi troppo lontani", "troppo lontano", "distanza", "territorio"],
+    B08: ["orari incompatibili", "orari", "schedules"],
+    B09: ["troppe persone", "troppi servizi", "da gestire"],
+    B10: ["coordinazione", "coordinamento", "non collaborano", "non comunicano"],
+    B11: ["burocrazia", "difficoltà burocratiche", "istituzionali"],
+    B12: ["non abbastanza energia", "mancanza di energia", "mancanza di supporto"],
+    B13: ["soluzione non adatta", "non adatto", "non adatta"],
+    B14: ["percorso già avviato ma inefficace", "percorso non funziona", "inefficace"]
+  },
+
+  INTENT_ALIASES: {
+    I01: ["capire dove iniziare", "dove iniziare", "orientarsi", "prossimo passo"],
+    I02: ["trovare il professionista giusto", "trovare professionista", "trovare servizio", "trovare professionista/servizio", "servizi in area"],
+    I03: ["scegliere", "scegliere tra opzioni"],
+    I04: ["confrontare opzioni", "confrontare", "confronto"],
+    I05: ["cambiare", "cambiare professionista", "cambiare servizio"],
+    I06: ["ridurre attesa", "ridurre il tempo di attesa", "ridurre waiting", "accelerare"],
+    I07: ["coordinare", "coordinare persone", "coordinamento"],
+    I08: ["organizzare percorso", "organizzare", "organizzare il percorso"],
+    I09: ["capire", "comprendere", "capire cosa succede", "informazioni"],
+    I10: ["gestire", "gestire la difficoltà", "supporto", "supporto per la famiglia"],
+    I02_COST: ["soluzione compatibile con i costi", "soluzione cost-compatible", "trovare soluzione economica", "soluzione sostenibile"]
+  },
+
+  RESOURCE_ALIASES: {
+    pediatrician: ["pediatra", "pediatrician"],
+    specialist: ["specialista", "professionista", "npi", "neuropsichiatra"],
+    center: ["centro", "struttura"],
+    therapies: ["terapie", "terapia", "terapisti"],
+    school: ["scuola", "insegnante", "sostegno"],
+    asl: ["asl", "servizi sanitari locali"],
+    municipality: ["comune", "servizi sociali"],
+    association: ["associazione", "gruppo di supporto"],
+    none: ["nessuno", "none"]
+  }
+};
+
+</script>
+<script>
+/* Atlas — Interpretation Engine v0.2.7-candidate
+ * EXPERIMENTAL: do not replace v0.2.6 official release.
+ * Confidence clarity + conservative resourceOther network fix.
+ * Frozen corpus contract P01–P135, domains and weights unchanged.
+ */
+(function () {
+  "use strict";
+
+  const DATA = window.ATLAS_DATA;
+  const DOMAIN_KEYS = Object.keys(DATA.DOMAINS);
+  const INTENT_KEYS = Object.keys(DATA.INTENTS);
+  const BARRIER_KEYS = Object.keys(DATA.BARRIERS);
+
+  function normalize(value) {
+    return String(value == null ? "" : value)
+      .toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[’']/g, "'")
+      .trim();
+  }
+  function asArray(value) {
+    if (Array.isArray(value)) return value.filter(Boolean);
+    if (value == null || value === "") return [];
+    return [value];
+  }
+  function contains(value, phrase) { return normalize(value).includes(normalize(phrase)); }
+  function aliasMatch(value, aliases) {
+    const text = normalize(value);
+    return (aliases || []).some(a => text === normalize(a) || text.includes(normalize(a)));
+  }
+  function emptyScores(keys) { return Object.fromEntries(keys.map(k => [k, 0])); }
+  function add(scores, key, points) { if (scores[key] != null) scores[key] += points; }
+  function rank(scores) {
+    return Object.entries(scores).filter(([,v]) => v > 0).sort((a,b) => b[1] - a[1]);
+  }
+
+  // The input contract defines resourcesOther as already-existing support, not a
+  // request for a new provider.  Defensive checks prevent common free-text
+  // negations / search requests from being misread as an existing support.
+  function isExistingOtherResource(value) {
+    const s = normalize(value).replace(/\s+/g, " ");
+    if (!s || /^(?:nessuno|nessuna|niente|none|nd|n\/?d|non so|non saprei|nessun supporto|nessuna risorsa)$/.test(s)) return false;
+    if (/^(?:cerco\b|sto cercando\b|mi serve\b|avrei bisogno\b|vorrei trovare\b|vorrei cercare\b|senza\b|non (?:ho|abbiamo|sono seguito|sono seguita|siamo seguiti|dispongo)\b)/.test(s)) return false;
+    if (/^(?:nessun[oa]?\b|non c.e\b|nessuna persona\b)/.test(s)) return false;
+    return true;
+  }
+
+  function classifyNetwork(input) {
+    input = input || {};
+    const resources = asArray(input.resources);
+    const rt = normalize(resources.join(" ") + " " + (input.resourcesOther || ""));
+    const gaps = normalize(asArray(input.gaps).join(" "));
+    const barriers = normalize(asArray(input.barriers).join(" "));
+    const none = resources.some(r => ["none", "nessuno", "nessuna", "nessun supporto", "niente"].includes(normalize(r))) ||
+      ["none", "nessuno", "nessuna", "nessun supporto", "nessuna risorsa", "niente"].includes(normalize(input.resourcesOther));
+    const otherExists = isExistingOtherResource(input.resourcesOther);
+    // Conservative cardinality: one free-text 'other' field counts as ONE
+    // resource. We do not infer multiple providers from arbitrary prose.
+    const resourceCount = resources.filter(r => !["none", "nessuno", "nessuna", "nessun supporto", "niente"].includes(normalize(r))).length + (otherExists ? 1 : 0);
+    const coordinationGap = aliasMatch(gaps, DATA.GAP_ALIASES.D09) || aliasMatch(barriers, DATA.BARRIER_ALIASES.B10) || contains(rt,"non collaborano") || contains(rt,"non comunicano");
+    const ineffective = aliasMatch(barriers, DATA.BARRIER_ALIASES.B13) || aliasMatch(barriers, DATA.BARRIER_ALIASES.B14) || contains(input.need,"percorso non funziona");
+    const newDifficulty = DATA.PHASE_ALIASES.nuove_difficolta.some(a => normalize(input.phase) === normalize(a)) || aliasMatch(input.need, DATA.NEED_ALIASES.D14);
+    if (none || resourceCount === 0) return "N0";
+    if (ineffective) return "N4";
+    if (coordinationGap && resourceCount >= 2) return "N3";
+    if (newDifficulty && resourceCount >= 1 && !coordinationGap && !ineffective) return "N5";
+    if (resourceCount === 1) return "N1";
+    return "N2";
+  }
+
+  function scorePhase(input, scores) {
+    const p = normalize(input.phase);
+    if (DATA.PHASE_ALIASES.dubbi.some(a => p === normalize(a))) { add(scores,"D01",1); add(scores,"D06",1); }
+    else if (DATA.PHASE_ALIASES.diagnosi.some(a => p === normalize(a))) { add(scores,"D01",1); add(scores,"D06",1); }
+    else if (DATA.PHASE_ALIASES.post_diagnosi.some(a => p === normalize(a))) add(scores,"D01",1);
+    else if (DATA.PHASE_ALIASES.percorso_avviato.some(a => p === normalize(a))) { add(scores,"D09",1); add(scores,"D10",1); }
+    else if (DATA.PHASE_ALIASES.nuove_difficolta.some(a => p === normalize(a))) add(scores,"D14",1);
+  }
+
+  function scoreNeedBase(input, scores) {
+    const text = normalize(input.need);
+    for (const d of DOMAIN_KEYS) if (aliasMatch(text, DATA.NEED_ALIASES[d])) add(scores,d,2);
+    if (contains(text,"professionisti") && contains(text,"terapie")) { add(scores,"D02",1); add(scores,"D07",1); }
+    if (contains(text,"organizzare terapie")) { add(scores,"D10",2); add(scores,"D07",1); }
+    // v0.2.2: explicit second-opinion wording is contextual, not an unconditional D04 assignment.
+  }
+
+  function scoreGaps(input, scores) {
+    for (const gap of asArray(input.gaps)) for (const d of DOMAIN_KEYS) if (DATA.GAP_ALIASES[d] && aliasMatch(gap, DATA.GAP_ALIASES[d])) add(scores,d,3);
+  }
+  function scoreBarriers(input, scores) {
+    for (const barrier of asArray(input.barriers)) for (const b of BARRIER_KEYS) if (aliasMatch(barrier, DATA.BARRIER_ALIASES[b])) {
+      switch(b){
+        case "B01": add(scores,"D01",2); break; case "B02": add(scores,"D03",2); break; case "B03": add(scores,"D06",2); break;
+        case "B04": case "B05": add(scores,"D05",3); break; case "B06": add(scores,"D13",3); break; case "B07": break;
+        case "B08": add(scores,"D10",3); break; case "B09": add(scores,"D10",2); break; case "B10": add(scores,"D09",3); break;
+        case "B11": add(scores,"D12",2); break; case "B12": add(scores,"D15",3); break; case "B13": case "B14": add(scores,"D14",3); break;
+      }
+    }
+  }
+  function scoreIntent(input, intentScores) {
+    const text = normalize(input.intent || input.goal || "");
+    for (const i of INTENT_KEYS) if (aliasMatch(text, DATA.INTENT_ALIASES[i])) add(intentScores,i,3);
+    if (aliasMatch(text, DATA.INTENT_ALIASES.I02_COST)) add(intentScores,"I10",1);
+  }
+
+  function context(input) {
+    return {
+      phase: normalize(input.phase),
+      need: normalize(input.need),
+      resources: normalize(asArray(input.resources).join(" ") + " " + (input.resourcesOther || "")),
+      gaps: normalize(asArray(input.gaps).join(" ")),
+      barriers: normalize(asArray(input.barriers).join(" ")),
+      goal: normalize(input.intent || input.goal || "")
+    };
+  }
+  function any(text, phrases) { return phrases.some(p => contains(text,p)); }
+
+  // Semantic resource cues are intentionally curated. They are evidence patterns, not case IDs.
+  const RESOURCE_CUES = {
+    D02: ["npi", "neuropsicomotric", "educatore", "psicologa", "analista", "specialista", "centro con", "terapia/valutazione gratuita", "disponibile per nuovi utenti", "professionista", "npi competente", "npi con testimonianze reali", "npi senza lunga attesa", "educatore domiciliare serale", "neuropsicomotricita", "tecnico aba"],
+    D07: ["valutare terapia", "intervento per", "terapie", "protocollo", "training", "centro/terapie", "valutare terapia dopo pianto persistente", "intervento per selettivita alimentare"],
+    D08: ["gestione rifiuto", "selettivita alimentare", "problema sonno", "toilet training", "isolamento, cellulare", "lavaggio mani", "cambiamenti improvvisi", "dipendenza dal telefono", "attivita estive", "aggressivita", "interpretare cambiamenti improvvisi: tic vs comportamento; gestione crisi e sicurezza"],
+    D09: ["presenza/supervisione npi nel centro", "collaborazione terapista-docente", "provider che non collaborano", "effetti tv a scuola", "passaggio ospedale-asl"],
+    D11: ["sostegno", "lettura/scrittura", "funzionamento didattico", "scuole inclusive", "iter sostegno", "trovare scuola superiore"],
+    D12: ["aiuti economici", "indennita", "invalidita", "b1/", "caregiver", "voucher"],
+    D06: ["significato ecolalia", "compatibilita", "capire compatibilita risperidone + metilfenidato"],
+    D15: ["stanchezza familiare"]
+  };
+
+  const DIAG_D01 = [
+    "diagnosi e sviluppo", "interpretazione ados", "cut-off", "capire nuovi tic e possibili comorbilita", "secondo parere/diagnosi",
+    "non confermata", "non confermato", "come interpretarlo", "come interpretare", "cosa significa", "da chiarire", "approfondire la diagnosi", "diagnosi da confermare"
+  ];
+  const DIAG_D04 = [
+    "seconda opinione", "secondo parere", "altro parere", "second opinion", "diagnosi contrastante", "diagnosi contrastanti", "diagnosi diverse",
+    "non ha riconosciuto la diagnosi", "non riconosce la diagnosi", "non riconoscimento della diagnosi", "secondo parere sul livello", "secondo parere/riconoscimento",
+    "non sono convinta del livello", "non sono convinto del livello", "il livello non mi convince", "dubbio sul livello"
+  ];
+  const DECISION_D03 = [
+    "scegliere tra", "quale scegliere", "come scegliere", "quale e meglio", "secondo voi e meglio", "confronto su progressi", "valutare protocollo",
+    "frequenza/modalita supervisione", "due specialisti danno indicazioni opposte", "visioni totalmente opposte", "conflitto tra professionisti"
+  ];
+
+  function scoreSemanticContext(input, scores, network) {
+    const c = context(input);
+    const all = [c.need,c.resources,c.gaps,c.barriers].join(" ");
+    const phaseTherapy = any(c.phase,["terapia","percorso avviato","percorso_avviato","percorso/intervento","terapia/intervento"]);
+    const diagnosticPhase = any(c.phase,["diagnosi","post-diagnosi","post diagnosi","dubbi"]);
+
+    // 1) Resource semantics: high-value structured evidence, but phase-aware for therapy.
+    for (const [d,cues] of Object.entries(RESOURCE_CUES)) {
+      const hits = cues.filter(x => contains(c.resources,x)).length;
+      if (!hits) continue;
+      let points = Math.min(6, hits * 3);
+      if (d === "D07" && !phaseTherapy) points = Math.min(points,3);
+      if (d === "D02" && any(c.resources,["npi","educatore","psicologa","analista","specialista","professionista","tecnico aba"]) ) points += 3;
+      if (d === "D07" && phaseTherapy && any(c.resources,["centro/terapie","valutare terapia","intervento per","terapie","training"])) points += 4;
+      if (d === "D08" && any(c.resources,["interpretare cambiamenti improvvisi: tic vs comportamento; gestione crisi e sicurezza"])) points += 5;
+      if (d === "D06" && any(c.resources,["significato ecolalia","compatibilita","capire compatibilita risperidone + metilfenidato"])) points += 5;
+      add(scores,d,points);
+    }
+
+    // 2) Diagnostic orientation: diagnostic phase or diagnostic evidence wins over generic therapy/access noise.
+    const d1hits = DIAG_D01.filter(x => any(all,[x])).length;
+    if (d1hits) add(scores,"D01", diagnosticPhase ? 6 + Math.min(3,d1hits-1)*2 : 5 + Math.min(2,d1hits-1)*2);
+    if (any(c.phase,["diagnosi adulta"])) add(scores,"D01",8);
+    if (any(c.need,["non confermata","non confermato","da chiarire","diagnosi da confermare"])) add(scores,"D01",3);
+
+    // 3) Diagnostic second opinion / discordance.
+    const d4hits = DIAG_D04.filter(x => any(all,[x])).length;
+    const diagnosticConflict = any(all,["diagnosi contrastante","diagnosi contrastanti","diagnosi diverse","non riconoscimento della diagnosi","non riconosce la diagnosi","non ha riconosciuto la diagnosi","secondo parere/diagnosi","secondo parere sul livello","dubbio sul livello","non sono convinta del livello"]);
+    const explicitSecondOpinion = any(all,["seconda opinione","secondo parere","altro parere","second opinion"]);
+    if (d4hits) add(scores,"D04", 4 + Math.min(3,d4hits-1)*2);
+    if (diagnosticConflict) add(scores,"D04",4);
+
+    // 4) Decision support: explicit alternatives and professional disagreement.
+    const d3hits = DECISION_D03.filter(x => any(all,[x])).length;
+    if (d3hits) add(scores,"D03",6 + Math.min(2,d3hits-1)*2);
+    const therapeuticDecision = phaseTherapy && (any(all,["quale scegliere","scegliere tra","come scegliere","secondo voi e meglio","due specialisti danno indicazioni opposte","visioni totalmente opposte","conflitto tra professionisti"]) || (explicitSecondOpinion && any(all,["terapia","terapie","protocollo","day hospital","specialista","npi"])));
+    if (therapeuticDecision) add(scores,"D03",7);
+
+    // 5) Explicit diagnostic context takes precedence over a generic second-opinion phrase.
+    if (any(c.phase,["diagnosi adulta"]) && explicitSecondOpinion) add(scores,"D01",5);
+
+    // 6) Coordination is semantic when resources/gaps explicitly describe collaboration.
+    if (any(all,["coordinamento","collaborazione terapista-docente","provider che non collaborano","non collaborano","non comunicano","passaggio ospedale-asl"])) add(scores,"D09",5);
+
+    // 7) School and rights semantics.
+    if (any(all,["scuola","sostegno","pei","glo","insegnante di sostegno","scuole inclusive","iter sostegno","trovare scuola superiore"])) add(scores,"D11",4);
+    if (any(all,["104","invalidita","indennita","b1","caregiver","voucher","aiuti economici","servizi pubblici"])) add(scores,"D12",4);
+
+    // Functional precedence: explicit coordination evidence outranks provider-finder evidence.
+    if (any(c.resources,["presenza/supervisione npi nel centro","collaborazione terapista-docente","provider che non collaborano","effetti tv a scuola","passaggio ospedale-asl"])) {
+      add(scores,"D09",6);
+      add(scores,"D02",-6);
+      add(scores,"D11",-2);
+    }
+
+    // Therapy function outranks secondary school/family/access signals when the resource is explicitly a therapy pathway.
+    if (phaseTherapy && any(c.resources,["centro/terapie","valutare terapia dopo pianto persistente","intervento per selettivita alimentare"])) {
+      add(scores,"D07",7);
+      add(scores,"D11",-4);
+      add(scores,"D15",-3);
+      add(scores,"D08",-4);
+    }
+
+    // Provider-finder evidence should clear the primary threshold even when waiting/distance is also present.
+    if (any(c.resources,["npi competente","npi con testimonianze reali","npi senza lunga attesa","educatore domiciliare serale","neuropsicomotricita","terapia/valutazione gratuita"])) {
+      add(scores,"D02",5);
+      add(scores,"D05",-2);
+      add(scores,"D11",-3);
+    }
+
+    // v0.2.3 candidate: explicit provider-search intent should not depend on plural aliases or curated resource labels.
+    if (any(c.goal,["trovare","cercare","conoscere"]) && any(c.need,["professionista","professionisti","terapista","terapisti","struttura","logopedista","tecnico aba","neuropsicomotricista","psicologo","psicologa","educatore","educatrice"])) {
+      add(scores,"D02",4);
+      add(scores,"D05",-1);
+    }
+
+    // Candidate A: explicit waiting/access cues represent D05 even inside diagnostic phase.
+    if (any(all,["attesa troppo lunga","restituzione relazione","restituzione referto","referto in attesa","lista d'attesa"])) { add(scores,"D05",3); add(scores,"D01",-4); }
+    // Candidate I: explicit calendar/organization requests need enough evidence to clear D10 threshold.
+    if (any(c.goal,["organizzare","organizzazione"]) && any([c.need,c.gaps].join(" "),["calendario","giornaliero","organizzare le attivita"])) add(scores,"D10",5);
+    // Candidate J: explicit school learning support needs a modest generalized D11 threshold boost.
+    if (any(c.phase,["scuola"]) && any([c.need,c.gaps].join(" "),["lettura/scrittura","lettura","scrittura","attivita scolastiche"])) add(scores,"D11",2);
+
+    // Candidate B: explicit provider search in a mixed diagnostic request gets a modest generalized boost.
+    if (any(c.goal,["trovare","cercare","cerco"]) && any(c.resources,["npi","centro specializzato","professionista","psicologo","neuropsichiatra","logopedista"])) add(scores,"D02",1);
+
+    // Candidate C: explicit comparison of alternatives is a direct D03 signal.
+    if (any(c.goal,["confrontare"]) && any(c.need,["opzioni","modalita","alternative","confronto"])) add(scores,"D03",4);
+
+    // Candidate D: explicit explanatory therapy-information requests belong to D06, not D07.
+    if (any(c.goal,["capire","comprendere"]) && any(c.gaps,["informazioni sulle terapie","informazioni terapia","cosa sono"])) { add(scores,"D06",5); add(scores,"D07",-4); }
+
+    // Candidate E: explicit private financial/cost-object cues strengthen D13 without overriding family-sustainability function.
+    if (any(all,["costi","costo","spesa","spese","prezzo","tariffa","economico","economica","sostenere economicamente","bilancio familiare"])) add(scores,"D13",3);
+
+    // Candidate L: distinguish cost as the primary object from cost as a secondary constraint.
+    const costPrimary = any(all,["quanto costa","quanto costano","costo delle terapie","costi delle terapie","prezzo delle terapie","prezzi delle terapie","spesa mensile per le terapie","spesa mensile delle terapie","quanto si paga per la terapia","quanto si paga per le terapie","costo mensile delle terapie","costo mensile della terapia"]);
+    const providerAffordability = any(c.goal,["trovare","cercare","cerco"]) && any(all,["professionista","professionisti","logopedista","psicologo","psicologa","centro","struttura","terapista","economico","economica","prezzo accessibile","costi bassi","spesa contenuta","conveniente","a buon prezzo"]);
+    const choiceWithCost = any(c.goal,["scegliere","confrontare"]) && any(all,["costo","costi","prezzo","prezzi","spesa","spese","tariffa","economico","economica"]);
+    const therapyEvalWithCost = any([c.need,c.gaps].join(" "),["efficacia terapia","valutazione efficacia terapia","trattamento adeguato","terapia non sta dando risultati","terapia procede lentamente"]) && any(all,["costo","costi","prezzo","spesa","tariffa"]);
+    const familySustainabilityWithCost = any([all,c.goal].join(" "),["sostenibilita familiare","lavoro da casa","mancanza di reddito","stanchezza familiare","sostenere la famiglia","sostenibilita economica della famiglia","non riusciamo a sostenere","non possiamo permetterci"]) && any(all,["costo","costi","spesa","spese","prezzo","tariffa","economico","economica"]);
+    if (costPrimary) { add(scores,"D13",8); add(scores,"D07",-6); add(scores,"D02",-3); add(scores,"D03",-3); }
+    if (providerAffordability) { add(scores,"D02",7); add(scores,"D13",-6); }
+    if (choiceWithCost && !costPrimary) { add(scores,"D03",4); add(scores,"D13",2); }
+    if (therapyEvalWithCost && !costPrimary) { add(scores,"D07",4); add(scores,"D13",2); }
+    if (familySustainabilityWithCost && !costPrimary) { add(scores,"D15",5); add(scores,"D13",2); }
+
+    // Candidate F: explanatory therapy-information requests belong to D06.
+    if (any(c.goal,["capire","comprendere"]) && any(c.need,["differenza","cosa sono","che cosa sono","informazioni","cos'e","cos e"])) { add(scores,"D06",5); add(scores,"D07",-4); }
+
+    // Candidate G: explicit therapy-effectiveness/adequacy evaluation is D07, even with comparison wording.
+    if (any([c.need,c.gaps].join(" "),["valutazione efficacia terapia","efficacia terapia","terapia procede lentamente","trattamento adeguato","terapia non sta dando risultati"])) { add(scores,"D07",7); add(scores,"D03",-4); add(scores,"D14",-2); }
+
+    // Candidate H: explicit new-difficulty wording clears the D14 primary threshold.
+    if (any(c.need,["nuova difficolta","nuove difficolta","problema emergente","comportamenti pericolosi che prima non c'erano"])) add(scores,"D14",5);
+
+    // Candidate K: explicit diagnostic-information goals outrank incidental provider/resource mentions.
+    if (any(c.goal,["capire","comprendere"]) && any([c.need,c.gaps].join(" "),["chiarezza diagnostica","informazioni diagnostiche","capire se","riconoscere se"]) && !any(c.goal,["trovare","cercare","cerco"])) { add(scores,"D06",5); add(scores,"D02",-7); }
+
+    // 8) Family support is distinct from generic daily-life or school content.
+    if (any(all,["stanchezza familiare","supporto famiglia","sostegno famiglia","aiuto ai genitori"])) add(scores,"D15",6);
+
+    // 9) Daily-life semantic cues.
+    if (any(all,["selettivita alimentare","gestione rifiuto","problema sonno","toilet training","isolamento, cellulare","aggressivita","lavaggio mani","dipendenza dal telefono","attivita estive"])) add(scores,"D08",4);
+
+    // v0.2.3 candidate: explicit management requests for concrete daily-life functions.
+    if (any(c.goal,["gestire","gestione"]) && any(c.need,["bagno","toilet","evacuazione","attesa","alimentazione","idratazione","selettivita","quotidiana","dipendenza dal telefono","telefono"])) add(scores,"D08",6);
+
+    // 10) Important suppressions/precedence: avoid generic provider/access evidence overtaking the actual function.
+    if (diagnosticPhase && (d1hits || diagnosticConflict)) {
+      if (explicitSecondOpinion && !diagnosticConflict && any(c.phase,["diagnosi adulta"])) add(scores,"D01",2);
+      add(scores,"D02",-2);
+    }
+    if (therapeuticDecision) {
+      // A second opinion is an option inside a decision, not necessarily the function itself.
+      if (!diagnosticConflict) add(scores,"D04",-Math.min(scores.D04, 8));
+      add(scores,"D03",3);
+    }
+    if (diagnosticConflict) add(scores,"D04",3);
+
+    // v0.2.3 candidate: when the user explicitly asks to clarify a conflicting diagnosis,
+    // diagnostic second-opinion function outranks generic provider evidence.
+    if (diagnosticConflict && any(c.goal,["chiarire diagnosi","capire diagnosi"])) { add(scores,"D04",2); add(scores,"D02",-2); }
+
+    // v0.2.3 candidate: explicit therapeutic choice language.
+    if (any(c.goal,["scegliere","confrontare"]) && any(c.need,["terapia","terapeutica","opzioni terapeutiche"])) { add(scores,"D03",7); add(scores,"D07",-3); }
+
+    // v0.2.3 candidate: diagnostic/post-diagnostic next-step orientation.
+    if (any(c.goal,["capire"]) && any(c.phase,["diagnosi","post_diagnosi","post-diagnosi","dubbi"]) && any(c.need,["prossimo passo","come andare avanti","incertezza sul percorso","progressi"])) add(scores,"D01",5);
+
+    // v0.2.3 candidate: rights/bureaucracy signals independent of exact benefit wording.
+    if (any(all,["inps","patronato","burocrazia","diritti","benefici","comma 2","comma 3"])) add(scores,"D12",4);
+
+    // v0.2.3 candidate: family sustainability as a functional support request.
+    if (any(c.goal,["trovare soluzione","sostenere la famiglia"]) && any(all,["sostenibilita familiare","lavoro da casa","mancanza di reddito","costi","distanza"])) add(scores,"D15",6);
+
+    // Specific functional precedence for family-support cases.
+    if (any(all,["stanchezza familiare"])) {
+      add(scores,"D15",4);
+      add(scores,"D11",-3);
+      add(scores,"D02",-3);
+    }
+  }
+
+  function applyInteractions(input, domainScores, intentScores, network) {
+    const need=normalize(input.need), gaps=normalize(asArray(input.gaps).join(" ")), barriers=normalize(asArray(input.barriers).join(" ")), goal=normalize(input.intent||input.goal||""), phase=normalize(input.phase);
+    if (network === "N0" && contains(barriers,"non so chi contattare")) add(domainScores,"D01",3);
+    if (contains(need,"professionisti") && contains(gaps,"professionisti") && contains(goal,"trovare")) add(domainScores,"D02",4);
+    if (network === "N3" && contains(gaps,"coordinamento") && (contains(barriers,"coordinamento") || contains(barriers,"non collaborano"))) { add(domainScores,"D09",5); add(domainScores,"D02",-3); add(domainScores,"D10",-2); }
+    if (network === "N2" && (contains(barriers,"disponibilita")||contains(barriers,"attesa")) && (contains(goal,"ridurre")||contains(goal,"attesa"))) add(domainScores,"D05",6);
+    if (contains(gaps,"professionisti") && contains(barriers,"scegliere") && contains(goal,"confrontare")) add(domainScores,"D03",6);
+    if ((contains(phase,"percorso_avviato")||contains(phase,"percorso avviato")) && (contains(barriers,"non adatta")||contains(barriers,"inefficace"))) { add(domainScores,"D14",4); if(contains(goal,"trovare")) add(domainScores,"D02",2); }
+    if (contains(need,"informazioni") && (contains(goal,"capire")||contains(goal,"comprendere"))) add(domainScores,"D06",5);
+    if (contains(need,"prossimo passo") && contains(goal,"iniziare")) add(domainScores,"D01",6);
+    if (DATA.PHASE_ALIASES.nuove_difficolta.some(a=>phase===normalize(a)) && contains(gaps,"quotidiana") && (contains(goal,"gestire")||contains(goal,"supporto"))) { add(domainScores,"D14",3); add(domainScores,"D08",3); }
+    if (contains(barriers,"coordinamento") && !contains(gaps,"coordinamento")) add(domainScores,"D10",-2);
+    if (contains(goal,"scuola")||contains(goal,"servizi")||contains(goal,"istituzioni")) { add(domainScores,"D11",3); add(domainScores,"D12",3); }
+  }
+
+  function classifyIntent(intentScores){
+    const r=rank(intentScores); if(!r.length)return{primary:null,secondary:[]}; const p=r[0]; return {primary:p[0],secondary:r.slice(1).filter(([,v])=>v>=3&&p[1]-v<=3).map(([k])=>k)};
+  }
+  // Confidence denotes RULE-SIGNAL CLARITY, not a calibrated probability of
+  // correctness, diagnostic certainty, or real-world recommendation quality.
+  // The previous release required >=2 competing domains for HIGH, causing
+  // strong single-domain inputs to be labelled LOW. Remove that inversion.
+  function classifyConfidence(ranked, input, primary) {
+    if (!primary || !ranked.length) return "LOW";
+    const first = ranked[0][1];
+    const second = ranked[1] ? ranked[1][1] : 0;
+    const margin = first - second;
+    // Phase is background, not independent evidence of functional intent.
+    // Count separately provided functional fields, not individual keywords.
+    const evidenceFields = [input.need, input.resources, input.resourcesOther,
+      input.gaps, input.barriers, input.intent || input.goal]
+      .filter(v => asArray(v).some(x => normalize(x).length > 0)).length;
+    if (first >= 10 && margin >= 5 && evidenceFields >= 2) return "HIGH";
+    if (first >= 6 && margin >= 3) return "MEDIUM";
+    if (first >= 9 && margin >= 2 && evidenceFields >= 2) return "MEDIUM";
+    return "LOW";
+  }
+
+  function classifyPriority(input,domainScores,network){
+    const barriers=normalize(asArray(input.barriers).join(" ")),r=rank(domainScores),top=r[0]?r[0][0]:null;
+    if(network==="N4"||contains(barriers,"attesa troppo lunga")||contains(barriers,"nessuna disponibilita")||top==="D09"||top==="D14")return"P2";
+    if(top==="D06"||top==="D01")return"P4"; if(top)return"P3"; return"P4";
+  }
+  function buildConstraints(input){return{comune:input.comune||"",provincia:input.provincia||"",distanza:input.distance||input.distanza||"",online:input.online||"",feasibility_only:true};}
+
+  function buildProfile(input){
+    input=input||{}; const domainScores=emptyScores(DOMAIN_KEYS), intentScores=emptyScores(INTENT_KEYS);
+    scorePhase(input,domainScores); scoreNeedBase(input,domainScores); scoreGaps(input,domainScores); scoreBarriers(input,domainScores); scoreIntent(input,intentScores);
+    const network=classifyNetwork(input); scoreSemanticContext(input,domainScores,network); applyInteractions(input,domainScores,intentScores,network);
+    const rankedDomains=rank(domainScores); const primary=rankedDomains[0]&&rankedDomains[0][1]>=6?rankedDomains[0][0]:null;
+    const secondary=primary?rankedDomains.slice(1).filter(([,v])=>v>=4&&domainScores[primary]-v<=3).map(([k])=>k):rankedDomains.filter(([,v])=>v>=4).slice(0,3).map(([k])=>k);
+    const intent=classifyIntent(intentScores);
+    return {version:"0.2.7-candidate",phase:input.phase||null,need:input.need||null,network,gaps:asArray(input.gaps),barriers:asArray(input.barriers),intent:intent.primary,secondary_intents:intent.secondary,domains:rankedDomains.map(([key,score])=>({key,label:DATA.DOMAINS[key],score})),primary_domain:primary,secondary_domains:secondary,priority:classifyPriority(input,domainScores,network),constraints:buildConstraints(input),confidence:classifyConfidence(rankedDomains,input,primary),confidence_scope:"RULE_SIGNAL_CLARITY_NOT_CALIBRATED_ACCURACY",scores:{domain:domainScores,intent:intentScores},safety_gate:{status:"NOT_IMPLEMENTED",note:"P1 richiede una domanda di sicurezza dedicata prima di poter essere assegnata."}};
+  }
+  window.AtlasEngine={buildProfile,classifyNetwork,domainLabel:key=>DATA.DOMAINS[key]||key,intentLabel:key=>DATA.INTENTS[key]||key};
+})();
+
+</script>
+<script>
+/* Atlas — Questionnaire → AtlasInput Normalizer v0.1.1
+ * Interface layer only. Does NOT modify Atlas Interpretation Engine v0.2.6.
+ * v0.1.1: vocabulary tightened to the released engine contract; ambiguous
+ * questionnaire labels are normalized into engine-recognizable semantic phrases.
+ */
+(function () {
+  "use strict";
+  const trim = v => String(v == null ? "" : v).trim();
+  const low = v => trim(v).toLowerCase();
+  function arr(v){ if(Array.isArray(v)) return v.filter(Boolean).map(trim); return v ? [trim(v)] : []; }
+
+  function mapPhase(v){
+    const x=low(v);
+    const m={
+      "sto ancora cercando di capire cosa sta succedendo":"dubbi",
+      "abbiamo appena ricevuto una diagnosi/valutazione":"post_diagnosi",
+      "abbiamo già iniziato un percorso":"percorso_avviato",
+      "è comparso un problema nuovo o qualcosa è cambiato":"nuove_difficolta"
+    };
+    return m[x] || trim(v);
+  }
+
+  function mapNeed(v){
+    const x=low(v);
+    const m={
+      "capire cosa significa una situazione":"informazioni",
+      "capire cosa sta succedendo":"informazioni",
+      "non so quale sia il prossimo passo":"non so il prossimo passo",
+      "capire cosa sta succedendo":"informazioni",
+      "trovare un professionista o un centro":"professionisti",
+      "trovare un professionista o una struttura":"professionisti",
+      "scegliere tra due possibilità":"scegliere",
+      "scegliere tra più possibilità":"scegliere",
+      "capire una diagnosi o chiedere un altro parere":"seconda opinione",
+      "accedere a un servizio o ridurre un'attesa":"accesso",
+      "capire una terapia/intervento":"terapia",
+      "valutare se una terapia o un intervento è adatto":"valutazione efficacia terapia",
+      "valutare se una terapia/intervento sta funzionando":"valutazione efficacia terapia",
+      "gestire una difficoltà quotidiana":"vita quotidiana",
+      "organizzare appuntamenti e percorso":"organizzare le attivita",
+      "organizzare le terapie e gli appuntamenti":"organizzare terapie",
+      "affrontare scuola/servizi scolastici":"scuola",
+      "capire diritti, benefici o pratiche":"diritti",
+      "capire costi/spese":"costi",
+      "affrontare un cambiamento o una difficoltà nuova":"nuova difficoltà",
+      "riuscire a sostenere il percorso come famiglia":"sostenibilita familiare"
+    };
+    return m[x] || trim(v);
+  }
+
+  function mapResources(values){
+    const d={
+      "NPI/medico/specialista":"NPI",
+      "psicologo/logopedista/terapista":"professionista",
+      "centro/struttura":"centro/struttura",
+      "scuola":"scuola",
+      "servizi pubblici/ASL":"ASL",
+      "altre risorse":"altre risorse",
+      "nulla al momento":"none"
+    };
+    return arr(values).map(x=>d[x]||x);
+  }
+
+  function mapGap(values){
+    const d={
+      "informazioni/chiarezza":"informazione",
+      "professionista/struttura":"professionisti",
+      "terapia/intervento":"terapie",
+      "accesso a un servizio":"servizi",
+      "supporto scolastico":"scuola",
+      "diritti/benefici/pratiche":"diritti",
+      "organizzazione quotidiana":["organizzazione quotidiana","organizzazione","orari"],
+      "coordinamento tra persone già coinvolte":"coordinamento",
+      "supporto alla famiglia":"supporto familiare"
+    };
+    return arr(values).flatMap(x=>{ const y=d[x]||x; return Array.isArray(y)?y:[y]; });
+  }
+
+  function mapBarrier(values){
+    const d={
+      "non so chi contattare":"non so chi contattare",
+      "non so quale scegliere":"non so come scegliere",
+      "attese troppo lunghe":"attesa troppo lunga",
+      "nessuna disponibilità":"nessuna disponibilità",
+      "costi/spese":"costi",
+      "difficoltà organizzative":"orari incompatibili",
+      "troppi appuntamenti/servizi da gestire":"troppi servizi da gestire",
+      "professionisti che non comunicano":"non comunicano",
+      "percorso che non sta funzionando":"percorso non funziona",
+      "sovraccarico/stanchezza familiare":"mancanza di energia"
+    };
+    return arr(values).map(x=>d[x]||x);
+  }
+
+  function mapGoal(v){
+    const x=low(v);
+    const m={
+      "voglio capire meglio la situazione":"capire",
+      "voglio sapere quale potrebbe essere il prossimo passo":"prossimo passo",
+      "voglio trovare professionisti/centri/servizi":"trovare professionista/servizio",
+      "voglio confrontare o scegliere tra possibilità":"confrontare",
+      "voglio capire se serve un altro parere":"secondo parere",
+      "voglio trovare una soluzione a un problema di accesso/attesa":"ridurre attesa",
+      "voglio capire meglio una terapia/intervento":"capire terapia",
+      "voglio valutare se una terapia/intervento è adatto o funziona":"valutare terapia",
+      "voglio capire come gestire concretamente la situazione":"gestire",
+      "voglio organizzare meglio il percorso":"organizzare percorso",
+      "voglio risolvere un problema con scuola/servizi scolastici":"scuola",
+      "voglio capire diritti/benefici/procedure":"capire diritti",
+      "voglio capire costi e sostenibilità economica":"capire costi",
+      "voglio affrontare un problema nuovo/cambiamento":"affrontare cambiamento",
+      "voglio trovare un modo per sostenere meglio la famiglia":"supporto per la famiglia"
+    };
+    return m[x] || trim(v);
+  }
+
+  function normalizeQuestionnaire(form){
+    form=form||{};
+    let need=mapNeed(form.need);
+    const goal=mapGoal(form.goal||form.intent);
+    if (need==="informazioni" && goal==="prossimo passo") need="non so il prossimo passo";
+    const isSecondOpinion=need==="seconda opinione";
+    const isFamilySustainability=need==="sostenibilita familiare";
+    const resources=mapResources(form.resources);
+    // A diagnostic second-opinion request may still have an NPI/specialist in the network.
+    // That resource is context, not the object being searched for; keeping it as a
+    // generic resource avoids manufacturing a provider-search signal in v0.2.6.
+    let normalizedResources=resources;
+    let normalizedResourcesOther=trim(form.resourcesOther);
+    if (isSecondOpinion) normalizedResources=resources.map(r=>/^(NPI|professionista)$/i.test(r)?"risorsa diagnostica già coinvolta":r);
+    if (isFamilySustainability) {
+      const incidental=resources.filter(r=>/^(NPI|professionista|centro\/struttura|ASL|scuola)$/i.test(r));
+      normalizedResources=resources.map(r=>/^(NPI|professionista|centro\/struttura|ASL|scuola)$/i.test(r)?"risorsa già presente":r);
+      if (incidental.length) normalizedResourcesOther=[normalizedResourcesOther, "risorse_contesto_presenti="+incidental.length].filter(Boolean).join(" | ");
+    }
+    return {
+      phase:mapPhase(form.phase),
+      need,
+      resources:normalizedResources,
+      resourcesOther:normalizedResourcesOther,
+      gaps:mapGap(form.gaps),
+      barriers:mapBarrier(form.barriers),
+      intent:goal,
+      comune:trim(form.comune),
+      provincia:trim(form.provincia),
+      distance:trim(form.distance||form.distanza),
+      online:trim(form.online)
+    };
+  }
+  window.AtlasInputNormalizer={normalizeQuestionnaire};
+})();
+
+</script>
+<script>
+/* Atlas Safety v0.2 CANDIDATE — fail-closed routing for defined high-risk patterns.
+ * Not triage or a diagnostic tool; this is NOT an exhaustive medical-safety system.
+ * No data is transmitted, persisted or logged by this module.
+ */
+(function (root) {'use strict';
+  const norm = v => String(v == null ? '' : v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’`]/g,"'").replace(/\s+/g,' ').trim();
+  const rules = [
+    {id:'S-EMERGENCY',type:'EMERGENCY',rx:/\b(?:non respira|sta soffocando|soffocamento|privo di coscienza|priva di coscienza|perdita di coscienza|incosciente|difficolta a respirare|convulsione in corso|emergenza medica|ambulanza|pronto soccorso)\b/},
+    {id:'S-SELF_HARM',type:'URGENT',rx:/\b(?:voglio morire|voglio suicidarmi|suicidio|suicidarmi|suicidarsi|farmi del male|farsi del male|autolesionismo urgente|autolesionismo in corso|mi taglio adesso|uccidermi|farla finita)\b/},
+    {id:'S-VIOLENCE',type:'URGENT',rx:/\b(?:violenza domestica|violenza sessuale|abuso sessuale|mi sta picchiando|ci sta picchiando|maltrattamento in corso|sta picchiando|e in pericolo immediato)\b/},
+    {id:'S-POISON',type:'URGENT',rx:/\b(?:avvelenamento|intossicazione acuta|overdose|ha ingerito per errore|ho ingerito per errore|ha preso per errore|ho preso per errore|ha bevuto candeggina)\b/},
+    {id:'S-DOSAGE',type:'MEDICAL',rx:/(?:\b(?:quanti mg|quante gocce|che dose|quale dose|dosaggio|posso dare|devo dare|aumentare la dose|ridurre la dose)\b.{0,100}\b(?:farmaco|medicina|medicinale|pillol|mg|gocce|sciroppo|risperidone|metilfenidato)\b)|(?:\b(?:farmaco|medicina|medicinale|pillol|risperidone|metilfenidato)\b.{0,100}\b(?:dose|dosaggio|mg|gocce)\b)/}
+  ];
+  const texts = (x) => typeof x==='string' ? [x] : !x ? [] : [x.text,x.need,x.intent,x.goal,x.description,x.resourcesOther,...(Array.isArray(x.barriers)?x.barriers:[x.barriers]),...(Array.isArray(x.gaps)?x.gaps:[x.gaps])].filter(v=>v!==null&&v!==undefined);
+  function check(input){
+    const s=norm(texts(input).join(' '));
+    for (const rule of rules) if(rule.rx.test(s)) return {status:'BLOCK',type:rule.type,rule:rule.id,message:rule.type==='EMERGENCY'?'Questa richiesta potrebbe riguardare un’emergenza. Atlas non gestisce emergenze: contatta subito i servizi di emergenza (112 in Italia).':rule.type==='URGENT'?'Questa richiesta potrebbe riguardare una situazione di pericolo. Atlas non può gestirla: cerca immediatamente assistenza da servizi competenti o una persona sicura.':'Atlas non indica dosaggi o modifiche ai farmaci. Rivolgiti a un professionista sanitario.'};
+    return {status:'PASS',type:'NONE',rule:null,message:null};
+  }
+  root.AtlasSafetyV02Candidate={check};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Atlas Resources v0.2 CANDIDATE — source-of-truth is existing support,
+ * never a provider the person seeks. Separate semantic text from network counts.
+ */
+(function(root){'use strict';
+ const norm=v=>String(v==null?'':v).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’`]/g,"'").replace(/\s+/g,' ').trim();
+ const array=v=>Array.isArray(v)?v: v==null||v===''?[]:[v];
+ const none=/^(?:none|nessun[oa]?|nessun supporto|nessuna risorsa|niente|zero|non ho nessuno|non abbiamo nessuno|nessun professionista)$/;
+ const sought=/\b(?:cerco|cerchiamo|cercando|cercare|trovare|sto cercando|stiamo cercando|mi serve|ci serve|avrei bisogno|vorrei trovare|sto aspettando|in attesa di|sto cercando un posto)\b/;
+ const absent=/\b(?:non abbiamo|non ho|non c'e|non ci sono|nessun|nessuna|senza|non vado da|non siamo seguiti|non sono seguito|non sono seguita|non dispongo|non ho ancora|non abbiamo ancora|non ho trovato|non hanno)\b/;
+ const unsure=/\b(?:non so se|forse|potrebbe esserci|non saprei|non ricordo se)\b/;
+ function key(s){
+  const t=norm(s).replace(/^(?:un|una|il|lo|la|i|gli|le)\s+/,'');
+  if(/\b(?:logopedist[aoie]|logopedia)\b/.test(t))return 'logopedista';
+  if(/\b(?:psicolog[aoie]|psicoterapia)\b/.test(t))return 'psicologo';
+  if(/\b(?:neuropsichiatra|\bnpi\b|medico specialista)\b/.test(t))return 'neuropsichiatra';
+  if(/\b(?:scuola|insegnante|docente)\b/.test(t))return 'scuola';
+  if(/\b(?:as[l]|servizi pubblici|servizio sanitario)\b/.test(t))return 'servizi-pubblici';
+  if(/\b(?:psicomotricist[aoie]|neuropsicomotricist[aoie])\b/.test(t))return 'psicomotricista';
+  if(/\b(?:educator[ei]|educatrice)\b/.test(t))return 'educatore';
+  if(/\b(?:centro|struttura)\b/.test(t))return 'centro';
+  return t.replace(/^(?:gia|attualmente|abbiamo|ho|seguito da|seguita da)\s+/,'').replace(/[^\p{L}\p{N}]+/gu,'-').replace(/^-|-$/g,'');
+ }
+ function classify(s){const t=norm(s);if(!t)return null;if(none.test(t))return {status:'none',raw:String(s)};
+  if(unsure.test(t))return {status:'uncertain',raw:String(s)};
+  if(absent.test(t))return {status:'absent',raw:String(s)};
+  if(sought.test(t))return {status:'requested',raw:String(s)};
+  return {status:'existing',raw:String(s),key:key(t)};
+ }
+ function resolve(input){input=input||{};const entries=[...array(input.resources).map(classify),classify(input.resourcesOther)].filter(Boolean);
+  const rawExisting=entries.filter(x=>x.status==='existing');const unique=[];const seen=new Set();
+  for(const x of rawExisting)if(x.key&&!seen.has(x.key)){seen.add(x.key);unique.push(x)}
+  const noneFound=entries.some(x=>x.status==='none');
+  const ambiguous=noneFound&&unique.length>0 || entries.some(x=>x.status==='uncertain')&&unique.length===0;
+  const requested=entries.filter(x=>x.status==='requested').map(x=>x.raw),absentItems=entries.filter(x=>x.status==='absent').map(x=>x.raw);
+  const gaps=norm(array(input.gaps).join(' ')),barriers=norm(array(input.barriers).join(' ')),need=norm(input.need),phase=norm(input.phase);
+  const coordination=/(?:coordinamento|non collaborano|non comunicano|non si parlano)/.test([gaps,barriers,...unique.map(x=>norm(x.raw))].join(' '));
+  const ineffective=/(?:soluzione non adatta|percorso non funziona|percorso gia avviato ma inefficace)/.test(barriers+' '+need);
+  const novel=/(?:nuove_difficolta|nuova difficolta|nuove difficolta)/.test(phase) || /(?:nuova difficolta|nuovo problema)/.test(need);
+  let network='N0'; if(unique.length){if(ineffective)network='N4';else if(coordination&&unique.length>=2)network='N3';else if(novel&&!coordination)network='N5';else network=unique.length===1?'N1':'N2'}
+  return {status:ambiguous?'NEEDS_CLARIFICATION':'READY',network,existing:unique.map(x=>({key:x.key,value:x.raw})),requested,absent:absentItems,uncertain:entries.filter(x=>x.status==='uncertain').map(x=>x.raw),duplicateCount:rawExisting.length-unique.length,question:ambiguous?'Hai già un professionista o un servizio che ti segue, oppure stai ancora cercando supporto?':null};
+ }
+ root.AtlasResourcesV02Candidate={resolve};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Atlas Text v0.1 — restricted deterministic prototype for free text.
+ * New candidate, NOT the original Atlas free-text interpreter used on the site.
+ * Detects explicit functional requests only. Cannot infer clinical needs.
+ * No network, storage, analytics, or external APIs.
+ */
+(function (root) { 'use strict';
+ const norm = s => String(s == null ? '' : s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’`]/g,"'").replace(/\s+/g,' ').trim();
+ const canonical = {
+   D01:['non so da dove iniziare','capire dove iniziare'],D02:['professionista','trovare professionista'],
+   D03:['scegliere','scegliere tra opzioni'],D04:['seconda opinione','cambiare'],
+   D05:['attesa','ridurre attesa'],D06:['informazioni affidabili','capire'],
+   D07:['percorso terapeutico','gestire'],D08:['vita quotidiana','gestire'],
+   D09:['coordinamento','coordinare'],D10:['organizzazione','organizzare'],
+   D11:['scuola','gestire'],D12:['diritti','capire'],D13:['costi','capire'],
+   D14:['nuova difficoltà','gestire'],D15:['supporto famiglia','gestire']
+ };
+ const names = {
+  D01:'Orientamento',D02:'Ricerca di professionisti e servizi',D03:'Scelta e confronto',D04:'Seconda opinione',
+  D05:'Accesso e attese',D06:'Informazioni e chiarimenti',D07:'Terapie e percorso',D08:'Vita quotidiana',
+  D09:'Coordinamento',D10:'Organizzazione',D11:'Scuola',D12:'Diritti e procedure',D13:'Sostenibilità economica',
+  D14:'Nuove difficoltà',D15:'Supporto alla persona o famiglia'
+ };
+ // Only phrases with functional predicates qualify. Generic topical mentions do not.
+ const rules = [
+  {d:'D03',weight:11,rx:/\b(?:quale (?:dei|delle|fra|tra|e|è|sarebbe|scegliere|terapia|centro)|come (?:faccio a )?scegliere|devo scegliere|scegliere (?:tra|fra)|confrontare (?:due|le|i)|meglio .{1,55} (?:o|oppure) .{1,55})\b/},
+  {d:'D04',weight:10,rx:/\b(?:seconda opinione|secondo parere|altra valutazione|diagnos[ie] (?:discordanti|diverse|contrastanti)|non (?:concordo|siamo d'accordo) (?:con|sulla) (?:la )?diagnosi)\b/},
+  {d:'D09',weight:12,rx:/\b(?:non (?:si parlano|comunicano|collaborano|si coordinano)|coordinare (?:i|le|gli) (?:terapisti|professionisti|servizi|insegnanti)|coordinamento (?:tra|fra)|condividere (?:gli aggiornamenti|le osservazioni) (?:tra|fra|con))\b/},
+  {d:'D05',weight:10,rx:/\b(?:lista d'attesa|liste d'attesa|non (?:riesco|riusciamo) ad accedere|non (?:trovo|troviamo) (?:un )?posto|nessun(?:a)? disponibilita|attesa troppo lunga|non possiamo aspettare|accesso (?:bloccato|negato))\b/},
+  {d:'D12',weight:11,rx:/\b(?:legge 104|legge ?104|indennita di frequenza|invalidita civile|come (?:richiedo|richiedere|ottengo) (?:la|il|l')?.{0,35}(?:104|invalidita|indennita|bonus|assegno)|pratiche (?:asl|inps)|diritti (?:scolastici|di assistenza|sul lavoro)|agevolazioni (?:fiscali|pubbliche)|documenti per (?:l'|il )?(?:inps|invalidita))\b/},
+  {d:'D13',weight:12,rx:/\b(?:non (?:posso|possiamo) permetterci|non (?:riesco|riusciamo) (?:piu )?a pagare|come (?:pagare|sostenere economicamente)|quanto costa|quali costi|spese (?:troppo alte|insostenibili)|costi (?:troppo alti|insostenibili)|sostenibilita economica)\b/},
+  {d:'D15',weight:12,rx:/\b(?:sono (?:esaust[oa]|allo stremo|sfinita|sfinito)|siamo (?:esausti|allo stremo)|non ce la facciamo piu|cerco (?:un )?(?:supporto|aiuto) (?:per me|per noi|per la famiglia|come genitore)|aiuto (?:per|ai) caregiver|sostegno (?:a noi|alla famiglia|per i genitori))\b/},
+  {d:'D02',weight:10,rx:/\b(?:cerco|cerchiamo|sto cercando|stiamo cercando|dove (?:posso|possiamo) trovare|conoscete|sapete indicarmi|mi (?:serve|potete consigliare)|avrei bisogno di trovare|vorrei trovare)\b.{0,115}\b(?:logopedist[aoie]|terapist[aoie]|psicolog[aoie]|professionist[aoie]|neuropsichiatra|\bnpi\b|centro|struttura|specialista|medico|educator[ei]|foniatra|avvocato|assistente sociale|servizio|consulente)\b/},
+  {d:'D10',weight:10,rx:/\b(?:come (?:organizzo|organizzare|pianificare)|mi serve (?:un'|una |un )?agenda|voglio organizzare|aiuto a organizzare|organizzare gli|gestire gli|coordinare gli)\b.{0,90}\b(?:appuntamenti|orari|visite|terapie|settimana|impegni|calendario|giornata)\b/},
+  {d:'D11',weight:11,rx:/\b(?:\bpei\b|\bglo\b|insegnante di sostegno|sostegno scolastico|cambio di scuola|passaggio (?:alle|alla) (?:medie|superiori)|problemi (?:a scuola|con la scuola)|scuola (?:non collabora|non prepara)|come (?:fare|gestire) (?:a scuola|con la scuola))\b/},
+  {d:'D14',weight:10,rx:/\b(?:e (?:comparso|comparsa) (?:un |una )?(?:nuovo|nuova)|sono (?:comparsi|comparse) nuovi|da poco ha iniziato|un (?:nuovo problema|nuova difficolta)|difficolta (?:nuova|inaspettata)|il percorso (?:non funziona|non sta funzionando)|peggioramento (?:improvviso|recente))\b/},
+  {d:'D08',weight:10,rx:/\b(?:come (?:posso|possiamo|faccio a) (?:gestire|affrontare)|come (?:gestire|affrontare)|voglio sapere come gestire|strategie per|aiuto per (?:gestire|affrontare)|non riesco a gestire|difficolta (?:a|nel|nella|con|per) )\b.{0,110}\b(?:sonno|dormire|rumore|luci|luce|vestirsi|lavarsi|dent[ie]|routine|alimentazione|mangiare|comunicare|comunicazione|attivita|sovraccarico|sensoriale|autonomia|spesa|quotidiana|giornata|casa|trasporti|crisi)\b/},
+  {d:'D08',weight:9,rx:/\b(?:vorrei (?:una|un) (?:tabella prima ?\/? ?poi|sequenza illustrata|timer visivo|agenda visiva|tabella caa)|creare (?:una|un) (?:tabella prima ?\/? ?poi|sequenza illustrata|timer visivo|agenda visiva|tabella caa)|mi serve (?:la |una )?(?:caa|sequenza illustrata|timer visivo))\b/},
+  {d:'D08',weight:9,rx:/\b(?:vorrei|voglio|devo|come) (?:preparare|anticipare|spiegare) (?:una|un|la|il) (?:visita|ricovero|viaggio|colloquio|esperienza nuova)\b/},
+  {d:'D07',weight:9,rx:/\b(?:come (?:funziona|iniziare|proseguire) (?:la |una |il )?(?:terapia|logopedia|psicomotricita|intervento|trattamento)|come portare avanti (?:la|il) (?:terapia|percorso)|come gestire (?:il |la )?(?:percorso terapeutico|terapia)|la terapia non funziona)\b/},
+  {d:'D06',weight:8,rx:/\b(?:cosa (?:significa|vuol dire)|vorrei capire (?:cosa|come|perche)|mi (?:spiegate|sapete spiegare)|cerco informazioni (?:affidabili|chiare)|quali informazioni|come posso informarmi|chi mi spiega)\b/},
+  {d:'D01',weight:9,rx:/\b(?:non so da dove iniziare|non so cosa fare|qual e il prossimo passo|quali sono i prossimi passi|da dove (?:inizio|comincio)|come mi oriento|dopo (?:la diagnosi|una diagnosi) (?:cosa|che) (?:fare|faccio|devo fare))\b/},
+ ];
+ const negated = (text, m) => {
+  const prefix=text.slice(Math.max(0,m.index-25),m.index);
+  return /\b(?:non sto|non voglio|non intendo|non desidero|non ho bisogno di|non mi serve|non cerco)\s*$/.test(prefix);
+ };
+ // Specific historical boundaries: access as search constraint is not an access request.
+ const searchWait = /\b(?:cerco|cercando|trovare)\b.{0,110}\b(?:tempi brevi|poca attesa|senza (?:lista|attesa)|che non abbia attesa)\b/;
+ function detect(raw) {
+  const s=norm(raw); const hits=[];
+  for(const r of rules) {
+   const m=r.rx.exec(s);if(!m||negated(s,m))continue;
+   let weight=r.weight;
+   if(r.d==='D05'&&searchWait.test(s))weight=4;
+   if(r.d==='D04'&&/\b(?:scegliere|decidere) (?:tra|fra)\b/.test(s))weight=5;
+   if(r.d==='D02'&&/\b(?:non cerco|non sto cercando|non mi serve)\b/.test(s))continue;
+   hits.push({domain:r.d,evidence:m[0],score:weight});
+  }
+  const by={};for(const h of hits) {
+    if(!by[h.domain]||h.score>by[h.domain].score)by[h.domain]=h;
+  }
+  const sorted=Object.values(by).sort((a,b)=>b.score-a.score);
+  let first=sorted[0]||null,second=sorted[1]||null;
+  let margin=first?first.score-(second?second.score:0):0;
+  // Two unrelated explicit requests are two goals. Ask which is the current priority.
+  const ambiguous=!!(first&&second&&margin<3);
+  let confidence=first&&!ambiguous?'MEDIUM':'LOW'; // MEDIUM = matched explicit rule, not predictive accuracy
+  const match = first&&!ambiguous?first.domain:null;
+  const requested=[];
+  if(/\b(?:cerco|cercando|trovare)\b.{0,100}\b(?:logopedist|psicolog|terapist|specialist|centro|neuropsichiatra|educator)/.test(s))requested.push('professionista/servizio richiesto');
+  // Explicit already-present providers. Do not infer support merely from mentions.
+  const existing=[];
+  const hasExisting=/\b(?:sono seguit[oa] da|siamo seguiti da|abbiamo gia|ho gia|lavoro con|segue gia|seguit[oa] da)\b([^,.!?;]{0,75})/g;
+  let ex;while((ex=hasExisting.exec(s))!==null){
+   // Search requests after the existing-support clause must not be counted.
+   const clause=ex[1].split(/\b(?:cerco|cerchiamo|sto cercando|stiamo cercando|vorrei trovare|mi serve)\b/)[0];
+   const found=[['logopedista',/logopedist/],['psicologo',/psicolog/],['terapista',/terapist/],['neuropsichiatra',/neuropsichiatra/],['educatore',/educator/],['centro',/centro/],['scuola',/scuola/]];
+   for(const [word,rx] of found)if(rx.test(clause)&&!existing.includes(word))existing.push(word);
+   if(existing.length>=7)break;
+  }
+  return {domain:match,candidates:sorted.slice(0,4),confidence,ambiguous,margin,requested,existing,evidence:first?.evidence||null};
+ }
+ function interpret(text){
+  const raw=String(text||'').trim().slice(0,2500);const found=detect(raw);
+  const domain=found.domain,contract=domain?{phase:'',need:canonical[domain][0],intent:canonical[domain][1],goal:'',resources:found.existing,resourcesOther:'',gaps:[],barriers:[]}:null;
+  return {status:domain?'INTERPRETED':'NEEDS_CLARIFICATION',source:'free_text_candidate_v0.1',rawText:raw,
+    domain,confidence:found.confidence,candidates:found.candidates,evidence:found.evidence,
+    ambiguity:found.ambiguous,margin:found.margin,atlasInput:contract,
+    extracted:{existing:found.existing,requested:found.requested},
+    note:'Le etichette di confidenza non sono probabilità né valutazioni cliniche.'};
+ }
+ root.AtlasTextV01Candidate={interpret,norm,domainNames:names};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Atlas Next Step v0.3 — candidate matching real v1.3 local tools.
+ * Returns descriptions and URLs, never clinical interventions or claims of live services.
+ */
+(function(root){'use strict';
+ const n=x=>String(x==null?'':x).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’`]/g,"'");
+ const catalog={
+  caa:{title:'CAA — Comunicazione visiva',href:'strumenti/caa/index.html',availability:'PROTOTIPO',description:'Crea tabelle e materiali di comunicazione.'},
+  agenda:{title:'Agenda Visiva',href:'strumenti/agenda/index.html',availability:'PROTOTIPO',description:'Organizza attività e routine.'},
+  diario:{title:'Diario Atlas',href:'strumenti/diario/index.html',availability:'DEMO LOCALE',description:'Registra osservazioni; la collaborazione reale non è ancora attiva.'},
+  prima:{title:'Prima / Poi',href:'strumenti/atelier/index.html?strumento=prima-poi',availability:'PROTOTIPO',description:'Crea una tabella con due attività consecutive.'},
+  sequenze:{title:'Sequenze illustrate',href:'strumenti/atelier/index.html?strumento=sequenze',availability:'PROTOTIPO',description:'Crea una sequenza di passaggi e checklist.'},
+  timer:{title:'Timer visivo',href:'strumenti/atelier/index.html?strumento=timer',availability:'PROTOTIPO',description:'Visualizza il tempo di un’attività.'},
+  passaporto:{title:'Passaporto personale',href:'strumenti/atelier/index.html?strumento=passaporto',availability:'PROTOTIPO',description:'Descrivi preferenze e modalità di supporto.'},
+  preparazione:{title:'Preparazione alle esperienze',href:'strumenti/atelier/index.html?strumento=preparazione',availability:'PROTOTIPO',description:'Prepara una guida visiva per una situazione nuova.'},
+  biblioteca:{title:'Biblioteca di modelli',href:'strumenti/atelier/index.html?strumento=biblioteca',availability:'PROTOTIPO',description:'Adatta modelli precompilati.'},
+  percorso:{title:'Atlas Percorso',href:'strumenti/atelier/index.html?strumento=percorso',availability:'DEMO LOCALE',description:'Collega obiettivi, supporti e osservazioni nella dimostrazione.'},
+  primo:{title:'Il prossimo passo',href:'primo-passo.html',availability:'INFORMATIVO',description:'Una pagina introduttiva per orientarsi.'},
+  servizi:{title:'Servizi Atlas',href:'marketplace.html',availability:'PRESENTAZIONE',description:'Il marketplace è in progettazione: non effettua ricerche o prenotazioni reali.'},
+  risorse:{title:'Risorse Atlas',href:'risorse.html',availability:'INFORMATIVO',description:'Esplora le risorse generali pubblicate.'},
+  fondo:{title:'Fondo Atlas',href:'fondo-atlas.html',availability:'PROGETTO',description:'Il Fondo non eroga ancora contributi: questa è la presentazione del progetto.'}
+ };
+ const names={D01:'orientamento',D02:'ricerca di professionisti',D03:'scelta fra alternative',D04:'seconda opinione',D05:'accesso a servizi',D06:'informazioni',D07:'percorso terapeutico',D08:'attività quotidiane',D09:'coordinamento',D10:'organizzazione',D11:'scuola',D12:'diritti e procedure',D13:'costi',D14:'nuove difficoltà',D15:'sostegno alla persona o famiglia'};
+ const toolPatterns=[
+  ['passaporto',/\b(?:passaporto|profilo personale|sensibilita sensorial|preferenze sensorial|spiegare (?:le mie|le proprie) esigenze|presentarmi a nuovi)\b/],
+  ['caa',/\b(?:\bcaa\b|pittogram|simboli per comunicar|tabelle? di comunicazione|comunicazione alternativa|comunicare con immagini)\b/],
+  ['prima',/\b(?:prima ?\/? ?poi|prima e dopo|due attivita consecutive|tabella delle due attivita)\b/],
+  ['timer',/\b(?:timer|conto alla rovescia|visualizzare il tempo|tempo che manca|durata di un'attivita)\b/],
+  ['preparazione',/\b(?:preparare (?:una |un |il |la )?(?:visita|ricovero|viaggio|colloquio|esperienza nuova)|anticipare (?:una|un) (?:visita|evento)|guida (?:per|alla) (?:visita|esperienza)|cosa succedera (?:alla|durante la) visita)\b/],
+  ['sequenze',/\b(?:sequenza|passaggi da seguire|passo per passo|checklist|lavarsi i denti|vestirsi|preparare lo zaino|lavarsi le mani)\b/],
+  ['agenda',/\b(?:agenda visiva|routine|organizzare (?:la giornata|le attivita)|calendario visivo|pianificare la giornata|programma giornaliero)\b/],
+  ['diario',/\b(?:diario|annotare|registrare le osservazioni|monitorare i progressi|condividere gli aggiornamenti)\b/]
+ ];
+ const hints={caa:'caa',agenda:'agenda',diario:'diario',prima:'prima',sequenze:'sequenze',timer:'timer',passaporto:'passaporto',preparazione:'preparazione'};
+ function resolve(profile,input){
+  input=input||{};const domain=profile?.primary_domain;
+  if(!domain||!names[domain])return{status:'NEEDS_CLARIFICATION',question:'Qual è il tuo obiettivo principale?',suggestions:[],reason:'missing_domain'};
+  if(profile.confidence==='LOW')return{status:'NEEDS_CLARIFICATION',question:'Vuoi confermare o chiarire il bisogno principale?',suggestions:[],reason:'weak_evidence'};
+  const raw=n([input.rawText,input.need,input.goal,input.intent,...(Array.isArray(input.gaps)?input.gaps:[input.gaps]),...(Array.isArray(input.barriers)?input.barriers:[input.barriers])].filter(Boolean).join(' '));
+  const explicitHint=hints[input.toolHint]||null;
+  let keys=[],reason='';
+  if(explicitHint && ['D08','D10','D11','D14','D07'].includes(domain)) { keys=[explicitHint];reason='Scelto in base al chiarimento fornito'; }
+  else if(['D08','D10','D11','D14'].includes(domain)){
+    const found=toolPatterns.filter(([,rx])=>rx.test(raw)).map(([key])=>key);
+    if(found.length){keys=found.slice(0,2);reason='La richiesta contiene un obiettivo pratico collegato a questo strumento';}
+    else if(domain==='D11'){keys=['risorse'];reason='La richiesta riguarda la scuola, ma non identifica uno strumento visivo specifico';}
+    else return{status:'NEEDS_CLARIFICATION',question:'Quale tipo di supporto vorresti creare?',reason:'tool_goal_missing',options:[
+     {id:'caa',label:'Comunicazione con immagini'}, {id:'agenda',label:'Routine e attività'}, {id:'sequenze',label:'Passaggi e checklist'},
+     {id:'timer',label:'Gestione visiva del tempo'}, {id:'preparazione',label:'Preparare un’esperienza nuova'}, {id:'passaporto',label:'Descrivere preferenze e bisogni'}, {id:'none',label:'Nessuno di questi'}],suggestions:[]};
+  }
+  else if(domain==='D09'){keys=['diario','percorso'];reason='Le osservazioni e gli obiettivi condivisi possono aiutare a organizzare il confronto (demo)';}
+  else if(domain==='D07'){
+    if(toolPatterns.some(([,rx])=>rx.test(raw))){keys=toolPatterns.filter(([,rx])=>rx.test(raw)).slice(0,1).map(([k])=>k);reason='Hai richiesto esplicitamente un materiale';}
+    else {keys=['diario'];reason='Il Diario permette di organizzare osservazioni sul percorso (demo)';}
+  }
+  else if(domain==='D01'){keys=['primo'];reason='Hai chiesto da dove iniziare';}
+  else if(domain==='D02'){keys=['servizi'];reason='La pagina descrive il futuro servizio di orientamento professionale (non ancora attivo)';}
+  else if(['D06','D12'].includes(domain)){keys=['risorse'];reason='Sono disponibili materiali introduttivi, da verificare per il caso specifico';}
+  else if(domain==='D13'){keys=['fondo'];reason='Solo una descrizione del Fondo Atlas, non un sostegno disponibile';}
+  // D03/D04/D05/D15: no guaranteed tool. Do not fabricate a matching service.
+  if(!keys.length)return{status:'NO_MATCHING_TOOL',domain,label:names[domain],suggestions:[],question:null,reason:'Non esiste un collegamento sufficientemente specifico a uno strumento disponibile'};
+  return{status:'SUGGESTIONS',domain,label:names[domain],suggestions:keys.map(id=>({id,...catalog[id],why:reason})),question:null,reason};
+ }
+ root.AtlasNextStepV03Candidate={resolve,catalog};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Atlas Flow v0.2 Candidate — unified output contract for two entry routes.
+ * Questionnaire -> AtlasInputNormalizer -> Engine
+ * Free text -> restricted deterministic AtlasTextV01Candidate -> Engine evidence
+ * Both -> safety -> resources -> next step -> selective follow-up.
+ * The original site's interpreter is NOT embedded or silently replaced.
+ */
+(function(root){'use strict';
+ const VERSION='0.4.0-candidate';
+ const DATA={D01:['non so da dove iniziare','capire dove iniziare'],D02:['professionista','trovare professionista'],D03:['scegliere','scegliere tra opzioni'],D04:['seconda opinione','cambiare'],D05:['attesa','ridurre attesa'],D06:['informazioni affidabili','capire'],D07:['percorso terapeutico','gestire'],D08:['vita quotidiana','gestire'],D09:['coordinamento','coordinare'],D10:['organizzazione','organizzare'],D11:['scuola','gestire'],D12:['diritti','capire'],D13:['costi','capire'],D14:['nuova difficoltà','gestire'],D15:['supporto famiglia','gestire']};
+ const domains={D01:'Capire da dove iniziare',D02:'Trovare un professionista o servizio',D03:'Scegliere fra alternative',D04:'Chiedere un secondo parere',D05:'Affrontare attese o difficoltà di accesso',D06:'Ottenere informazioni',D07:'Comprendere il percorso terapeutico',D08:'Gestire un’attività quotidiana',D09:'Migliorare il coordinamento',D10:'Organizzare appuntamenti e attività',D11:'Affrontare questioni scolastiche',D12:'Capire diritti e procedure',D13:'Gestire costi e spese',D14:'Affrontare una difficoltà nuova',D15:'Cercare supporto per sé o per la famiglia'};
+ const choices=Object.keys(domains).map(id=>({id,label:domains[id]}));
+ function arr(v){return Array.isArray(v)?v:v==null||v===''?[]:[v]}
+ function requireModules(){for(const n of ['AtlasSafetyV02Candidate','AtlasResourcesV02Candidate','AtlasEngine','AtlasNextStepV03Candidate','AtlasTextV01Candidate'])if(!root[n])throw Error(n+' mancante')}
+ function check(x){requireModules();return root.AtlasSafetyV02Candidate.check(x)}
+ function firstPriority(domain,network,input){const b=arr(input.barriers).join(' ').toLowerCase();if(network==='N4'||/attesa troppo lunga|nessuna disponibilita/.test(b)||['D09','D14'].includes(domain))return'P2';return ['D01','D06'].includes(domain)?'P4':domain?'P3':'P4';}
+ function follow(type,question,items,reason){return {type,question,options:items,reason}}
+ function goalFollow(evidence){let opts=choices;if(evidence?.candidates?.length>=2){const ids=evidence.candidates.map(x=>x.domain);opts=[...choices.filter(x=>ids.includes(x.id)),...choices.filter(x=>!ids.includes(x.id))];}
+  return follow('GOAL','Qual è la prima cosa che desideri ottenere?',opts,'need_not_understood');}
+ function statusShape(source,status,context,safety,more={}){return {version:VERSION,source,status,context,safety,profile:null,next_step:null,follow_up:null,...more}}
+ function needed(x){return String(x?.need||'').trim()||String(x?.intent||x?.goal||'').trim()||arr(x?.gaps).some(Boolean)||arr(x?.barriers).some(Boolean)}
+ function finish(source,atlasInput,rawText='',interpretation=null,forcedDomain=null){
+  const checked=check({text:rawText,need:atlasInput.need,intent:atlasInput.intent,gaps:atlasInput.gaps,barriers:atlasInput.barriers,resourcesOther:atlasInput.resourcesOther});
+  const context={rawText:rawText||'',input:atlasInput,selectedDomain:forcedDomain||null,interpretation:interpretation||null};
+  if(checked.status!=='PASS')return statusShape(source,'SAFETY_BLOCK',null,checked,{message:checked.message});
+  const resources=root.AtlasResourcesV02Candidate.resolve(atlasInput);
+  if(resources.status==='NEEDS_CLARIFICATION')return statusShape(source,'NEEDS_CLARIFICATION',context,checked,{resources,follow_up:follow('NETWORK',resources.question,[{id:'existing',label:'Ho già una risorsa di supporto'},{id:'none',label:'Non ho ancora risorse'},{id:'unsure',label:'Non lo so'}],'network_inconsistent')});
+  if(!needed(atlasInput)&&!forcedDomain)return statusShape(source,'NEEDS_CLARIFICATION',context,checked,{resources,follow_up:goalFollow(interpretation)});
+  const engine=root.AtlasEngine.buildProfile(atlasInput);
+  const dom=forcedDomain || interpretation?.domain || engine.primary_domain;
+  if(!dom||!domains[dom])return statusShape(source,'NEEDS_CLARIFICATION',context,checked,{resources,engine_primary:engine.primary_domain,follow_up:goalFollow(interpretation)});
+  const confidence=forcedDomain?'MEDIUM':(interpretation?interpretation.confidence:engine.confidence);
+  const profile={...engine,primary_domain:dom,confidence,network:resources.network,priority:firstPriority(dom,resources.network,atlasInput),source,
+    engine_primary_domain:engine.primary_domain,domain_source:forcedDomain?'user_clarification':(interpretation?'explicit_text_evidence':'engine'),
+    evidence:interpretation?.candidates?.map(c=>({domain:c.domain,phrase:c.evidence}))||[],
+    network_evidence:{existing:resources.existing.map(e=>e.key),requested:resources.requested,absent:resources.absent,duplicates:resources.duplicateCount},
+    confidence_note:'HIGH/MEDIUM/LOW indicano soltanto evidenza euristica, non probabilità di accuratezza.'};
+  const toolInput={...atlasInput,rawText,goal:rawText||atlasInput.goal||'',toolHint:null};
+  const next=root.AtlasNextStepV03Candidate.resolve(profile,toolInput);
+  if(next.status==='NEEDS_CLARIFICATION')return statusShape(source,'NEEDS_CLARIFICATION',context,checked,{resources,profile,next_step:next,follow_up:follow('TOOL',next.question,next.options||[],next.reason)});
+  return statusShape(source,'READY',context,checked,{resources,profile,next_step:next});
+ }
+ function structured(input){input=input&&typeof input==='object'?input:{};return finish('structured',input,typeof input.originalText==='string'?input.originalText:'');}
+ function questionnaire(form){const safety=check(form);if(safety.status!=='PASS')return statusShape('questionnaire','SAFETY_BLOCK',null,safety,{message:safety.message});
+  if(!root.AtlasInputNormalizer)throw Error('AtlasInputNormalizer richiesto');const result=finish('questionnaire',root.AtlasInputNormalizer.normalizeQuestionnaire(form));return result;}
+ function freeText(raw){const text=String(raw||'').trim().slice(0,2500);const safe=check(text);
+  if(safe.status!=='PASS')return statusShape('free_text','SAFETY_BLOCK',null,safe,{message:safe.message});
+  if(!text)return statusShape('free_text','NEEDS_CLARIFICATION',{rawText:'',input:null},safe,{follow_up:goalFollow(null)});
+  const interpretation=root.AtlasTextV01Candidate.interpret(text);
+  if(!interpretation.domain)return statusShape('free_text','NEEDS_CLARIFICATION',{rawText:text,input:null,interpretation},safe,{follow_up:goalFollow(interpretation)});
+  return finish('free_text',interpretation.atlasInput,text,interpretation);
+ }
+ function answer(prev,id){
+  if(!prev||prev.status!=='NEEDS_CLARIFICATION'||!prev.follow_up)throw Error('Nessun chiarimento attivo');
+  const option=prev.follow_up.options.find(x=>x.id===id);if(!option)throw Error('Opzione non valida');
+  const original=prev.context?.rawText||'';const oldSafety=check(original);if(oldSafety.status!=='PASS')return statusShape(prev.source,'SAFETY_BLOCK',null,oldSafety,{message:oldSafety.message});
+  if(prev.follow_up.type==='GOAL'){
+   const vals=DATA[id];if(!vals)throw Error('Dominio non valido');
+   const in0=prev.context?.input||{};
+   const form={...in0,need:vals[0],intent:vals[1],goal:'',resources:arr(in0.resources),gaps:arr(in0.gaps),barriers:arr(in0.barriers)};
+   return finish(prev.source,form,original,prev.context?.interpretation||null,id);
+  }
+  if(prev.follow_up.type==='NETWORK'){
+   if(id==='unsure')return statusShape(prev.source,'NEEDS_CLARIFICATION',prev.context,oldSafety,{message:'Quando avrai chiarito le risorse presenti, potrai riprovare. Non assumiamo una rete inesistente.',follow_up:prev.follow_up});
+   const input={...prev.context.input};
+   if(id==='none'){input.resources=[];input.resourcesOther='';}
+   else {input.resources=arr(input.resources).filter(x=>!/^(none|nessuno|nessuna|niente)$/i.test(String(x).trim()));input.resourcesOther='';}
+   return finish(prev.source,input,original,prev.context?.interpretation,prev.context?.selectedDomain);
+  }
+  if(prev.follow_up.type==='TOOL'){
+   if(id==='none')return {...prev,status:'READY',follow_up:null,next_step:{status:'NO_MATCHING_TOOL',suggestions:[],reason:'La persona ha indicato che nessuno strumento proposto è pertinente'}};
+   const profile=prev.profile;if(!profile)throw Error('Profilo mancante');
+   const next=root.AtlasNextStepV03Candidate.resolve(profile,{...prev.context.input,rawText:original,toolHint:id});
+   return {...prev,status:'READY',follow_up:null,next_step:next};
+  }
+  throw Error('Tipo di domanda sconosciuto');
+ }
+ root.AtlasFlowV02Candidate={structured,questionnaire,freeText,answer,domains};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Atlas Next Step v0.4 — conservative candidate matching real v1.3 local tools.
+ * Returns descriptions and URLs, never clinical interventions or claims of live services.
+ */
+(function(root){'use strict';
+ const n=x=>String(x==null?'':x).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’`]/g,"'");
+ const catalog={
+  caa:{title:'CAA — Comunicazione visiva',href:'strumenti/caa/index.html',availability:'PROTOTIPO',description:'Crea tabelle e materiali di comunicazione.'},
+  agenda:{title:'Agenda Visiva',href:'strumenti/agenda/index.html',availability:'PROTOTIPO',description:'Organizza attività e routine.'},
+  diario:{title:'Diario Atlas',href:'strumenti/diario/index.html',availability:'DEMO LOCALE',description:'Registra osservazioni; la collaborazione reale non è ancora attiva.'},
+  prima:{title:'Prima / Poi',href:'strumenti/atelier/index.html?strumento=prima-poi',availability:'PROTOTIPO',description:'Crea una tabella con due attività consecutive.'},
+  sequenze:{title:'Sequenze illustrate',href:'strumenti/atelier/index.html?strumento=sequenze',availability:'PROTOTIPO',description:'Crea una sequenza di passaggi e checklist.'},
+  timer:{title:'Timer visivo',href:'strumenti/atelier/index.html?strumento=timer',availability:'PROTOTIPO',description:'Visualizza il tempo di un’attività.'},
+  passaporto:{title:'Passaporto personale',href:'strumenti/atelier/index.html?strumento=passaporto',availability:'PROTOTIPO',description:'Descrivi preferenze e modalità di supporto.'},
+  preparazione:{title:'Preparazione alle esperienze',href:'strumenti/atelier/index.html?strumento=preparazione',availability:'PROTOTIPO',description:'Prepara una guida visiva per una situazione nuova.'},
+  biblioteca:{title:'Biblioteca di modelli',href:'strumenti/atelier/index.html?strumento=biblioteca',availability:'PROTOTIPO',description:'Adatta modelli precompilati.'},
+  percorso:{title:'Atlas Percorso',href:'strumenti/atelier/index.html?strumento=percorso',availability:'DEMO LOCALE',description:'Collega obiettivi, supporti e osservazioni nella dimostrazione.'},
+  primo:{title:'Il prossimo passo',href:'primo-passo.html',availability:'INFORMATIVO',description:'Una pagina introduttiva per orientarsi.'},
+  servizi:{title:'Servizi Atlas',href:'marketplace.html',availability:'PRESENTAZIONE',description:'Il marketplace è in progettazione: non effettua ricerche o prenotazioni reali.'},
+  risorse:{title:'Risorse Atlas',href:'risorse.html',availability:'INFORMATIVO',description:'Esplora le risorse generali pubblicate.'},
+  fondo:{title:'Fondo Atlas',href:'fondo-atlas.html',availability:'PROGETTO',description:'Il Fondo non eroga ancora contributi: questa è la presentazione del progetto.'}
+ };
+ const names={D01:'orientamento',D02:'ricerca di professionisti',D03:'scelta fra alternative',D04:'seconda opinione',D05:'accesso a servizi',D06:'informazioni',D07:'percorso terapeutico',D08:'attività quotidiane',D09:'coordinamento',D10:'organizzazione',D11:'scuola',D12:'diritti e procedure',D13:'costi',D14:'nuove difficoltà',D15:'sostegno alla persona o famiglia'};
+ const toolPatterns=[
+  ['passaporto',/\b(?:passaporto|profilo personale|sensibilita sensorial|preferenze sensorial|spiegare (?:le mie|le proprie) esigenze|presentarmi a nuovi)\b/],
+  ['caa',/\b(?:\bcaa\b|pittogram|simboli per comunicar|tabelle? di comunicazione|comunicazione alternativa|comunicare con immagini)\b/],
+  ['prima',/\b(?:prima ?\/? ?poi|prima e dopo|due attivita consecutive|tabella delle due attivita)\b/],
+  ['timer',/\b(?:timer|conto alla rovescia|visualizzare il tempo|tempo che manca|durata di un'attivita)\b/],
+  ['preparazione',/\b(?:preparare (?:una |un |il |la )?(?:visita|ricovero|viaggio|colloquio|esperienza nuova)|anticipare (?:una|un) (?:visita|evento)|guida (?:per|alla) (?:visita|esperienza)|cosa succedera (?:alla|durante la) visita)\b/],
+  ['sequenze',/\b(?:sequenza|passaggi da seguire|passo per passo|checklist|lavarsi i denti|vestirsi|preparare lo zaino|lavarsi le mani)\b/],
+  ['agenda',/\b(?:agenda visiva|routine|organizzare (?:la giornata|le attivita)|calendario visivo|pianificare la giornata|programma giornaliero)\b/],
+  ['diario',/\b(?:diario|annotare|registrare le osservazioni|monitorare i progressi|condividere gli aggiornamenti)\b/]
+ ];
+ const hints={caa:'caa',agenda:'agenda',diario:'diario',prima:'prima',sequenze:'sequenze',timer:'timer',passaporto:'passaporto',preparazione:'preparazione'};
+ function resolve(profile,input){
+  input=input||{};const domain=profile?.primary_domain;
+  if(!domain||!names[domain])return{status:'NEEDS_CLARIFICATION',question:'Qual è il tuo obiettivo principale?',suggestions:[],reason:'missing_domain'};
+  if(profile.confidence==='LOW')return{status:'NEEDS_CLARIFICATION',question:'Vuoi confermare o chiarire il bisogno principale?',suggestions:[],reason:'weak_evidence'};
+  const raw=n([input.rawText,input.need,input.goal,input.intent,...(Array.isArray(input.gaps)?input.gaps:[input.gaps]),...(Array.isArray(input.barriers)?input.barriers:[input.barriers])].filter(Boolean).join(' '));
+  const explicitHint=hints[input.toolHint]||null;
+  let keys=[],reason='';
+  if(explicitHint && ['D08','D10','D11','D14','D07'].includes(domain)) { keys=[explicitHint];reason='Scelto in base al chiarimento fornito'; }
+  else if(['D08','D10','D11','D14'].includes(domain)){
+    const found=toolPatterns.filter(([,rx])=>rx.test(raw)).map(([key])=>key);
+    if(found.length){keys=found.slice(0,2);reason='La richiesta contiene un obiettivo pratico collegato a questo strumento';}
+    else if(domain==='D11'){keys=['risorse'];reason='La richiesta riguarda la scuola, ma non identifica uno strumento visivo specifico';}
+    else return{status:'NEEDS_CLARIFICATION',question:'Quale tipo di supporto vorresti creare?',reason:'tool_goal_missing',options:[
+     {id:'caa',label:'Comunicazione con immagini'}, {id:'agenda',label:'Routine e attività'}, {id:'sequenze',label:'Passaggi e checklist'},
+     {id:'timer',label:'Gestione visiva del tempo'}, {id:'preparazione',label:'Preparare un’esperienza nuova'}, {id:'passaporto',label:'Descrivere preferenze e bisogni'}, {id:'none',label:'Nessuno di questi'}],suggestions:[]};
+  }
+  else if(domain==='D09'){keys=['diario','percorso'];reason='Le osservazioni e gli obiettivi condivisi possono aiutare a organizzare il confronto (demo)';}
+  else if(domain==='D07'){
+    if(toolPatterns.some(([,rx])=>rx.test(raw))){keys=toolPatterns.filter(([,rx])=>rx.test(raw)).slice(0,1).map(([k])=>k);reason='Hai richiesto esplicitamente un materiale';}
+    else {return {status:'NO_MATCHING_TOOL',domain,label:names[domain],suggestions:[],question:null,reason:'Per una richiesta sulle terapie non proponiamo automaticamente strumenti pratici: occorre un chiarimento con professionisti qualificati.'};}
+  }
+  else if(domain==='D01'){keys=['primo'];reason='Hai chiesto da dove iniziare';}
+  else if(domain==='D02'){keys=['servizi'];reason='La pagina descrive il futuro servizio di orientamento professionale (non ancora attivo)';}
+  else if(['D06','D12'].includes(domain)){keys=['risorse'];reason='Sono disponibili materiali introduttivi, da verificare per il caso specifico';}
+  else if(domain==='D13'){keys=['risorse'];reason='Per i sostegni economici verifica sempre gli enti e le fonti ufficiali. Il Fondo Atlas non eroga contributi in questa fase.';}
+  // D03/D04/D05/D15: no guaranteed tool. Do not fabricate a matching service.
+  if(!keys.length)return{status:'NO_MATCHING_TOOL',domain,label:names[domain],suggestions:[],question:null,reason:'Non esiste un collegamento sufficientemente specifico a uno strumento disponibile'};
+  return{status:'SUGGESTIONS',domain,label:names[domain],suggestions:keys.map(id=>({id,...catalog[id],why:reason})),question:null,reason};
+ }
+ root.AtlasNextStepV04Candidate={resolve,catalog};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+/* Atlas Consolidated Bridge v0.1 - candidate 0.5.0, NOT production.
+ * Preserves official 0.2.6 baseline and experimental 0.4.0 classifier as-is.
+ * Unifies inputs, applies a conservative precheck, and isolates legacy comparison.
+ * No fetches, storage, remote data transmission or clinical inferences.
+ */
+(function (root) {'use strict';
+ const v='0.5.0-candidate';
+ function flatten(x, depth=0, out=[]){
+  if(depth>4 || out.length>=100) return out;
+  if(typeof x==='string' || typeof x==='number') out.push(String(x).slice(0,3000));
+  else if(Array.isArray(x)) for(const e of x.slice(0,60)) flatten(e,depth+1,out);
+  else if(x && typeof x==='object') for(const [key,e] of Object.entries(x).slice(0,60)) if(key!=='__proto__')flatten(e,depth+1,out);
+  return out;
+ }
+ function guard(inp){
+  if(!root.AtlasSafetyV02Candidate)throw Error('Modulo di sicurezza non disponibile');
+  // Analyse *all* user-facing fields, not just some of the questionnaire fields.
+  return root.AtlasSafetyV02Candidate.check(flatten(inp).join(' ').slice(0,12000));
+ }
+ function blocked(source, safety){return {version:v,source,status:'SAFETY_BLOCK',profile:null,next_step:null,follow_up:null,safety,message:safety.message,review:{status:'NOT_EVALUATED'}};}
+ function shortlistGoalQuestion(r){
+  if(r?.status!=='NEEDS_CLARIFICATION'||r.follow_up?.type!=='GOAL'||(r.follow_up.options||[]).length<=7)return r;
+  const opts=r.follow_up.options;
+  const raw=String(r.context?.rawText||'').toLowerCase();
+  const preferred=/\bscuol|insegnant|pei\b/.test(raw)?['D11','D09','D02','D06','D12']:
+    /\bcerco|cercando|professionist|terapist|centro\b/.test(raw)?['D02','D03','D05','D15','D01']:
+    ['D01','D02','D06','D08','D15'];
+  const candidates=(r.context?.interpretation?.candidates||[]).map(x=>x.domain);
+  const ids=[...new Set([...candidates,...preferred])].slice(0,6);
+  const subset=ids.map(id=>opts.find(o=>o.id===id)).filter(Boolean);
+  return {...r,follow_up:{...r.follow_up,question:'Che cosa vorresti ottenere per prima cosa?',options:[...subset,{id:'MORE',label:'Un altro bisogno'}]}};
+ }
+ function adjust(result, origin){
+  const r={...result,version:v,origin,review:{status:'NOT_EVALUATED'},advice:'Risultato dimostrativo: non è una diagnosi o una valutazione clinica.'};
+  if(r.status==='SAFETY_BLOCK')return r;
+  if(!r.profile)return shortlistGoalQuestion(r);
+  if(!root.AtlasNextStepV04Candidate)throw Error('Next Step v0.4 mancante');
+  const raw=r.context?.rawText||'';
+  const rawInput=r.context?.input||{};
+  const newStep=root.AtlasNextStepV04Candidate.resolve(r.profile,{...rawInput,rawText:raw,goal:raw||rawInput.goal||''});
+  r.next_step=newStep;
+  if(newStep.status==='NEEDS_CLARIFICATION'){
+    r.status='NEEDS_CLARIFICATION';
+    r.follow_up={type:'TOOL',question:newStep.question,options:newStep.options||[],reason:newStep.reason};
+  } else if(r.follow_up?.type==='TOOL'){
+    r.follow_up=null;
+    r.status='READY';
+  }
+  return shortlistGoalQuestion(r);
+ }
+ function assertFlow(){if(!root.AtlasFlowV02Candidate)throw Error('Modulo Atlas Flow v0.2 mancante');}
+ function freeText(input){assertFlow();const safe=guard(input);if(safe.status!=='PASS')return blocked('free_text',safe);return adjust(root.AtlasFlowV02Candidate.freeText(String(input||'').slice(0,2500)),'free_text');}
+ function questionnaire(input){assertFlow();const safe=guard(input);if(safe.status!=='PASS')return blocked('questionnaire',safe);
+  const form={...(input||{})};
+  // A guided choice explicitly declares a goal; do not require an additional redundant answer.
+  const inferred={
+   'Trovare un professionista o un centro':'Voglio trovare professionisti/centri/servizi',
+   'Scegliere tra due possibilità':'Voglio confrontare o scegliere tra possibilità',
+   'Capire costi/spese':'Voglio capire costi e sostenibilità economica',
+   'Capire diritti, benefici o pratiche':'Voglio capire diritti/benefici/procedure',
+   'Organizzare appuntamenti e percorso':'Voglio organizzare meglio il percorso',
+   'Gestire una difficoltà quotidiana':'Voglio capire come gestire concretamente la situazione'
+  };
+  if(!String(form.goal||'').trim() && inferred[form.need])form.goal=inferred[form.need];
+  let r=root.AtlasFlowV02Candidate.questionnaire(form);
+  // A *selected form option* can act as an explicit classification when legacy scoring stays below threshold.
+  // This is not inferred from free text, and is exposed as user-selected evidence.
+  const choices={'Scegliere tra due possibilità':'D03','Capire costi/spese':'D13'};
+  if(r.status==='NEEDS_CLARIFICATION'&&r.follow_up?.type==='GOAL'&&choices[form.need]){
+   r=root.AtlasFlowV02Candidate.answer(r,choices[form.need]);
+   if(r.profile)r.profile.domain_source='explicit_questionnaire_choice';
+  }
+  return adjust(r,'questionnaire');
+ }
+ function structured(input){assertFlow();const safe=guard(input);if(safe.status!=='PASS')return blocked('structured',safe);return adjust(root.AtlasFlowV02Candidate.structured(input||{}),'structured');}
+ function answer(state,option){assertFlow();
+  if(option==='MORE' && state?.status==='NEEDS_CLARIFICATION' && state?.follow_up?.type==='GOAL'){
+    const opts=Object.entries(root.AtlasFlowV02Candidate.domains).map(([id,label])=>({id,label}));
+    return {...state,follow_up:{...state.follow_up,question:'Scegli il bisogno che descrive meglio la tua richiesta.',options:opts}};
+  }
+  const safe=guard([state?.context?.rawText,state?.context?.input,option]);if(safe.status!=='PASS')return blocked(state?.source||'clarification',safe);
+  // The prior flow owns the validated clarification contract. New tool choices are evaluated below.
+  if(state?.follow_up?.type==='TOOL'&&state.status==='NEEDS_CLARIFICATION'){
+   const choice=state.follow_up.options?.find(x=>x.id===option);
+   if(!choice)throw Error('Opzione non valida');
+   if(option==='none')return {...state,version:v,status:'READY',follow_up:null,next_step:{status:'NO_MATCHING_TOOL',suggestions:[],reason:'Nessun materiale disponibile corrisponde alla richiesta.'}};
+   const profile=state.profile; if(!profile)throw Error('Profilo mancante');
+   const next=root.AtlasNextStepV04Candidate.resolve(profile,{...state.context?.input,rawText:state.context?.rawText||'',toolHint:option});
+   return {...state,version:v,status:next.status==='NEEDS_CLARIFICATION'?'NEEDS_CLARIFICATION':'READY',next_step:next,follow_up:next.status==='NEEDS_CLARIFICATION'?{type:'TOOL',question:next.question,options:next.options,reason:next.reason}:null};
+  }
+  return adjust(root.AtlasFlowV02Candidate.answer(state,option),state?.origin||state?.source||'clarification');
+ }
+ function compare(result,legacy){
+  // Legacy result is diagnostic-only and must never silently override the new system.
+  if(!result || result.status==='SAFETY_BLOCK')return {status:'SKIPPED_SAFETY'};
+  if(!legacy || !/^D(?:0[1-9]|1[0-5])$/.test(legacy.domain||''))return {status:'LEGACY_UNAVAILABLE'};
+  const domain=result.profile?.primary_domain||null;
+  if(!domain)return {status:'CANDIDATE_ABSTAINS',candidate:null,legacy:legacy.domain,note:'La candidata richiede un chiarimento; il vecchio sistema potrebbe usare un orientamento predefinito.'};
+  return {status:domain===legacy.domain?'AGREE':'DISAGREE',candidate:domain,legacy:legacy.domain,note:'Il confronto è diagnostico: nessuno dei due sistemi prevale automaticamente.'};
+ }
+ root.AtlasConsolidatedV01Candidate={freeText,questionnaire,structured,answer,compare,guard,version:v};
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+<script>
+(function(){'use strict';
+const $=id=>document.getElementById(id),out=$('output'),cmp=$('compareOutput');
+const flow=window.AtlasConsolidatedV01Candidate;
+const samples={ricerca:'Cerco una logopedista a Bari, possibilmente senza lista d’attesa.',coord:'La scuola e la logopedista non comunicano, come posso coordinarle?',routine:'Vorrei un’agenda visiva per organizzare la routine del mattino.',prima:'Vorrei una tabella Prima/Poi per due attività.',prepara:'Vorrei preparare una visita dal dentista.',adulto:'Sono un adulto e mi sovraccarico al supermercato, come posso gestire rumore e luci?',therapy:'Come funziona la psicomotricità?',economia:'Non possiamo permetterci 700 euro al mese di terapie.',ambiguo:'Autismo e scuola',doppio:'Ho due richieste: cerco un logopedista e sono esausta, cerco aiuto per la famiglia.',emergenza:'Voglio farmi del male.'};
+let mode='text',current=null,lastText='',lastLegacy=null,loading=false;
+function elem(tag,text,cls){const x=document.createElement(tag);if(text!==undefined&&text!==null)x.textContent=String(text);if(cls)x.className=cls;return x}
+function card(title,body,kind){const d=elem('div',null,'result'+(kind?' '+kind:''));d.append(elem('h3',title));if(body)d.append(elem('p',body));out.append(d);return d;}
+function resetOutput(){out.replaceChildren();cmp.replaceChildren();cmp.append(elem('p','Il confronto diventerà disponibile dopo aver analizzato un racconto libero.','small'));lastLegacy=null;current=null;$('compareLegacy').disabled=true;}
+function render(result){current=result;out.replaceChildren();if(!result){card('Nessun risultato','Riprova con un esempio inventato.','warn');return}
+ if(result.status==='SAFETY_BLOCK'){
+  card('Questa richiesta richiede un altro tipo di assistenza',result.message||'Atlas non può gestire questa situazione.','risk');card('Nota sulla sicurezza','Questo laboratorio non valuta l’urgenza clinica e non sostituisce servizi di emergenza.','warn');$('compareLegacy').disabled=true;return;
+ }
+ const p=result.profile;
+ if(p){const d=flow.domains?.[p.primary_domain]||window.AtlasFlowV02Candidate.domains[p.primary_domain]||p.primary_domain;const dcard=card('Bisogno individuato: '+d,'Questa interpretazione è una ipotesi da verificare, non una diagnosi.','positive');dcard.append(elem('span','Codice: '+p.primary_domain,'tag'));dcard.append(elem('span','Rete: '+(p.network||'non determinata'),'tag'));dcard.append(elem('span','Confidenza euristica: '+(p.confidence||'non determinata'),'tag'));}
+ else if(result.status==='NEEDS_CLARIFICATION')card('Mi serve un chiarimento','Con le informazioni disponibili non posso distinguere con sufficiente sicurezza il bisogno principale.','warn');
+ if(result.follow_up&&Array.isArray(result.follow_up.options)&&result.follow_up.options.length){const q=card(result.follow_up.question||'Quale opzione descrive meglio il tuo bisogno?',null,'warn');const opts=elem('div',null,'prompt');for(const x of result.follow_up.options){const b=elem('button',x.label);b.type='button';b.addEventListener('click',()=>{try{render(flow.answer(result,x.id))}catch(e){card('Errore','Non riesco a elaborare questa scelta, riprova.','warn')}});opts.append(b)}q.append(opts)}
+ const next=result.next_step;
+ if(next?.status==='SUGGESTIONS'&&Array.isArray(next.suggestions)){for(const t of next.suggestions){const d=card(t.title,t.description,'tool');d.append(elem('span',t.availability||'prototipo','tag'));if(t.why)d.append(elem('p',t.why,'small'));if(t.href&&/^[a-z0-9\-\/]+\.html(?:\?strumento=[a-z-]+)?$/i.test(t.href)){const a=elem('a','Apri lo strumento Atlas');a.href='../../'+t.href;a.rel='noopener';d.append(a);const tool=t.href.match(/\?strumento=(prima-poi|sequenze|timer|passaporto|preparazione)$/)?.[1]||({'strumenti/caa/index.html':'caa','strumenti/agenda/index.html':'agenda'}[t.href]);if(tool&&result.status==='READY'){const b=elem('button','Proponi un obiettivo nel Percorso');b.type='button';b.addEventListener('click',()=>{try{sessionStorage.setItem('atlas-next-goal-v1',JSON.stringify({tool}));location.href='../../strumenti/atelier/index.html?strumento=percorso&bozza=next-step'}catch(e){b.textContent='Bozza non disponibile in questo browser';}});d.append(b)}}}}
+ else if(next?.status==='NO_MATCHING_TOOL')card('Nessuno strumento specifico da suggerire',next.reason||'Non ho individuato un supporto adeguato.', 'warn');
+ if(result.status==='READY'&&!p)card('Dati insufficienti','Non posso proporre un percorso specifico.','warn');
+}
+function changeTab(v){mode=v;const on=v==='text';$('textForm').hidden=!on;$('guidedForm').hidden=on;$('tabText').setAttribute('aria-selected',String(on));$('tabForm').setAttribute('aria-selected',String(!on));resetOutput()}
+$('tabText').addEventListener('click',()=>changeTab('text'));$('tabForm').addEventListener('click',()=>changeTab('form'));
+$('loadSample').addEventListener('click',()=>{$('story').value=samples[$('sample').value]||'';$('story').focus();resetOutput()});
+$('reset').addEventListener('click',()=>{changeTab('text');$('story').value='';for(const n of ['phase','need','goal','resources','barrier'])$(n).value='';});
+$('analyze').addEventListener('click',()=>{try{resetOutput();if(mode==='text'){const t=$('story').value.trim();if(!t){card('Scrivi una richiesta','Per iniziare descrivi una necessità o carica un esempio.','warn');return}lastText=t;render(flow.freeText(t));$('compareLegacy').disabled=current?.status==='SAFETY_BLOCK';}else{lastText='';render(flow.questionnaire({phase:$('phase').value,need:$('need').value,goal:$('goal').value,resources:$('resources').value.split(',').map(s=>s.trim()).filter(Boolean),barriers:$('barrier').value?[$('barrier').value]:[]}));}}catch(e){card('Errore tecnico','La prova non è riuscita. Usa il file completo e riprova.','risk')}});
+function legacyFrame(){return new Promise((resolve,reject)=>{
+ const iframe=document.createElement('iframe');iframe.id='atlas-legacy-frame';iframe.title='Motore precedente di Atlas (isolato per il confronto)';iframe.style.cssText='position:absolute;left:-10000px;width:1px;height:1px;border:0;';
+ let settled=false;let timeout=setTimeout(()=>done(new Error('Tempo di caricamento scaduto')),8000);
+ function done(error){if(settled)return;settled=true;clearTimeout(timeout);if(error)reject(error);else resolve(iframe)}
+ iframe.onload=()=>{try{if(iframe.contentWindow?.AtlasAssemblerV01?.run)done();else done(new Error('Motore precedente non trovato'));}catch(e){done(e)}};
+ iframe.onerror=()=>done(new Error('La pagina precedente non è disponibile'));
+ iframe.src='../index.html';document.body.append(iframe);
+ })}
+let legacyPromise=null;
+$('compareLegacy').addEventListener('click',async()=>{
+ if(loading||!lastText||!current||current.status==='SAFETY_BLOCK')return;loading=true;$('compareLegacy').disabled=true;
+ cmp.replaceChildren();cmp.append(elem('p','Verifica del motore precedente in corso…','small'));
+ try{if(location.protocol==='file:')throw Error('Per confrontare i due motori pubblica questa pagina su GitHub Pages.');
+   if(!legacyPromise)legacyPromise=legacyFrame();const f=await legacyPromise;
+   const legacy=f.contentWindow.AtlasAssemblerV01.run(lastText,{records:f.contentWindow.ATLAS_DEMO_RECORDS||[]});
+   const x=flow.compare(current,{domain:legacy.domain});
+   cmp.replaceChildren();
+   const label={AGREE:'I due motori concordano',DISAGREE:'I due motori non concordano',CANDIDATE_ABSTAINS:'La candidata chiede chiarimenti',LEGACY_UNAVAILABLE:'Risultato del motore precedente non disponibile'}[x.status]||'Confronto non disponibile';
+   const d=elem('div',null,'result'+(x.status==='AGREE'?' positive':' warn'));d.append(elem('h3',label));d.append(elem('p','Candidato: '+(x.candidate||'nessuna classificazione')+' · Motore precedente: '+(x.legacy||'non disponibile')));d.append(elem('p',x.note||'Il confronto non modifica la proposta mostrata sopra.','small'));cmp.append(d);
+ }catch(e){legacyPromise=null;cmp.replaceChildren();cmp.append(elem('div','Confronto automatico non disponibile: '+e.message+' Puoi aprire il test precedente e utilizzare lo stesso testo.','result warn'));}
+ finally{loading=false;$('compareLegacy').disabled=!current||current.status==='SAFETY_BLOCK';}
+});
+$('story').value=samples.ricerca;
+})();
+</script>
+</body></html>

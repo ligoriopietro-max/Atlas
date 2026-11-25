@@ -2,3 +2,5 @@
 
 /* Diagnostica: un’immagine non caricata non deve sembrare una casella vuota. */
 .image-load-error{outline:2px solid #c2410c;outline-offset:2px;background:#fff7ed;min-width:52px;min-height:52px;}
+
+.activity input[type=checkbox]{margin:0;accent-color:var(--blue)} .item-actions button:disabled{opacity:.45;cursor:default} @media(max-width:500px){.activity{grid-template-columns:20px 50px minmax(0,1fr)}.item-actions{grid-column:2/-1;flex-direction:row;flex-wrap:wrap}.activity .words{min-width:0}} @media print{body>div:first-child{display:none!important}.activity{grid-template-columns:34px 72px minmax(0,1fr)}.activity input[type=checkbox]{print-color-adjust:exact}.activity{opacity:1!important}}
