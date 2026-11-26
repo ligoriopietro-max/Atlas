@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="it">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#125b96">
-<meta name="description" content="Strumenti pratici Atlas: Prima/Poi, sequenze, timer, passaporto, preparazione e percorsi.">
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#125b96" name="theme-color"/>
+<meta content="Strumenti pratici Atlas: Prima/Poi, sequenze, timer, passaporto, preparazione e percorsi." name="description"/>
 <title>Atelier Atlas · Strumenti gratuiti</title>
 <style>
 :root{--blue:#125b96;--navy:#123d63;--ink:#17324a;--muted:#576e80;--gold:#c39a3b;--bg:#f6f9fc;--line:#dbe6ee;--white:#fff;--r:17px;--shadow:0 12px 30px rgba(24,64,103,.065)}
@@ -14,18 +15,18 @@
 @media print{@page{margin:13mm;size:A4}body{background:#fff;color:#111;font-family:Arial, sans-serif}.no-print,dialog,.toast,.head,.topline{display:none!important}.print-only{display:block!important}.printdoc{font-size:12pt;color:#111}.printdoc .print-grid{grid-template-columns:repeat(2,1fr)}.printdoc .printcard{border-color:#ccc}.printdoc img{height:135px}.printdoc a{color:#111;text-decoration:none}}
 
 </style>
-</head>
-<body>
-<a href="#contenuto" class="skip">Vai al contenuto</a>
+<link href="../../assets/demo18.css" rel="stylesheet"/></head>
+<body><header class="a18-shell no-print noprint"><div class="a18-topline"></div><div class="a18-nav"><a class="a18-brand" href="../../index.html"><img alt="" height="48" src="../../assets/icons/atlas-mark.png" width="42"/><span>atlas<small>orientamento e supporto</small></span></a><button aria-controls="a18-navlinks" aria-expanded="false" class="a18-toggle" type="button">Menu <span aria-hidden="true">☰</span></button><nav aria-label="Navigazione principale" class="a18-navlinks" id="a18-navlinks"><a href="../../index.html">Home</a><a href="../../orientamento.html">Orientamento</a><a aria-current="page" href="../../strumenti.html">Strumenti</a><a href="../../marketplace.html">Servizi</a><a href="../../area-famiglia.html">Area personale</a><a href="../../biblioteca.html">Biblioteca</a><a href="../../account.html">Accedi / Iscriviti</a></nav></div><div class="a18-demobar"><span>DEMO 1.0 · Solo dati inventati</span><a href="../../accesso.html">Cambia area dimostrativa</a></div></header>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
 <div class="topline"></div>
-<header class="head no-print"><div class="headwrap">
-<a class="brand" href="../../strumenti.html" aria-label="Torna agli Strumenti Atlas"><span class="brandbadge">A</span><span>atlas<small>ATELIER · STRUMENTI GRATUITI</small></span></a>
-<div class="header-actions"><button type="button" id="exportBtn" class="btn ghost">Esporta backup</button><button type="button" id="importBtn" class="btn ghost">Importa backup</button><input type="file" id="importFile" accept=".json,application/json" hidden><a class="btn outline" href="../../strumenti.html">Tutti gli strumenti</a></div>
+<header class="head no-print a18-tool-header"><div class="headwrap">
+<a aria-label="Torna agli Strumenti Atlas" class="brand" href="../../strumenti.html"><span>atlas<small>ATELIER · STRUMENTI GRATUITI</small></span></a>
+<div class="header-actions"><button class="btn ghost" id="exportBtn" type="button">Esporta backup</button><button class="btn ghost" id="importBtn" type="button">Importa backup</button><input accept=".json,application/json" hidden="" id="importFile" type="file"/><a class="btn outline" href="../../strumenti.html">Tutti gli strumenti</a></div>
 </div></header>
-<main id="contenuto" class="container no-print">
-<section class="hero"><div><span class="eyebrow">PROGETTO ATLAS · VERSIONE DIMOSTRATIVA</span><h1>Un piccolo passo, fatto bene.</h1><p>Supporti visivi, organizzazione e materiali personali nello stesso ambiente. Scegli uno strumento e personalizzalo secondo le tue esigenze.</p></div><div class="hero-mark" aria-hidden="true">✦</div></section>
+<main class="container no-print" id="contenuto">
+<section class="hero"><div><span class="eyebrow">PROGETTO ATLAS · VERSIONE DIMOSTRATIVA</span><h1>Un piccolo passo, fatto bene.</h1><p>Supporti visivi, organizzazione e materiali personali nello stesso ambiente. Scegli uno strumento e personalizzalo secondo le tue esigenze.</p></div><div aria-hidden="true" class="hero-mark">✦</div></section>
 <div class="disclaimer"><strong>Demo, soltanto dati inventati.</strong> Le informazioni rimangono nel browser di questo dispositivo; non vengono sincronizzate con il Diario Atlas o con gli account. Non inserire dati personali o sanitari reali.</div>
-<nav class="toolnav" id="toolnav" aria-label="Strumenti Atelier">
+<nav aria-label="Strumenti Atelier" class="toolnav" id="toolnav">
 <button data-tool="prima-poi" type="button">Prima / Poi</button>
 <button data-tool="sequenze" type="button">Sequenze</button>
 <button data-tool="timer" type="button">Timer visivo</button>
@@ -34,14 +35,14 @@
 <button data-tool="biblioteca" type="button">Modelli pronti</button>
 <button data-tool="guida" type="button">Trova lo strumento</button>
 <button data-tool="percorso" type="button">Atlas Percorso</button>
-<button data-tool="console" type="button">Console centro <span class="mini">DEMO</span></button>
+<button data-tool="console" hidden="" style="display:none" type="button">Console centro <span class="mini">DEMO</span></button>
 </nav>
-<section id="view" aria-live="off"></section>
-<footer class="footer"><span>Atlas · Strumenti gratuiti · Demo locale</span><span>Simboli Mulberry: CC BY-SA 4.0 · <a href="../caa/LICENZA-PITTOGRAMMI.txt" target="_blank" rel="noopener">Attribuzioni</a></span></footer>
+<section aria-live="off" id="view"></section>
+<footer class="footer"><span>Atlas · Strumenti gratuiti · Demo locale</span><span>Simboli Mulberry: CC BY-SA 4.0 · <a href="../caa/LICENZA-PITTOGRAMMI.txt" rel="noopener" target="_blank">Attribuzioni</a></span></footer>
 </main>
-<section id="printArea" class="print-only" aria-label="Documento per la stampa"></section>
-<dialog id="picker" aria-label="Scegli un simbolo"><div class="dialog-head"><div><strong>Scegli un'immagine</strong><p>Simboli del catalogo Atlas CAA. Le etichette [EN] sono ancora in inglese.</p></div><button id="closePicker" class="btn ghost" type="button" aria-label="Chiudi">Chiudi ✕</button></div><label class="field">Cerca un'immagine<input id="symbolSearch" type="search" autocomplete="off" placeholder="Per esempio: scuola, bagno, book, wash"></label><div class="symbol-grid" id="symbolResults"></div><p class="muted">Se un'immagine non è comprensibile per la persona, scegline un'altra oppure usa soltanto il testo.</p></dialog>
-<div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+<section aria-label="Documento per la stampa" class="print-only" id="printArea"></section>
+<dialog aria-label="Scegli un simbolo" id="picker"><div class="dialog-head"><div><strong>Scegli un'immagine</strong><p>Simboli del catalogo Atlas CAA. Le etichette [EN] sono ancora in inglese.</p></div><button aria-label="Chiudi" class="btn ghost" id="closePicker" type="button">Chiudi ✕</button></div><label class="field">Cerca un'immagine<input autocomplete="off" id="symbolSearch" placeholder="Per esempio: scuola, bagno, book, wash" type="search"/></label><div class="symbol-grid" id="symbolResults"></div><p class="muted">Se un'immagine non è comprensibile per la persona, scegline un'altra oppure usa soltanto il testo.</p></dialog>
+<div aria-live="polite" class="toast" hidden="" id="toast" role="status"></div>
 <script src="../caa/mulberry-catalog.js"></script>
 <script src="../../assets/atlas-a16.js"></script>
 <script>
@@ -135,7 +136,7 @@ const GUIDE_OPTIONS=[
  {id:'coordinamento',title:'Organizzare le osservazioni',sub:'Raccogliere informazioni e obiettivi',tools:[['Diario Atlas','../diario/index.html'],['Atlas Percorso (demo)','percorso']]},
  {id:'modelli',title:'Creare materiali rapidamente',sub:'Partire da qualcosa di già pronto',tools:[['Modelli pronti','biblioteca'],['Sequenze illustrate','sequenze']]}
 ];
-function renderGuide(){const choice=GUIDE_OPTIONS.find(x=>x.id===currentGuide);return viewHead('Trova lo strumento adatto','Questa guida usa una scelta manuale. Non interpreta diagnosi. Per provare l’orientamento automatico sperimentale, apri il laboratorio.')+`<div class="panel" style="margin-bottom:16px"><a class="btn outline" href="../../test/engine-v050/index.html">Prova Atlas Engine — laboratorio</a><p class="muted">Solo esempi inventati. La versione ufficiale non viene sostituita.</p></div><div class="grid3">${GUIDE_OPTIONS.map(x=>`<button class="template" type="button" data-action="guide" data-topic="${x.id}" style="text-align:left;cursor:pointer;border-color:${currentGuide===x.id?'#125b96':'var(--line)'}"><span class="chip">SCEGLI UN OBIETTIVO</span><h3>${esc(x.title)}</h3><p>${esc(x.sub)}</p><span style="color:var(--blue);font-weight:800">Mostra strumenti →</span></button>`).join('')}</div>${choice?`<div class="panel" style="margin-top:17px"><h3>Per «${esc(choice.title)}» puoi provare:</h3><p class="muted">Sono suggerimenti generali: scegli e personalizza ciò che è davvero utile per la persona.</p><div class="quick-links">${choice.tools.map(([label,link])=>link.includes('.html')?`<a class="btn outline" href="${esc(link)}">${esc(label)}</a>`:`<button class="btn outline" data-tool="${esc(link)}">${esc(label)}</button>`).join('')}</div></div>`:''}`;}
+function renderGuide(){const choice=GUIDE_OPTIONS.find(x=>x.id===currentGuide);return viewHead('Trova lo strumento adatto','Questa guida usa una scelta manuale. Non interpreta diagnosi. Per provare l’orientamento automatico sperimentale, apri Atlas Engine.')+`<div class="panel" style="margin-bottom:16px"><a class="btn outline" href="../../orientamento.html">Prova Atlas Engine</a><p class="muted">Solo esempi inventati. La versione ufficiale non viene sostituita.</p></div><div class="grid3">${GUIDE_OPTIONS.map(x=>`<button class="template" type="button" data-action="guide" data-topic="${x.id}" style="text-align:left;cursor:pointer;border-color:${currentGuide===x.id?'#125b96':'var(--line)'}"><span class="chip">SCEGLI UN OBIETTIVO</span><h3>${esc(x.title)}</h3><p>${esc(x.sub)}</p><span style="color:var(--blue);font-weight:800">Mostra strumenti →</span></button>`).join('')}</div>${choice?`<div class="panel" style="margin-top:17px"><h3>Per «${esc(choice.title)}» puoi provare:</h3><p class="muted">Sono suggerimenti generali: scegli e personalizza ciò che è davvero utile per la persona.</p><div class="quick-links">${choice.tools.map(([label,link])=>link.includes('.html')?`<a class="btn outline" href="${esc(link)}">${esc(label)}</a>`:`<button class="btn outline" data-tool="${esc(link)}">${esc(label)}</button>`).join('')}</div></div>`:''}`;}
 function newGoal(){return{id:'g'+Date.now()+Math.random().toString(36).slice(2,6),title:'Nuovo obiettivo',description:'',tool:'sequenze',status:'Da iniziare',notes:[]};}
 function renderPercorso(){const p=state.percorso;return viewHead('Atlas Percorso','Collega obiettivi, strumenti e annotazioni. È una demo locale, non sincronizzata con il Diario.',`${printBtn}<button class="btn outline" data-action="goal-add" type="button">+ Nuovo obiettivo</button>`)+`<div class="layout"><div class="stack"><div class="panel">${field('Nome del percorso (inventato)','percorso.nome',false,'Per esempio: Routine del mattino')}<div class="section-note">La condivisione vera con famiglia e professionisti richiederà gli account e un database sicuro. Questa pagina mostra il flusso previsto.</div></div>${p.goals.length?p.goals.map((g,i)=>`<article class="panel"><div class="itemhead"><strong>Obiettivo ${i+1}</strong><button class="btn danger small" data-action="goal-delete" data-index="${i}">Elimina</button></div>${field('Titolo',`percorso.goals.${i}.title`)}${field('Descrizione / come riconosco un progresso',`percorso.goals.${i}.description`,true)}<div class="grid2"><label class="field">Stato<select data-bind="percorso.goals.${i}.status">${['Da iniziare','In corso','Raggiunto','Da rivedere'].map(v=>`<option ${g.status===v?'selected':''}>${v}</option>`).join('')}</select></label><label class="field">Strumento collegato<select data-bind="percorso.goals.${i}.tool">${['prima-poi','sequenze','timer','passaporto','preparazione','caa','agenda','diario'].map(t=>`<option value="${t}" ${g.tool===t?'selected':''}>${labelFor(t)}</option>`).join('')}</select></label></div><div class="actions"><button class="btn small outline" data-action="open-goal-tool" data-index="${i}">Apri strumento</button><button class="btn small outline" data-action="goal-diary" data-index="${i}">Invia / aggiorna bozza nel Diario</button><button class="btn small outline" data-action="goal-status" data-index="${i}">Verifica stato nel Diario</button><button class="btn small ghost" data-action="goal-note" data-index="${i}">+ Aggiungi osservazione</button></div><div class="cards-list" style="margin-top:12px">${(g.notes||[]).map((n,j)=>`<div class="record"><span class="tagline">${esc(n.date)}</span><p>${esc(n.text)}</p><button class="btn small ghost" data-action="goal-note-diary" data-index="${i}" data-note="${j}">Prepara copia nel Diario</button></div>`).join('')||'<p class="muted">Ancora nessuna osservazione.</p>'}</div></article>`).join(''):'<div class="empty-state">Il percorso è vuoto. Crea un obiettivo oppure carica un esempio dimostrativo.</div>'}</div><aside class="panel"><h3>Collegamento fra strumenti</h3><p>Ogni obiettivo richiama un supporto. Le annotazioni sono raccolte in uno storico locale che puoi stampare.</p><button class="btn ghost" data-action="path-demo">Carica un percorso inventato</button><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><h3>Diario Atlas</h3><p>Puoi aprire il Diario o preparare una copia locale di un obiettivo. Il salvataggio nel Diario richiede conferma. Puoi verificare lo stato del collegamento e preparare singole osservazioni. Nessuna sincronizzazione automatica; la condivisione A15 resta separata.</p><a class="btn outline" href="../diario/index.html">Apri Diario Atlas</a></aside></div>`;}
 const FAKE_CASES=[{alias:'Profilo dimostrativo A',goal:'Prepararsi per uscire',status:'In corso',note:'Sequenza visiva da rivedere insieme'},{alias:'Profilo dimostrativo B',goal:'Organizzazione dello studio',status:'Da iniziare',note:'Valutare una checklist personalizzabile'},{alias:'Profilo dimostrativo C',goal:'Preparazione a una visita',status:'Da rivedere',note:'Concordare una modalità di richiesta pausa'}];
@@ -207,4 +208,4 @@ if(current==='percorso'&&new URLSearchParams(location.search).get('bozza')==='ne
 })();
 
 </script>
-</body></html>
+<div class="a18-footer no-print noprint"><div><a class="a18-brand" href="../../index.html"><img alt="" height="39" src="../../assets/icons/atlas-mark.png" width="34"/><span>atlas<small>orientamento e supporto</small></span></a><p>Strumenti fondamentali gratuiti · Demo locale</p></div><nav aria-label="Informazioni sul progetto"><a href="../../famiglie.html">Famiglie</a><a href="../../professionisti.html">Professionisti</a><a href="../../fondo-atlas.html">Fondo Atlas</a><a href="../../chi-siamo.html">Missione</a><a href="../../contatti.html">Contatti</a><a href="../../privacy.html">Privacy</a></nav><small>Nessuna autenticazione reale, sincronizzazione o prestazione sanitaria attiva.</small></div><script defer="" src="../../assets/demo18.js"></script></body></html>
